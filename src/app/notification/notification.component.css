@@ -1,0 +1,13 @@
+.notificationAcceptButton {
+  display: block;
+  margin: 5px;
+  margin-left: 12px;
+}
+
+.notification-button {
+  background-color: #7f98ad;
+}
+
+.notification-button-accent {
+  color: #7f98ad;
+}

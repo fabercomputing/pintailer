@@ -1,0 +1,90 @@
+/* .example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+} */
+
+.example-full-width {
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  float: left;
+}
+
+.section2 {
+  width: 50%;
+  float: right;
+}
+
+.section3 {
+  width: 100%;
+}
+
+.section3 ::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+
+.section3 ::ng-deep .mat-form-field-infix {
+  border-top: none;
+  padding: 0px;
+}
+
+
+.section3 ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+
+.test-step-form ::ng-deep .mat-input-element {
+  width: 96%
+}
+
+.scenario-form ::ng-deep .mat-input-element {
+  width: 75%
+}
+
+.primarymanual {
+  margin: 5px;
+  background: rgba(122, 153, 178, 0.5);
+}
+
+.warnmanual {
+  margin: 5px;
+  background: rgb(204, 192, 192);
+}
+
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky;
+  /* For macOS/iOS Safari */
+  top: 0;
+  /* Sets the sticky toolbar to be on top */
+  z-index: 1000;
+  /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+.scenario-icon {
+  font-size: 25px;
+}
+
+/* Version CSS//////////////////// */
+.version-data {
+  max-height: 350px !important;
+  overflow: auto;
+}
+
+::ng-deep ins {
+  color: black;
+  background: #bbffbb;
+}
+
+::ng-deep del {
+  color: black;
+  background: #ffbbbb;
+}
+
+mat-form-field {
+  margin-left: 5px;
+}

@@ -1,0 +1,74 @@
+<mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
+<mat-form-field>
+  <mat-select [(ngModel)]="selectedTable" placeholder="Select Table Name">
+    <mat-option *ngFor="let table of tableNames" [value]="table">
+      {{table}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-select [(ngModel)]="selectedoperationType" placeholder="Select Operation Type">
+    <mat-option *ngFor="let operation of operationType" [value]="operation">
+      {{operation}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-select [(ngModel)]="selectedDateType" placeholder="Choose start/end date">
+    <mat-option value="StartDate">
+      Start Date
+    </mat-option>
+    <mat-option value="EndDate">
+      End Date
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <input matInput [matDatepicker]="picker1" [max]="currentDate" placeholder="Choose a Date" [(ngModel)]="inputStartDate">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1 [startAt]="inputStartDate"></mat-datepicker>
+</mat-form-field>
+
+<button mat-flat-button color="primary" (click)="getAuditInfo()">Get Audit Info</button>
+
+<div *ngFor="let audit of auditInfo; let i = index;" style="padding: 5px;" class="container">
+
+  <!-- <div style="width: 100%; float: left; padding: 5px;">
+    <b>{{i+1}}: Action Time:&nbsp; </b> {{audit.actionTime| date:
+    'dd/MM/yyyy'}}
+  </div> -->
+
+  <div style="float: left;" class="audit-box">
+    <mat-card style="padding: 8px;">
+      <b style="padding: 5px;">{{i+1}}: Old Value:&nbsp; {{audit.actionTime| date:
+        'dd/MM/yyyy'}}</b>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <pre [innerHTML]="audit.oldVal"> </pre>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="audit-box">
+    <mat-card style="padding: 8px;">
+      <b style="padding: 5px;">New Value:</b>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <pre [innerHTML]="audit.newVal"> </pre>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="audit-box">
+    <mat-card style="padding: 8px;">
+      <b style="padding: 5px;">Comparison:</b>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <pre processingDiff [left]="audit.oldVal" [right]="audit.newVal"></pre>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

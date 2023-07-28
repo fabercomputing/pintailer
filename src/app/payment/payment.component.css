@@ -1,0 +1,12 @@
+.input-full-width {
+  width: 72%;
+}
+
+.example-card {
+  width: 80%;
+  margin: 2% auto;
+}
+
+.loginBackDiv {
+  background-image: linear-gradient(rgb(158, 157, 161, .2), rgb(108, 151, 186, .2));
+}

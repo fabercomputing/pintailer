@@ -1,0 +1,81 @@
+.paraImgClass {
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  padding: 5px !important;
+  margin: 12px !important;
+  max-width: 100% !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+div.background {
+  /* border: 1px solid green!important; */
+  background-repeat: no-repeat !important;
+  /* for vertical repeat */
+  background-size: contain !important;
+  background-attachment: fixed !important;
+}
+
+div.transbox {
+  /* margin: 30px!important; */
+  background-image: linear-gradient(#fbfcfd, white);
+  /* border: 1px solid rgb(155, 151, 151)!important;
+    opacity: 0.9!important;
+    filter: alpha(opacity=90)!important; */
+  /* For IE8 and earlier */
+  /* margin-bottom: 0rem!important;
+    left: 20%!important; */
+  width: 72% !important;
+  margin: 0 auto !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* font-family: 'Montserrat', sans-serif !important; */
+  font-weight: 700 !important;
+  margin-top: 0px !important;
+  margin-bottom: 20px !important;
+  /* color: #10161A !important; */
+}
+
+/* h1 {
+  font-size: 54px !important;
+}
+
+h2 {
+  font-size: 36px !important;
+}
+
+h3 {
+  font-size: 21px !important;
+}
+
+h4 {
+  font-size: 18px !important;
+}
+
+h5 {
+  font-size: 16px !important;
+} */
+
+a {
+  /* color: #6195FF !important; */
+  text-decoration: none !important;
+  -webkit-transition: 0.2s opacity !important;
+  transition: 0.2s opacity !important;
+}
+
+.greenButton {
+  background: transparent !important;
+  margin: 1px !important;
+  border-radius: 10px !important;
+}
+
+.line-breaker {
+  white-space: pre-line;
+}

@@ -1,0 +1,381 @@
+<div class="container rightAlign">
+</div>
+<div class="mat-elevation-z8">
+  <mat-accordion multi="true">
+    <mat-expansion-panel (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false" multi="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Asset Type
+        </mat-panel-title>
+        <mat-panel-description>
+          {{panelOpenState1 ? 'Collapse Panel' : 'Add a new Asset Type'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>
+        <mat-form-field appearance="legacy">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="assetType" name="assetType" required>
+          <mat-hint>Enter the Type of asset</mat-hint>
+        </mat-form-field>
+
+        <button mat-raised-button class="buttonMargin" color="primary" (click)="saveAsset()">Add Asset</button>
+      </p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true" (closed)="panelOpenState = false" multi="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Add New Asset
+        </mat-panel-title>
+        <mat-panel-description>
+          {{panelOpenState ? 'Collapse Panel' : 'Add Asset Information Details'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="example-container">
+
+        <form class="example-form" #AssetInfo="ngForm" [formGroup]="form" (ngSubmit)="saveAssetInfo()">
+
+          <mat-vertical-stepper>
+            <mat-step label="Choose Asset Type">
+
+              <mat-form-field>
+                <mat-select placeholder="Choose Asset Type" formControlName="assetTypeId" required>
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let asset of assets" [value]="asset.assetTypeId">
+                    {{asset.assetTypeName}}
+                  </mat-option>
+                </mat-select>
+
+              </mat-form-field>
+
+            </mat-step>
+            <mat-step label="Enter Asset Details">
+
+              <p>
+
+                <mat-form-field>
+                  <mat-select placeholder="Enter the status of asset" formControlName="status" required>
+
+                    <mat-option *ngFor="let value of deviceSelectableStatus" [value]="value">
+                      {{value}}
+                    </mat-option>
+                  </mat-select>
+
+                </mat-form-field>
+              </p>
+
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="name" required>
+                  <mat-hint>Enter the name of asset</mat-hint>
+                </mat-form-field>
+              </p>
+
+              <p>
+                <mat-form-field appearance="standard">
+                  <mat-label>Brand</mat-label>
+                  <input matInput formControlName="brand" name="brand" required>
+                  <mat-hint>Enter brand name of asset</mat-hint>
+                </mat-form-field>
+              </p>
+              <p>
+                <p>
+                  <mat-form-field appearance="standard">
+                    <mat-label>Model</mat-label>
+                    <input matInput formControlName="model" name="model" required>
+                    <mat-hint>Enter Model of asset</mat-hint>
+                  </mat-form-field>
+                </p>
+                <p>
+                  <p>
+                    <mat-form-field appearance="standard">
+                      <mat-label>Serial Number</mat-label>
+                      <input matInput formControlName="serial" name="serial">
+                      <mat-hint>Enter Serial Number of asset</mat-hint>
+                    </mat-form-field>
+                  </p>
+                  <p>
+                    <p>
+                      <mat-form-field appearance="standard">
+                        <mat-label>Processor</mat-label>
+                        <input matInput formControlName="processor" name="processor">
+                        <mat-hint>Enter processor name of asset</mat-hint>
+                      </mat-form-field>
+                    </p>
+                    <p>
+                      <p>
+                        <mat-form-field appearance="standard">
+                          <mat-label>RAM</mat-label>
+                          <input matInput type="number" formControlName="ram" name="ram">
+                          <span matSuffix>GB</span>
+                          <mat-hint>Enter RAM memory of asset</mat-hint>
+                        </mat-form-field>
+                      </p>
+                      <p>
+                        <p>
+                          <mat-form-field appearance="standard">
+                            <mat-label>HardDisk Type</mat-label>
+                            <input matInput formControlName="hd_type" name="hd_type">
+                            <mat-hint>Enter type of HardDisk: SSD/HDD</mat-hint>
+                          </mat-form-field>
+                        </p>
+                        <p>
+                          <p>
+                            <mat-form-field appearance="standard">
+                              <mat-label>HardDisk Size</mat-label>
+                              <input matInput type="number" formControlName="hd_size" name="hd_size">
+                              <span matSuffix>GB</span>
+                              <mat-hint>Enter HardDisk memory of asset</mat-hint>
+                            </mat-form-field>
+                          </p>
+                          <p>
+                            <p>
+                              <mat-form-field appearance="standard">
+                                <mat-label>OS Version</mat-label>
+                                <input matInput formControlName="os_version" name="assetOsVersion">
+                                <mat-hint>Enter Version of OS</mat-hint>
+                              </mat-form-field>
+                            </p>
+                            <p>
+                              <p>
+                                <mat-form-field appearance="standard">
+                                  <mat-label>OS Type</mat-label>
+                                  <input matInput formControlName="os_type" name="assetOsType">
+                                  <mat-hint>Enter type of OS: Windows/RedHat/Ubuntu etc.</mat-hint>
+                                </mat-form-field>
+                              </p>
+                              <p>
+                                <p>
+                                  <mat-form-field appearance="standard">
+                                    <mat-label>Comments</mat-label>
+                                    <input matInput formControlName="comments" name="assetComments">
+                                    <mat-hint>Enter comments related to asset</mat-hint>
+                                  </mat-form-field>
+                                </p>
+                                <p>
+                                  <p>
+                                    <mat-form-field appearance="standard">
+                                      <mat-label>IMEI</mat-label>
+                                      <input matInput type="number" formControlName="imei" name="assetImei">
+                                      <mat-hint>Enter IMEI Number of asset</mat-hint>
+                                    </mat-form-field>
+                                  </p>
+                                  <p>
+                                    <p>Please fill all the required* fields
+                                      <button mat-raised-button class="buttonMargin" color="primary" type="submit" [disabled]="!AssetInfo.form.valid">Save Asset</button>
+                                    </p>
+
+            </mat-step>
+          </mat-vertical-stepper>
+        </form>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState2 = true" (closed)="panelOpenState2 = false" multi="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Assign Asset
+        </mat-panel-title>
+        <mat-panel-description>
+          {{panelOpenState2 ? 'Collapse Panel' : 'Assign a existing asset to user'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>
+        <mat-form-field>
+          <mat-select placeholder="Choose User" [(ngModel)]="assignedUserID" name="assignedUserID" required>
+
+            <mat-option *ngFor="let userInfo of usersDetail" [value]="userInfo.userName">
+              {{userInfo.fullName}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Choose Asset" [(ngModel)]="assignedAssetType" name="assignedAssetType" required>
+
+            <mat-option *ngFor="let assetInfo of assetInfoData" [value]="assetInfo.assetInfoId">
+              Name: {{assetInfo.name}}, Brand: {{assetInfo.brand}}, Model: {{assetInfo.model}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Start Date" [(ngModel)]="startTime">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="End Date" [(ngModel)]="endTime">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <button mat-raised-button class="buttonMargin" color="primary" (click)="assignUser()">Assing to user</button>
+      </p>
+    </mat-expansion-panel>
+
+
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Edit/Delete Assets
+        </mat-panel-title>
+        <mat-panel-description>
+          Show all assets
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="allAssetInfoTable" matSort>
+
+          <!-- Name  Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+          </ng-container>
+
+          <!-- Brand  Column -->
+          <ng-container matColumnDef="brand">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Brand </th>
+            <td mat-cell *matCellDef="let row"> {{row.brand}} </td>
+          </ng-container>
+
+          <!-- Model  Column -->
+          <ng-container matColumnDef="model">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Model </th>
+            <td mat-cell *matCellDef="let row"> {{row.model}} </td>
+          </ng-container>
+
+          <!-- Serial  Column -->
+          <ng-container matColumnDef="serial">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Serial Number </th>
+            <td mat-cell *matCellDef="let row"> {{row.serial}} </td>
+          </ng-container>
+
+          <!-- Processor  Column -->
+          <ng-container matColumnDef="processor">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Processor </th>
+            <td mat-cell *matCellDef="let row"> {{row.processor}} </td>
+          </ng-container>
+
+          <!-- RAM  Column -->
+          <ng-container matColumnDef="ram">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> RAM size(GB) </th>
+            <td mat-cell *matCellDef="let row"> {{row.ram}} </td>
+          </ng-container>
+
+          <!-- Hard Disk Type  Column -->
+          <ng-container matColumnDef="hd_type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> HDD Type </th>
+            <td mat-cell *matCellDef="let row"> {{row.hd_type}} </td>
+          </ng-container>
+
+          <!-- Hard Disk Size  Column -->
+          <ng-container matColumnDef="hd_size">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> HDD Size </th>
+            <td mat-cell *matCellDef="let row"> {{row.hd_size}} </td>
+          </ng-container>
+
+          <!-- OS Version  Column -->
+          <ng-container matColumnDef="os_version">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> OS Version </th>
+            <td mat-cell *matCellDef="let row"> {{row.os_version}} </td>
+          </ng-container>
+
+          <!-- OS Type  Column -->
+          <ng-container matColumnDef="os_type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> OS Type </th>
+            <td mat-cell *matCellDef="let row"> {{row.os_type}} </td>
+          </ng-container>
+
+          <!-- Comments  Column -->
+          <ng-container matColumnDef="comments">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Comments </th>
+            <td mat-cell *matCellDef="let row"> {{row.comments}} </td>
+          </ng-container>
+
+          <!-- IMEI  Column -->
+          <ng-container matColumnDef="imei">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> IMEI </th>
+            <td mat-cell *matCellDef="let row"> {{row.imei}} </td>
+          </ng-container>
+
+          <!-- Status  Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Status </th>
+            <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+          </ng-container>
+
+          <!-- Current Users -->
+          <ng-container matColumnDef="User">
+            <th mat-header-cell *matHeaderCellDef> User </th>
+            <td mat-cell *matCellDef="let row">
+              <div *ngFor="let value of allAssetUsers">
+                <p *ngIf="row.assetInfoId == value.assetInfoId && value.endDate == null">
+
+                  <button mat-stroked-button color="warn" title="Click to un assign" (click)="updateAssetUser(value.assetUserId, value.assetInfoId, value.startDate)">
+                    {{value.assetUserId}} </button>
+
+                </p>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Previous Users -->
+          <ng-container matColumnDef="Previous Users">
+            <th mat-header-cell *matHeaderCellDef> Previous Users </th>
+            <td mat-cell *matCellDef="let row">
+              <div *ngFor="let value of allAssetUsers">
+                <p *ngIf="row.assetInfoId == value.assetInfoId && value.endDate != null">
+                  {{value.assetUserId}}</p>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Asset Type -->
+          <ng-container matColumnDef="Asset Type">
+            <th mat-header-cell *matHeaderCellDef> Asset Type </th>
+            <td mat-cell *matCellDef="let row">
+              <div *ngFor="   let asset of assets">
+                <p *ngIf="row.assetTypeId == asset.assetTypeId">
+                  {{asset.assetTypeName}}</p>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Actions -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let row">
+
+              <button mat-raised-button class="buttonMargin" color="primary" (click)="editAssetInfo(row)">Edit</button>
+
+              <!-- <button mat-raised-button class="buttonMargin" color="warn" (click)="deleteTestCaseDefinition(row)">Delete</button>
+              <button mat-raised-button class="buttonMargin" color="primary" (click)="addTestCaseExecution(row)">Excecution</button> -->
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+      </div>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+  <div class="mat-elevation-z8">
+  </div>

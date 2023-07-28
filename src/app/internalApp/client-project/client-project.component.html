@@ -1,0 +1,213 @@
+<br />
+<mat-card id="introAddProjectTitle">
+
+  <h4>Add New Project: </h4>
+
+  <form class="example-form" id="introAddProjectFormTitle">
+    <mat-form-field appearance="legacy">
+      <mat-label>Add Project</mat-label>
+      <input matInput [(ngModel)]="newProjectName" name="newProjectName" required>
+      <mat-hint>Enter a Project Name</mat-hint>
+    </mat-form-field>
+
+    <button mat-raised-button class="buttonMargin goExecution" (click)="saveNewProject()">Add New Project</button>
+  </form>
+  <br />
+
+  <mat-accordion>
+    <mat-expansion-panel id="introEditProjectTitle" [expanded]="projectExpanded">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Edit Projects
+        </mat-panel-title>
+        <mat-panel-description>
+          Click to open Edit panel
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="clientProjects" matSort>
+
+          <!-- Test Case No. Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Project Name </th>
+            <td mat-cell *matCellDef="let row">{{row.name}}</td>
+          </ng-container>
+
+          <!-- Test Case Summary Column -->
+          <ng-container matColumnDef="clientOrganization">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Organization </th>
+            <td mat-cell *matCellDef="let row">{{row.clientOrganization}}</td>
+          </ng-container>
+
+          <!-- Test Case Summary Column -->
+          <ng-container matColumnDef="createdBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Created By </th>
+            <td mat-cell *matCellDef="let row">{{row.createdBy}}</td>
+          </ng-container>
+
+          <!-- Test Case Summary Column -->
+          <ng-container matColumnDef="modifiedBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Modified By </th>
+            <td mat-cell *matCellDef="let row">{{row.modifiedBy}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef style="font-weight: bold"> Actions </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-raised-button class="buttonMargin goExecution" (click)="editClientProject(row)">Edit</button>
+              <!-- <button mat-raised-button class="buttonMargin" color="warn" (click)="deleteClientProject(row)">Delete</button> -->
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</mat-card>
+
+<br />
+
+<mat-card id="introAddReleaseTitle">
+  <h4>Add New Release:</h4>
+
+  <div class="project" id="introAddReleaseProjectSelectTitle">
+    <mat-form-field>
+      <mat-select placeholder="Projects" name="clientProject" [(ngModel)]="clientProjectId" (selectionChange)="getAllRelease();">
+        <mat-option *ngFor="let clientProject of clientProjectsList" [value]="clientProject.clientProjectId">
+          {{clientProject.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+  </div>
+
+  <form class="example-form" id="introAddReleaseFormTitle">
+    <mat-form-field appearance="legacy">
+      <mat-label>Add Release</mat-label>
+      <input matInput [(ngModel)]="selectedReleaseNo" name="selectedReleaseNo" required>
+      <mat-hint>Enter a Release Number</mat-hint>
+    </mat-form-field>
+    <br />
+    <button mat-raised-button class="buttonMargin goExecution" (click)="addRelease()">Add New Release</button>
+  </form>
+  <br />
+  <mat-accordion>
+    <mat-expansion-panel id="introEditReleaseTitle" [expanded]="releaseExpanded">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Release Info
+        </mat-panel-title>
+        <mat-panel-description>
+          Click to open Release Info panel
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilterRelease($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table #sortSecond="matSort" [dataSource]="releaseAllArr" matSort>
+
+          <!-- Test Case No. Column -->
+          <ng-container matColumnDef="Number">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Release Number </th>
+            <td mat-cell *matCellDef="let row">{{row.releaseNumber}}</td>
+          </ng-container>
+
+          <!-- Test Case Summary Column -->
+          <ng-container matColumnDef="Organization">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Organization </th>
+            <td mat-cell *matCellDef="let row">{{row.clientOrganization}}</td>
+          </ng-container>
+
+          <!-- Test Case Summary Column -->
+          <ng-container matColumnDef="ClosedFlag">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Active Flag </th>
+            <td mat-cell *matCellDef="let row">{{row.closed}}</td>
+          </ng-container>
+
+          <!-- update release button -->
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef style="font-weight: bold"> Actions </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-raised-button class="buttonMargin goExecution" title="Click to switch release flag" (click)="updateSelectedRelease(row)">
+                Switch Active Flag </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsRelease"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsRelease;">
+          </tr>
+        </table>
+        <mat-paginator #paginatorRelease [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+</mat-card>
+<br />
+<mat-card id="introAddEnvTitle">
+  <h4>Add New Environment:</h4>
+  <form class="example-form" id="introAddEnvFormTitle">
+    <mat-form-field appearance="legacy">
+      <mat-label>Add Environment</mat-label>
+      <input matInput [(ngModel)]="selectedEnvironmentNo" name="selectedEnvironmentNo" required>
+      <mat-hint>Enter a Environment Name</mat-hint>
+    </mat-form-field>
+
+    <button mat-raised-button class="buttonMargin goExecution" (click)="addEnvironment()">Add New Environment</button>
+  </form>
+  <br />
+  <mat-accordion>
+    <mat-expansion-panel id="introEditEnvTitle" [expanded]="envExpanded">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Environment Info
+        </mat-panel-title>
+        <mat-panel-description>
+          Click to open Environment Info panel
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilterEnv($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table #sortEnv="matSort" [dataSource]="environmentInfoArr" matSort>
+
+          <!-- Test Case No. Column -->
+          <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Environment Name </th>
+            <td mat-cell *matCellDef="let row">{{row.executionEnvName}}</td>
+          </ng-container>
+
+          <!-- Test Case Summary Column -->
+          <ng-container matColumnDef="Organization">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Organization </th>
+            <td mat-cell *matCellDef="let row">{{row.clientOrganization}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsEnv"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsEnv;">
+          </tr>
+        </table>
+        <mat-paginator #paginatorEnv [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</mat-card>

@@ -1,0 +1,193 @@
+<section class="section3">
+  <form class="example-form">
+    <div>
+      <!-- @Scenario:1 this is first scenario
+      <hr /> -->
+      <!-- <hr style="border-top: 1px dotted gray;" /> -->
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>A Free Feature Rich BDD Editor</mat-card-title>
+          <mat-card-subtitle>
+            Use this Feature File Editor to create Feature Files and Generate corresponding Java step without worrying
+            about format and syntax.
+          </mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+      <mat-card class="app-toolbar" style="padding: 8px;">
+        <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
+        <!-- <button mat-raised-button class="primarymanual" (click)="saveFeatureFile()">Save</button> -->
+        <button mat-raised-button class="warnmanual" (click)="exportFeatureFile()">Get Feature/Java Steps</button>
+
+        <!-- <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="saveFeatureFile()" title="Save">
+            <mat-icon style="color: #6e97b9;">save</mat-icon>
+          </button>
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="exportFeatureFile()" title="Export Feature File">
+            <mat-icon style="color: #6e97b9;">import_export</mat-icon>
+          </button> -->
+
+        <mat-slide-toggle (change)="toggleDarkMode()" style="margin-left:5px; margin-right:15px;">Dark Theme
+        </mat-slide-toggle>
+
+        <section *ngIf="!darkMode" style="display: inline;">
+          <mat-card
+            style="padding: 2px; height: 10px; width:10px; background-color: palegreen; display: inline-block; margin-left:5px; margin-right:5px;">
+          </mat-card>
+          <span>New Scenario/Step</span>
+          <mat-card
+            style="padding: 2px; height: 10px; width:10px; background-color: lemonchiffon; display: inline-block; margin-left:5px; margin-right:5px;">
+          </mat-card>
+          <span>Edited Scenario/Step</span>
+          <mat-card
+            style="padding: 2px; height: 10px; width:10px; background-color: lightcoral; display: inline-block; margin-left:5px; margin-right:5px;">
+          </mat-card>
+          <span>Deleted Scenario/Step</span>
+        </section>
+
+        <section *ngIf="darkMode" style="display: inline;">
+          <mat-card
+            style="padding: 2px; height: 10px; width:10px; background-color: seagreen; display: inline-block; margin-left:5px; margin-right:5px;">
+          </mat-card>
+          <span>New Scenario/Step</span>
+          <mat-card
+            style="padding: 2px; height: 10px; width:10px; background-color: sandybrown; display: inline-block; margin-left:5px; margin-right:5px;">
+          </mat-card>
+          <span>Edited Scenario/Step</span>
+          <mat-card
+            style="padding: 2px; height: 10px; width:10px; background-color: crimson; display: inline-block; margin-left:5px; margin-right:5px;">
+          </mat-card>
+          <span>Deleted Scenario/Step</span>
+        </section>
+
+      </mat-card>
+      <mat-card [ngStyle]="{'background-color': darkMode ? 'DarkSlateGray' : 'rgb(252, 252, 252)' }">
+        <!-- <mat-card-header>
+            <mat-card-subtitle style="color:MediumSlateBlue; font-style: bold;"> {{selectedFeature}} </mat-card-subtitle>
+          </mat-card-header> -->
+        <h5 style="font-style: bold;" [ngStyle]="{'color': darkMode ? 'Turquoise' : 'SteelBlue' }"> {{selectedFeature}}
+        </h5>
+        <div *ngFor="let scenarioArr of testStepsofScenario; let i = index">
+          <div>
+            <div>
+              <!-- <h4 style="color:MediumSlateBlue; font-style: oblique;">{{scenarioArr.scenarioTag}}</h4> -->
+              <mat-form-field class="example-full-width" style="padding-left:5px;">
+
+                <input title="Enter Tags" class="feature-input-element feature-input-element-scenario-tag"
+                  style="display: inline;"
+                  [ngStyle]="{'background-color': scenarioArr.scenarioModificationStatus === 'A' ? darkMode ? 'SeaGreen' : 'PaleGreen' : scenarioArr.scenarioModificationStatus === 'M' ? darkMode ? 'SandyBrown' : 'LemonChiffon' : scenarioArr.scenarioModificationStatus === 'D' ? darkMode ? 'Crimson' : 'LightCoral' : darkMode ? 'DarkSlateGray' : 'rgb(252, 252, 252)' , 'color':'MediumSlateBlue', 'font-style': 'oblique'}"
+                  matInput [value]="scenarioArr.scenarioTag"
+                  (keyup)="scenarioEdited($event, scenarioArr.testScenarioId, scenarioArr.scenarioModificationStatus, true);"
+                  (focus)="focusFunction($event)" (focusout)="focusOutFunction($event)">
+              </mat-form-field>
+
+            </div>
+            <mat-form-field *ngIf="scenarioArr.feature" class="example-full-width scenario-form"
+              style="padding-left:5px;">
+              <h3 style="color:ForestGreen; display: inline;">Feature:</h3>
+              <!-- <p style="display: inline;" [ngStyle]="{'color': darkMode ? 'snow' : 'rgb(7, 43, 7)' }">{{scenarioArr.name}}</p> -->
+              <input title="Enter Heading of Your Feature File"
+                class="feature-input-element feature-input-element-feature-name"
+                style="display: inline; padding-left:12px;"
+                [ngStyle]="{'background-color': scenarioArr.scenarioModificationStatus === 'A' ? darkMode ? 'SeaGreen' : 'PaleGreen' : scenarioArr.scenarioModificationStatus === 'M' ? darkMode ? 'SandyBrown' : 'LemonChiffon' : scenarioArr.scenarioModificationStatus === 'D' ? darkMode ? 'Crimson' : 'LightCoral' : darkMode ? 'DarkSlateGray' : 'rgb(252, 252, 252)' , 'color': !darkMode ? 'black' : 'rgb(252, 252, 252)'}"
+                matInput [value]="scenarioArr.name"
+                (keyup)="scenarioEdited($event, scenarioArr.testScenarioId, scenarioArr.scenarioModificationStatus, false);"
+                (focus)="focusFunction($event)" (focusout)="focusOutFunction($event)">
+            </mat-form-field>
+            <div *ngIf="scenarioArr.background">
+              <h3 style="color:ForestGreen; display: inline;">Background:&nbsp;</h3>
+              <p style="display: inline;" [ngStyle]="{'color': darkMode ? 'snow' : 'rgb(7, 43, 7)' }">
+                {{scenarioArr.name}}</p>
+            </div>
+            <div *ngIf="!(scenarioArr.background || scenarioArr.feature)">
+              <h4 style="color:rgb(14, 160, 99);">
+                <mat-form-field class="example-full-width scenario-form" style="padding-left:5px;">
+                  <h3 style="color:ForestGreen; display: inline;">Scenario:</h3>
+
+                  <input title="Enter Scenario Name" class="feature-input-element feature-input-element-scenario-name"
+                    style="display: inline; padding-left:12px;"
+                    [ngStyle]="{'background-color': scenarioArr.scenarioModificationStatus === 'A' ? darkMode ? 'SeaGreen' : 'PaleGreen' : scenarioArr.scenarioModificationStatus === 'M' ? darkMode ? 'SandyBrown' : 'LemonChiffon' : scenarioArr.scenarioModificationStatus === 'D' ? darkMode ? 'Crimson' : 'LightCoral' : darkMode ? 'DarkSlateGray' : 'rgb(252, 252, 252)' , 'color': !darkMode ? 'black' : 'rgb(252, 252, 252)'}"
+                    matInput [value]="scenarioArr.name"
+                    (keyup)="scenarioEdited($event, scenarioArr.testScenarioId, scenarioArr.scenarioModificationStatus, false);"
+                    (focus)="focusFunction($event)" (focusout)="focusOutFunction($event)">
+
+                  <button style="margin-right: 5px;" mat-button matSuffix mat-icon-button aria-label="Clear"
+                    (click)="addScenario(i + 1)" title="Add new Scenario">
+                    <div class="scenario-icon">
+                      <mat-icon style="color: green;">add_circle_outline</mat-icon>
+                    </div>
+                  </button>
+                  <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                    *ngIf="!(scenarioArr.scenarioModificationStatus === 'D')" (click)="deleteScenario(i)"
+                    title="Delete Scenario">
+                    <div class="scenario-icon">
+                      <mat-icon style="color: maroon;">delete_sweep</mat-icon>
+                    </div>
+                  </button>
+                  <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                    *ngIf="scenarioArr.scenarioModificationStatus === 'D'" (click)="undoDeleteScenario(i)"
+                    title="Undo Delete">
+                    <mat-icon style="color: rgb(14, 160, 99);">undo</mat-icon>
+                  </button>
+
+                </mat-form-field>
+              </h4>
+            </div>
+            <mat-form-field class="example-full-width test-step-form"
+              *ngFor="let stepArr of scenarioArr.testStepsList; let j = index" style="padding-left:15px;">
+              <h5 style="float: left; margin:0px;" [ngStyle]="{'color': darkMode ? 'wheat' : 'midnightblue' }"> {{j +
+                1}}</h5>
+
+              <textarea title="Enter Test Step" class="feature-input-element feature-input-element-step"
+                style="float: right; padding-left:12px;"
+                [ngStyle]="{'background-color': stepArr.stepModificationStatus === 'A' ? darkMode ? 'SeaGreen' : 'PaleGreen' : stepArr.stepModificationStatus === 'M' ? darkMode ? 'SandyBrown' : 'LemonChiffon' : stepArr.stepModificationStatus === 'D' ? darkMode ? 'Crimson' : 'LightCoral' : darkMode ? 'DarkSlateGray' : 'rgb(252, 252, 252)' , 'color': !darkMode ? 'black' : 'rgb(252, 252, 252)', 'overflow-y': 'hidden'}"
+                matInput matTextareaAutosize [value]="stepArr.name"
+                (keyup)="textEdited($event, stepArr.testStepId, stepArr.stepModificationStatus);"
+                (focus)="focusFunction($event)" (focusout)="focusOutFunction($event)"></textarea>
+
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addStep(i, j)"
+                title="Add new step above">
+                <mat-icon [ngStyle]="{'color': darkMode ? 'LimeGreen' : 'SteelBlue' }">keyboard_arrow_up</mat-icon>
+              </button>
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addStep(i, j+1)"
+                title="Add new step below">
+                <mat-icon [ngStyle]="{'color': darkMode ? 'LimeGreen' : 'SteelBlue' }">keyboard_arrow_down</mat-icon>
+              </button>
+              <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                *ngIf="!(stepArr.stepModificationStatus === 'D')" (click)="deleteStep(i, j)" title="Delete step">
+                <mat-icon [ngStyle]="{'color': darkMode ? 'Crimson' : 'IndianRed' }">delete</mat-icon>
+              </button>
+              <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                *ngIf="stepArr.stepModificationStatus === 'D'" (click)="undoDeleteStep(i, j)" title="Undo Delete">
+                <mat-icon style="color: rgb(14, 160, 99);">undo</mat-icon>
+              </button>
+            </mat-form-field>
+            <hr style="border-top: 1px dotted rgb(129, 197, 197);" />
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </form>
+</section>
+
+<button mat-raised-button class="warnmanual" *ngIf="featureData != ''"
+  (click)="downloadFiles(featureData, 'feature')">Download
+  Feature File</button>
+<button mat-raised-button class="warnmanual" *ngIf="javaCode != ''" (click)="downloadFiles(javaCode, 'java')">Download
+  Java File</button>
+
+<section style="margin:5px;" *ngIf="featureData != ''">
+  <div style="width: 45%; float: left; margin-right: 5px;">
+    <ngx-codemirror [(ngModel)]="featureData" disabled="true" height="800px;" [options]="{
+    lineNumbers: true,
+    theme: darkMode ? 'material': 'eclipse',
+    mode: 'gherkin'
+  }"></ngx-codemirror>
+  </div>
+
+  <div>
+    <ngx-codemirror [(ngModel)]="javaCode" disabled="true" [options]="{
+    lineNumbers: true,
+    mode: 'text/x-java',
+    theme: darkMode ? 'material': 'eclipse'
+  }"></ngx-codemirror>
+  </div>
+</section>

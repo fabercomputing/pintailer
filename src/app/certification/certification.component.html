@@ -1,0 +1,115 @@
+<div style="background-image: linear-gradient(#fbfcfd, white);">
+  <div style="margin: 0 auto; max-width: 1170px; padding: 25px 30px;">
+    <div>
+      <h1 [@EnterLeaveTop] class="resource-header">Pintailer Certification</h1>
+      <hr [@EnterLeave] style="width: 50%; float: left;" />
+      <br />
+    </div>
+    <p style="color: #595959; background-color: transparent; font-size: 18px; line-height: 1.42857;">
+      <img src="./assets/images/certificate.png?width=200&amp;name=certificate.png" alt="Smart Segmentation" width="200"
+        style="width: 200px; margin: 0px 50px 10px 0px; float: right; padding-left: 30px;" sizes="(max-width: 200px) 100vw, 300px">
+      <span> Becoming Pintailer Certified helps individuals gain credibility for Software Testing expertise and enables
+        organizations to identify the skilled Testing professionals to lead IT initiatives. Please
+        fill in the form to request details of our training and certification program and we will get back to you to get you
+        started with the course.
+      </span>
+      <br />
+    </p>
+
+    <div id="outer" class="outer-class">
+      <mat-progress-bar mode="indeterminate" *ngIf="dataProcessing"></mat-progress-bar>
+      <div id="inner">
+        <br />
+        <!-- <h3>To keep you up and running, we are available to meet your organization's needs.</h3> -->
+
+        <mat-card [@fadeInOut] style="background-color: transparent; width: 75%; box-shadow: none;">
+          <!-- <h3>To keep you up and running, we are available to meet your organization's needs.</h3> -->
+          <form class="example-container" #SupportForm="ngForm" [formGroup]="form" (ngSubmit)="save()">
+            <br />
+            <div class="support-input">
+              <mat-form-field class="input-full-width">
+                <mat-select disableOptionCentering placeholder="Choose Support Type" formControlName="subject"
+                  [(value)]="selectedOption">
+                  <mat-option [value]="selectedOption">
+                    Certification Enquiry
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+
+            <div class="support-input">
+              <mat-form-field class="input-full-width">
+                <input required matInput placeholder="Name" formControlName="name">
+              </mat-form-field>
+            </div>
+
+            <!-- <div>
+                <mat-form-field class="input-full-width">
+                  <input required matInput placeholder="Email" formControlName="email">
+                  <mat-hint *ngIf="!SupportForm.form.value.valid">
+                    Please enter a valid email address
+                  </mat-hint>
+                </mat-form-field>
+              </div> -->
+
+            <div class="support-input">
+              <mat-form-field class="input-full-width">
+                <input required matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
+                <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+
+            <div class="support-input">
+              <mat-form-field class="input-full-width">
+                <input required matInput placeholder="Company Name" formControlName="company">
+              </mat-form-field>
+            </div>
+
+            <div class="support-input">
+              <mat-form-field class="input-full-width">
+                <span matPrefix>+ &nbsp;</span>
+                <input type="number" required matInput placeholder="Work Phone No." [formControl]="phoneFormControl"
+                  [errorStateMatcher]="matcher">
+
+                <mat-error *ngIf="phoneFormControl.hasError('min')">
+                  Please provide a valid 10 digit number
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="support-input">
+              <mat-form-field class="input-full-width">
+                <textarea required matInput placeholder="Remarks" formControlName="inquiry"></textarea>
+              </mat-form-field>
+            </div>
+
+            <button mat-button class="mat-raised-button mat-primary" type="submit" [disabled]="!SupportForm.form.valid ||  emailFormControl.hasError('email') || emailFormControl.hasError('required') || phoneFormControl.hasError('min') || phoneFormControl.hasError('required')">
+              Submit
+            </button>
+            <br />
+            <br />
+            <div style="display: flex;">
+              <img style="margin: 6px;" src="/assets/images/googlecaptha.png" alt="googlecaptha" height="42" width="42" />
+              <div>
+                <span style="display: block;">This site is
+                  protected by reCAPTCHA and the Google.</span>
+                <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+              </div>
+            </div>
+          </form>
+        </mat-card>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<app-footer></app-footer>

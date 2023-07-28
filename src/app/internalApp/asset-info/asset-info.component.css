@@ -1,0 +1,53 @@
+.buttonMargin{
+    
+  
+     float: right;
+}
+
+mat-form-field{
+    width: 58%;
+}
+
+.container {
+    height: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+   
+  td, th {
+    width: 14.285%;
+    text-align: center;
+  }
+  
+
+  .rightAlign{
+    display: flex;
+    align-items: right;
+    justify-content: space-around;
+    float: right; 
+    margin: 10px;
+  }
+  .buttonMargin{
+    margin: 5px;
+   
+  }
+
+  .truncate {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.mat-cell {
+
+  border-right: 1px solid lightgray ;
+}
+
+tr:nth-child(even){
+  background-color:#f2f2f2;
+  }

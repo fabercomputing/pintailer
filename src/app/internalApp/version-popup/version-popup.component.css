@@ -1,0 +1,32 @@
+.version-data {
+  max-height: 280px !important;
+  overflow: auto;
+}
+
+::ng-deep ins {
+  color: black;
+  background: #bbffbb;
+}
+
+::ng-deep del {
+  color: black;
+  background: #ffbbbb;
+}
+
+mat-form-field {
+  margin: 5px;
+}
+
+/* .version-testcase-box {
+  height: auto !important;
+} */
+
+button {
+  margin: 5px;
+}
+
+.dialog-title-pintailer {
+  background-color: rgb(248, 248, 242);
+  padding: 8px;
+  text-align: center;
+}

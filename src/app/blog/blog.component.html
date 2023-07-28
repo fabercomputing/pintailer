@@ -1,0 +1,86 @@
+<div style="background-image: linear-gradient(#fbfcfd, white);">
+  <div style="margin: 0 auto; 
+  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.8)),
+  url('assets/images/bg15.jpg');
+  background-size: 100% 400px;
+  background-repeat: no-repeat;">
+    <div style="padding-top: 20px; text-align: center;">
+      <h1 [@EnterLeaveTop] class="resource-header">Pintailer Blogs</h1>
+      <hr [@EnterLeave] style="width: 50%;" />
+      <br />
+    </div>
+
+    <!-- Container -->
+    <div class="container" style="padding:10px;">
+
+      <!-- Section header -->
+      <!-- <div class="section-header text-center">
+        <h2 class="title">Pintailer Blogs</h2>
+        <hr />
+      </div> -->
+      <!-- /Section header -->
+
+      <!-- Row -->
+      <div class="row">
+
+        <!-- blog -->
+        <div [@listAnimation]="blogArr.length">
+
+          <div style="float: right; padding: 10px; margin: 10px;">
+            <a target="_blank" href="https://twitter.com/Pintailer1" style="margin: 5px;">
+              <i class="fa fa-twitter" style="font-size:25px; color: #00acee;"></i>
+            </a>
+
+            <a target="_blank" href="https://www.linkedin.com/company/pintailer/" style="margin: 5px;">
+              <i class="fa fa-linkedin" style="font-size:25px; color:#0077B5;"></i>
+            </a>
+          </div>
+
+          <section *ngFor="let blog of blogArr; let i = index;">
+
+            <div class="col-sm-12 col-md-12 col-xs-12" *ngIf="i == 0 || i % 4 == 0">
+              <div class="thumbnail grow"
+                style="overflow: hidden; padding:0px; cursor: pointer; border:none; background:white; height:400px; border-radius: 5px; box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);"
+                (click)="openContent(blog.fileName)">
+                <div class="col-sm-8 col-md-8 col-xs-12 image-container" style="overflow: hidden;">
+                  <img src="/assets/img/{{blog.titleImg}}"
+                    style="height:auto; width: 100%; margin-left:-15px; border-top-left-radius: 5px; border-bottom-left-radius: 5px;" />
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-12" style="padding: 12px;">
+                  <h2>{{blog.title}}</h2>
+                  <p style="font-size:18px; color:rgb(0, 0, 0);">{{blog.titleDes}}</p>
+                  <p class="moreArticle" (click)="openContent(blog.fileName)"><b>Read more...</b></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-4 col-md-4 col-xs-12" *ngIf="!(i == 0 || i % 4 == 0)">
+              <div class="blog blog-hover" style="background-image: linear-gradient(#fbfcfd, white); text-align: center;border-radius: 5px; height: 400px;
+                box-shadow: 0 0.2rem 1rem 0 rgba(0, 0, 0, 0.1);">
+                <div class="blog-img pointer blog-img-hover" (click)="openContent(blog.fileName)"
+                  style="background-color: white;">
+                  <img class="img-responsive" src="/assets/img/{{blog.titleImg}}" alt="">
+                </div>
+                <div class="blog-content pointer" (click)="openContent(blog.fileName)">
+                  <h3>{{blog.title}}</h3>
+                  <p>{{blog.titleDes}}</p>
+                  <p class="moreArticle" (click)="openContent(blog.fileName)"><b>Read more...</b></p>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+        </div>
+        <!-- /blog -->
+
+
+      </div>
+      <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+  </div>
+</div>
+
+<app-footer></app-footer>

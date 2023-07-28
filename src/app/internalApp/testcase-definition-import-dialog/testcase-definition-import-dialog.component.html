@@ -1,0 +1,80 @@
+<input type="file" #file style="display: none" (change)="onFilesAdded()" multiple accept=".csv, .feature, .java" />
+
+<h1 mat-dialog-title class="dialog-title-pintailer">Import Definition
+  <mat-icon class="closePopupIcon" style="float:right; cursor: pointer; color: crimson;" (click)="this.dialogRef.close('cancel')" matTooltip="Close">close</mat-icon>
+  <!-- <mat-icon style="float:right; cursor: pointer;" (click)="openHelpFor(29)">help</mat-icon> -->
+</h1>
+
+
+<div class="container" fxLayout="column" fxLayoutAlign="space-evenly stretch" style="margin-left: 5px;">
+
+  <!-- <div>
+    <mat-form-field hideRequiredMarker style="width:70%;">
+      <mat-select placeholder="Organization*" [(ngModel)]="organization" name="organization" (selectionChange)="getProjectList($event.value)"
+        required>
+        <mat-option *ngFor="let organization of organizations" [value]="organization">
+          {{organization}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <br> -->
+
+  <div>
+    <mat-form-field hideRequiredMarker style="width:70%;">
+      <mat-select placeholder="Projects*" [(ngModel)]="clientProjectId" name="project" required>
+        <mat-option *ngFor="let clientProject of clientProjects" [value]="clientProject.clientProjectId" (click)="selectProjectName(clientProject.name)">
+          {{clientProject.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="center">
+    <file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
+      (onFileLeave)="fileLeave($event)">
+    </file-drop>
+  </div>
+
+  <div style="margin-top: 5%;">
+    <button [disabled]="clientProjects.length === 0" mat-raised-button color="primary" class="sampleFileButton" title="Guess a project name. Please verify"
+      (click)="doSimilarityCheck()">
+      Auto Select Project
+    </button>
+    <button matTooltip="Supports only CSV, Java and feature files" [disabled]="clientProjects.length === 0" [disabled]="uploading || uploadSuccessful"
+      mat-raised-button color="primary" class="add-files-btn" (click)="addFiles()">
+      Add Files
+    </button>
+    <button mat-raised-button color="primary" class="sampleFileButton" (click)="showSampleCsvFile()">Download Sample
+      File</button>
+  </div>
+
+  <div *ngIf="files.size === 0" style="height: 58px;"></div>
+  <!-- This is the content of the dialog, containing a list of the files to upload -->
+  <mat-dialog-content fxFlex style="overflow: auto; height: 140px;" *ngIf="files.size > 0">
+    <mat-list>
+      <mat-list-item>
+        Files Added:
+        <mat-divider></mat-divider>
+      </mat-list-item>
+      <mat-list-item *ngFor="let file of files;">
+        <h4 mat-line>{{file.name}}</h4>
+
+        <mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress[file.name].progress | async"></mat-progress-bar>
+
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeFile(file)" title="Remove File">
+          <mat-icon [ngStyle]="{'color': darkMode ? 'Crimson' : 'IndianRed' }">delete_outline</mat-icon>
+        </button>
+
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-dialog-content>
+
+  <!-- This are the actions of the dialog, containing the primary and the cancel button-->
+  <mat-dialog-actions class="actions">
+    <button *ngIf="showCancelButton" mat-raised-button color="warn" mat-dialog-close (click)="closeButton()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!canBeClosed" (click)="closeDialog()">{{primaryButtonText}}</button>
+  </mat-dialog-actions>
+</div>

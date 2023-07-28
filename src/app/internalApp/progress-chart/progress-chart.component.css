@@ -1,0 +1,19 @@
+.org {
+  float: left;
+  overflow: hidden;
+  margin: 5px;
+}
+
+.project {
+  float: left;
+  overflow: hidden;
+  margin: 5px;
+}
+
+.goExecution {
+  float: right;
+  margin-top: 8px;
+  margin-left: 4px;
+  position: relative;
+  background: rgba(122, 153, 178, 0.5); 
+}

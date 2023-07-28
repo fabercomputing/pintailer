@@ -1,0 +1,25 @@
+<div style="background-image: linear-gradient(#fbfcfd, white);">
+  <div class="background">
+    <!-- <div class="background" [style.background-image]="image"> -->
+    <div class="jumbotron transbox">
+      <h1 class="display-4" style=" text-align: center; color: #7998b3;">{{title}}</h1>
+      <p style=" text-align: center;">{{titleDes}}</p>
+      <hr class="my-4">
+      <div *ngFor="let para of paraGraphArr">
+        <h4 class="display-5" style="font-size: 22px !important;">{{para.paraTitle}}</h4>
+
+        <iframe *ngIf="para.paraVideo" width="95%" height="345" style="margin: 12px;" [src]="cleanURL(para.paraVideo)"
+          frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+
+        <p [innerHTML]="para.paraContent" class="line-breaker" style="font-size: 17px !important;"></p>
+        <img *ngIf="para.paraImg" src="/assets/img/{{para.paraImg}}" class="paraImgClass" alt="Paragraph Image">
+        <!-- <hr class="my-4"> -->
+      </div>
+      <p class="lead">
+        <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+      </p>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

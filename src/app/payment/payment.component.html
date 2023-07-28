@@ -1,0 +1,57 @@
+<!-- <button mat-raised-button (click)="isEditable = !isEditable">
+  {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
+</button> -->
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill Out Your Details</ng-template>
+      <mat-card class="example-card loginBackDiv">
+        <mat-card-content style="margin-left:120px;">
+          <div>
+            <mat-form-field class="input-full-width">
+              <input matInput placeholder="Name" formControlName="name" required>
+            </mat-form-field>
+            <mat-form-field class="input-full-width" class="input-full-width">
+              <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="input-full-width">
+              <input matInput placeholder="Company Name" formControlName="company">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Choose Your Plan</ng-template>
+      <mat-form-field class="input-full-width">
+        <input matInput type="number" min="1" max="5000" placeholder="Number of users" formControlName="userNum">
+      </mat-form-field>
+      <mat-form-field class="input-full-width">
+        <input matInput type="number" min="1" max="5000" placeholder="Months" formControlName="months">
+      </mat-form-field>
+      <div>
+        <!-- <button mat-button matStepperPrevious>Back</button> -->
+        <button mat-button matStepperNext (click)="isEditable = false">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [editable]="isEditable">
+    <ng-template matStepLabel>Payment</ng-template>
+    You are now done.
+    <div>
+      <!-- <button mat-button matStepperPrevious>Back</button> -->
+      <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

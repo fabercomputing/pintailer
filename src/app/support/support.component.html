@@ -1,0 +1,157 @@
+<mat-progress-bar mode="indeterminate" *ngIf="dataProcessing"></mat-progress-bar>
+<div style="background: linear-gradient(to right, rgba(240, 240, 240, 0.9), rgba(241, 241, 241, 0.8)),
+url('assets/images/support.png');">
+  <!-- style="background-image: url('assets/images/support.png'); background-repeat: no-repeat;" -->
+  <div style="margin: 0 auto; max-width: 1170px; padding: 25px 30px;">
+    <div>
+      <h1 [@EnterLeaveTop] class="resource-header">Welcome to Pintailer Support</h1>
+      <hr [@EnterLeave] style="width: 50%; float: left;" />
+      <br />
+    </div>
+    <p style="color: #000000; background-color: transparent; font-size: 18px; line-height: 1.42857;">
+      <!-- <img src="./assets/images/contact-us.png?width=280&amp;name=contact-us.png" alt="Smart Segmentation" width="280"
+        style="width: 280px; margin: 0px 80px 10px 0px; float: right;" sizes="(max-width: 280px) 100vw, 300px"> -->
+      <span>We're here to help. To keep you up and running, we are available to meet your organization's needs.
+        Please fill in the form to help us serve you better and our Support team will get back to you.
+      </span>
+      <br />
+    </p>
+
+    <div class="support-img-div">
+      <img src="./assets/images/contact-us.png?width=280&amp;name=contact-us.png" alt="Smart Segmentation" width="280"
+        style="width: 280px; float: right;" sizes="(max-width: 280px) 100vw, 300px">
+
+      <button module mat-menu-item style="overflow: visible;">
+        <mat-icon>email</mat-icon>
+        <a style="color: navy; font-size: 18px; text-decoration: none;"
+          href="mailto:support@pintailer.com"><b>support@pintailer.com</b></a>
+      </button>
+
+      <button module mat-menu-item style="overflow: visible;">
+        <mat-icon>phone</mat-icon>
+        <a style="color: navy; font-size: 18px; text-decoration: none;"
+          href="tel:+14108849169"><b>+1-410-884-9169</b></a>
+      </button>
+
+    </div>
+
+    <div id="outer" class="outer-class">
+      <div id="inner">
+        <br />
+        <!-- <h3>To keep you up and running, we are available to meet your organization's needs.</h3> -->
+
+        <mat-card [@fadeInOut] class="form-card" style="box-shadow: none; border-radius: 8px;">
+          <!-- <h3>To keep you up and running, we are available to meet your organization's needs.</h3> -->
+          <form class="example-container" #SupportForm="ngForm" [formGroup]="form" (ngSubmit)="save()"
+            style="padding: 12px;">
+
+            <div class="support-input">
+              <mat-form-field class="input-full-width">
+                <mat-select disableOptionCentering placeholder="Choose Support Type" formControlName="subject">
+                  <mat-option value="Pintailer - Feedback Mail">
+                    Feedback
+                  </mat-option>
+                  <mat-option value="Pintailer - User Request Mail">
+                    User Request
+                  </mat-option>
+                  <mat-option value="Pintailer - Inquiry Mail">
+                    Enquiry
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="support-input">
+              <mat-form-field class="input-half-width">
+                <input required matInput placeholder="Name" formControlName="name">
+              </mat-form-field>
+            </div>
+
+            <div class="support-input">
+              <mat-form-field class="input-half-width">
+                <input required matInput placeholder="Email" [formControl]="emailFormControl"
+                  [errorStateMatcher]="matcher">
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
+                <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+
+            <div class="support-input">
+              <mat-form-field class="input-half-width">
+                <input required matInput placeholder="Company Name" formControlName="company">
+              </mat-form-field>
+            </div>
+
+            <!-- <div class="support-input">
+              <mat-form-field class="input-half-width">
+                <input type="number" required matInput placeholder="Work Phone No." formControlName="phnum">
+              </mat-form-field>
+            </div> -->
+
+            <div class="support-input">
+              <mat-form-field class="input-half-width">
+                <span matPrefix>+ &nbsp;</span>
+                <input type="number" required matInput placeholder="Work Phone No." [formControl]="phoneFormControl"
+                  [errorStateMatcher]="matcher">
+
+                <mat-error *ngIf="phoneFormControl.hasError('min')">
+                  Please provide a valid 10 digit number
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="support-input" *ngIf="form.value.subject == 'Pintailer - User Request Mail'">
+              <mat-form-field class="input-half-width">
+                <input type="number" required matInput placeholder="Number of Users Required" formControlName="empNum">
+              </mat-form-field>
+            </div>
+
+            <div class="support-input">
+              <mat-form-field class="input-full-width">
+                <textarea required matInput placeholder="Remarks" formControlName="inquiry"></textarea>
+              </mat-form-field>
+            </div>
+
+            <!-- <ngx-recaptcha2 #captchaElem [siteKey]="6LeCKo4UAAAAALFNA99f8Td3gM_yPWUrUuaTWs8c" 
+            (reset)="handleReset()" (expire)="handleExpire()" (load)="handleLoad()"
+              (success)="handleSuccess($event)" [useGlobalDomain]="false" [size]="size" [hl]="lang" [theme]="theme"
+              [type]="type"
+               formControlName="recaptcha">
+            </ngx-recaptcha2> -->
+
+            <!-- <ngx-recaptcha2 #captchaElem siteKey="6LeCKo4UAAAAALFNA99f8Td3gM_yPWUrUuaTWs8c" formControlName="recaptcha">
+            </ngx-recaptcha2> -->
+
+            <button mat-button class="mat-raised-button mat-primary" type="submit"
+              [disabled]="!SupportForm.form.valid ||  emailFormControl.hasError('email') || emailFormControl.hasError('required') || phoneFormControl.hasError('min') || phoneFormControl.hasError('required')">
+              Submit
+            </button>
+            <br />
+            <br />
+
+            <div style="display: flex;">
+              <img style="margin: 6px;" src="/assets/images/googlecaptha.png" alt="googlecaptha" height="42"
+                width="42" />
+              <div>
+                <span style="display: block;">This site is
+                  protected by reCAPTCHA and the Google.</span>
+                <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+              </div>
+            </div>
+          </form>
+        </mat-card>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+<app-footer></app-footer>

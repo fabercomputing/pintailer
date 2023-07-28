@@ -1,0 +1,57 @@
+<mat-card>
+  <div>
+    <!-- <div class="org">
+      <mat-form-field>
+        <mat-select placeholder="Organization" name="organization" [value]="organization" (selectionChange)="getProjectsByOrganizationName($event.value);"
+          required>
+          <mat-option *ngFor="let organization of organizations" [value]="organization">
+            {{organization}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div> -->
+
+    <div class="project">
+      <mat-form-field>
+        <mat-select placeholder="Projects" name="clientProject" [value]="clientProjectId" [(ngModel)]="clientProjectId">
+          <mat-option [value]="'0'">
+            All Projects
+          </mat-option>
+          <mat-option *ngFor="let clientProject of clientProjects" [value]="clientProject.clientProjectId">
+            {{clientProject.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  &nbsp;
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker1" [max]="currentDate" placeholder="Choose a start date" [(ngModel)]="inputStartDate">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1 [startAt]="inputStartDate"></mat-datepicker>
+  </mat-form-field>
+  &nbsp;
+  <mat-form-field>
+    <input matInput [min]="inputStartDate" [max]="currentDate" [matDatepicker]="picker2" placeholder="Choose an end date"
+      [(ngModel)]="inputEndDate">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2 [startAt]="inputEndDate"></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-raised-button class="goExecution" style="margin-left: 10px" (click)="showSelectedDate()">Generate Graph</button>
+</mat-card>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoaded === true"></mat-progress-bar>
+
+<div>
+  <div id="TopLineChartDiv"></div>
+</div>
+
+<div>
+  <div id="userNameBar">
+
+  </div>
+</div>

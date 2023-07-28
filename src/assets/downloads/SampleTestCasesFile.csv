@@ -1,0 +1,20 @@
+Sr.  No.,TC ID Ref.,Module Name,Functionality,Sub Functionality,Test Summary, Pre condition,Execution Steps,Expected Result,Actual Result,Tester,Execution Date,Test Results,Test Data,Linked Defect,Environment,Criticality,IsAutomatable,IsAutomated,Remarks,File Name,Test Case No.,Applicable,Creation Date1,TC_01_loginPage,Login Page,Visibility,Visibility,"Verify visibility of various labels, tabs, buttons and Text fields 
+on Login Page",User Should be on Login Page,"Open any Browser and hit the URL:
+http://pintailer.com ","Login Page should be displayed with following Buttons:
+1.Login (Button)
+2.Try Free (Button)
+3.Menu Bar (Button)
+4.Product (Button)
+5.Pricing (Button)
+6.Knowledge Base (Button)
+7.Support (Button)
+8.Login (Label)
+9.Username and Password free text field
+10.Change Password",,Tester1,31-Oct-18,Passed,,,Dev,P2,Yes,Yes,,Pintailer_LoginPageTest.java,TC_02_loginPage,Yes,2,TC_02_loginPage,Login Page,Succussfull Login,Succussfull Login,Verify succussfull login with valid credentials,User Should be on Login Page,"1.Enter valid username and password
+2.Click on Login ","User should be succussfully login and redirect 
+to Profile Section",,Tester1,31-Oct-18,Failed,,,Dev,P1,Yes,Yes,,Pintailer_LoginPageTest.java,TC_02_loginPage,Yes,3,TC_01_logoutConfirmationBox,Logout,Logout Confirmation Box,Logout Confirmation Box,Verify logout confirmation box ,User Should be login in Application,"1. Click on Menu Bar Button
+2.Then click on logout button",Logout confirmation box should be displayed with 'OK' and 'Cancel' button on it,,Tester1,31-Oct-18,Passed,,,Dev,P3,Yes,Yes,,Pintailer_Logout.java,"TC_01_logoutConfirmationBox,TC_03_logoutfunctionality",Yes,4,TC_02_logoutConfirmationBox,Logout,Logout Confirmation Box,Confirmation Box Cancel Button,Verify logout functionality with Cancel button of Confirmation Box,User Should be login in Application,"1. Click on Menu Bar Button
+2.Then click on logout button
+3. Click on Cancel button on Confirmation box",Application should not be logout and user remains on User Profile Page,,Tester1,31-Oct-18,Passed,,,Dev,P1,Yes,No,,,,Yes,5,TC_03_logoutConfirmationBox,Logout,Logout Confirmation Box,Confirmation Box OK Button ,Verify logout functionality with OK button of Confirmation Box,User Should be login in Application,"1. Click on Menu Bar Button
+2.Then click on logout button
+3. Click on OK button on Confirmation box",Application should be sucessfully logout and login page should be displayed,,Tester1,31-Oct-18,Passed,,,Dev,P2,No,No,,,,Yes,

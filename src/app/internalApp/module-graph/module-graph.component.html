@@ -1,0 +1,31 @@
+<div>
+  <mat-card>
+    <div class="orgProjectSelection">
+      <!-- <div class="org">
+        <mat-form-field>
+          <mat-select placeholder="Organization" name="organization" [value]="organization" (selectionChange)="getProjectsByOrganizationName($event.value);"
+            required>
+            <mat-option *ngFor="let organization of organizations" [value]="organization">
+              {{organization}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+      <div class="project">
+        <mat-form-field>
+          <mat-select placeholder="Projects" [(ngModel)]="clientProjectId" name="clientProjectId" (selectionChange)="getModuleHierarchyByProjectName($event.value)">
+            <mat-option [value]="'0'" (click)="addProjectName('All Projects')">
+              All Projects
+            </mat-option>
+            <mat-option *ngFor="let clientProject of clientProjects" [value]="clientProject.clientProjectId" (click)="addProjectName(clientProject.name)">
+              {{clientProject.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card>
+  <div id="moduleTreeRoot" style="overflow-x: scroll;"></div>
+
+</div>

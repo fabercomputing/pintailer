@@ -1,0 +1,122 @@
+<mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4 price-tab" style="display:none;">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">cloud</mat-icon>
+      &nbsp;
+      <span>Cloud</span>
+    </ng-template>
+
+  </mat-tab>
+
+  <!-- <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">storage</mat-icon>
+      &nbsp;
+      <span>Self-hosted</span>
+    </ng-template>
+    <div id="outer" style="width:100%">
+      <div id="inner">
+        <br />
+        <h3>For teams of all sizes, hosted on your server</h3>
+        <mat-card style="background-color: #f4f5f7; display: table; margin: 5px auto; width: 50%;">
+          <h1>$19</h1>
+          <h2>per user/month</h2>
+          <h4>Free for 1 month for 3 users</h4>
+        </mat-card>
+        <div class="cloud-detail">
+          <h3>Server benefits:</h3>
+          <mat-icon style="color:green;">done</mat-icon>
+          <span>Complete control of your environment</span>
+          <br />
+          <mat-icon style="color:green;">done</mat-icon>
+          <span>Dockerization for high availability</span>
+
+          <mat-card style="background-color: #f4f5f7; display: table; margin: 5px auto; width: 50%;">
+            <h3>Pricing calculator</h3>
+            <form class="example-form">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Enter number of users" [(ngModel)]="numOfUsers" name="numOfUsers" type="number"
+                  min="1" max="1000000">
+                <mat-hint align="start"><strong>How many users on your team?</strong> </mat-hint>
+              </mat-form-field>
+              <div class="price-detail">
+                <h2>Total price/month</h2>
+                <h3 *ngIf="numOfUsers != undefined">$&nbsp;{{numOfUsers * 19}}</h3>
+                <h2>Average price per user/month</h2>
+                <h3 *ngIf="numOfUsers != undefined">$&nbsp;19</h3>
+              </div>
+            </form>
+          </mat-card>
+
+        </div>
+      </div>
+    </div>
+  </mat-tab> -->
+
+</mat-tab-group>
+<div id="outer" class="outer-class" style="width:100%">
+  <div id="inner">
+    <br />
+    <h1 [@EnterLeaveTop] style="color:#253858; font-family: Roboto,'Helvetica Neue',sans-serif;">For teams of all sizes, in
+      the cloud
+    </h1>
+    <mat-card [@fadeInOut]
+      style="background-color: #e5e9f0; display: table; margin: 5px auto; width: 40%; border-radius: 25px; box-shadow: 0 0.2rem 1.5rem 0 rgba(0, 0, 0, 0.1);">
+      <h1>Introductory Offer</h1>
+      <h2>$19 per user/month</h2>
+      <h4>Free for 1 month for 3 users</h4>
+      <mat-divider></mat-divider>
+      <br />
+      <!-- <h2>Cloud benefits:</h2> -->
+      <mat-icon style="color:limegreen; display: inline;">done</mat-icon>
+      <h4 style="display: inline;">Get started quickly and easily — we set up and host your software
+        site for you.</h4>
+      <br />
+      <mat-icon style="color:limegreen; display: inline;">done</mat-icon>
+      <h4 style="display: inline;">No servers, no storage, no maintenance — we run it for you.</h4>
+      <br />
+      <mat-divider style="margin-top: 10px;"></mat-divider>
+      <br />
+      <h2 style="margin:0px;">Pricing calculator</h2>
+      <!-- <form class="example-form" style="margin-top:10px;">
+        <mat-form-field class="example-full-width">
+          <input matInput (keyup)="userNumEdited($event)" placeholder="Enter number of users" [(ngModel)]="numOfUsers"
+            name="numOfUsers" type="number" min="1" max="5000">
+          <mat-hint align="start"><strong>How many users on your team?</strong> </mat-hint>
+        </mat-form-field>
+
+      </form> -->
+
+      <mat-slider class="user-number-slider" max="500" min="1" thumbLabel="true" step="1" [(ngModel)]="numOfUsers">
+
+      </mat-slider>
+      <br />
+      <mat-hint align="start" *ngIf="numOfUsers === undefined"><strong>How many users on your team?</strong> </mat-hint>
+      <mat-hint align="start" *ngIf="numOfUsers != undefined"><strong>Total price/month :&nbsp;${{numOfUsers * 19}} for
+          {{numOfUsers}} users</strong> </mat-hint>
+      <!-- <div class="price-detail" *ngIf="numOfUsers != undefined"> -->
+      <!-- <h3 style="display: inline;" *ngIf="numOfUsers != undefined">Total price/month :&nbsp;${{numOfUsers * 19}}</h3> -->
+      <!-- <h2>Average price per user/month</h2>
+        <h3 *ngIf="numOfUsers != undefined">$&nbsp;19</h3> -->
+      <!-- </div> -->
+      <!-- <br *ngIf="numOfUsers === undefined" /> -->
+
+    </mat-card>
+    <!-- <div class="cloud-detail">
+
+
+      <mat-card style="background-color: #e5e9f0; display: table; margin: 5px auto; width: 50%;">
+       
+      </mat-card>
+
+    </div> -->
+  </div>
+</div>
+<!-- <app-footer></app-footer> -->
+<!-- <app-footer style="position: fixed;
+height: 50px;
+bottom: 50px;
+left: 0px;
+right: 0px;
+margin-bottom: 0px;"></app-footer> -->
+<app-footer></app-footer>

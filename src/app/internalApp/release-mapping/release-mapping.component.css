@@ -1,0 +1,150 @@
+.container {
+  padding: 10px;
+  width: 50%;
+  float: left;
+}
+
+.section2 {
+  padding: 10px;
+  width: 45%;
+  float: right;
+}
+
+.container2 {
+  padding: 10px;
+}
+
+.module {
+  float: left;
+  width: 35%;
+  height: 50px;
+}
+
+.featureSelect {
+  float: left;
+  width: 48%;
+  overflow: hidden;
+}
+
+.scenarioSelect {
+  float: left;
+  width: 48%;
+  overflow: hidden;
+}
+
+.firstBox {
+  width: 100%;
+  float: left;
+}
+
+.secondBox {
+  float: right;
+  width: 1%;
+}
+
+table {
+  width: 100%;
+}
+
+tr:nth-child(even) {
+  background-color: #fcfdfe;
+}
+
+td,
+th {
+  width: 14.285%;
+  /* text-align: center; */
+}
+
+.mat-cell {
+  border-right: 1px solid lightgray;
+}
+
+.line-breaker {
+  white-space: pre;
+}
+
+/* .line-breaker::first-letter {
+  color: red;
+} */
+
+.specialChar {
+  color: red;
+}
+
+.mapButton {
+  float: right;
+  margin-right: 4px;
+}
+
+/* .org {
+  float: left;
+  width: 48%;
+  overflow: hidden;
+}
+
+.project {
+  float: left;
+  width: 48%;
+  overflow: hidden;
+} */
+
+.Hirar:nth-child(odd) {
+  background-color: whitesmoke;
+}
+
+.line-breakerModule {
+  white-space: pre-line;
+}
+
+.truncateSecond {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  margin: 10;
+}
+
+.mat-paginator-sticky {
+  bottom: 0px;
+  position: sticky;
+  z-index: 10;
+  height: 45px;
+}
+
+.line-breaker {
+  white-space: pre-line;
+}
+
+.goExecution {
+  margin-top: 8px;
+  margin-left: 4px;
+  position: relative;
+  background: rgba(122, 153, 178, 0.5);
+}
+
+.filterButton {
+  float: right;
+  position: relative;
+  background: rgba(122, 153, 178, 0.5);
+}
+
+td {
+  text-align: left;
+  padding-left: 5px !important;
+}
+
+th {
+  padding-left: 5px !important;
+  border-right: 1px solid #faf7f7;
+}
+
+.check-header {
+  text-align: center !important;
+
+}
+
+.check-data {
+  text-align: center !important;
+}

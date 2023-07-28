@@ -1,0 +1,103 @@
+<mat-card [ngStyle]="{'height': '580px', 'width': '25%', 'padding': '0px', 'float': 'left', 'box-shadow': 'none', 'background-image': 'linear-gradient(rgb(249, 247, 247), rgba(255, 255, 255, 0.4))'}">
+  <mat-card style="padding: 0px; box-shadow: none; margin: 4px;">
+    <mat-list role="list">
+      <mat-list-item role="listitem" (click)="currentOpenSettings = 'setDefaultOrgSection'">
+        <h4 mat-line class="underline">Organization Setup</h4>
+        <mat-icon style="float: right;">chevron_right</mat-icon>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- <mat-list-item role="listitem" (click)="currentOpenSettings = 'assignUserOrgSection'" *ngIf="canShowProjectMenu()">
+        <h4 mat-line class="underline">User Setup</h4>
+        <mat-icon style="float: right;">chevron_right</mat-icon>
+      </mat-list-item> -->
+      <mat-divider *ngIf="canShowProjectMenu()"></mat-divider>
+      <!-- <mat-list-item role="listitem">
+        <h4 mat-line class="underline">Item 3</h4>
+        <mat-icon style="float: right;">chevron_right</mat-icon>
+      </mat-list-item>
+      <mat-divider></mat-divider> -->
+    </mat-list>
+  </mat-card>
+</mat-card>
+
+<mat-card style="width:74.5%; padding: 0px; float: right; height: 580px; background-image: linear-gradient(rgb(255, 255, 255), rgba(255, 255, 255)); box-shadow: none;">
+  <mat-card id="setDefaultOrgSection" *ngIf="currentOpenSettings === 'setDefaultOrgSection'" style="box-shadow: none; margin: 4px;">
+    <!-- <mat-card-header> -->
+    <mat-card-title>Organization Setup</mat-card-title>
+    <mat-card-subtitle style="margin-left: 2px;">Change your basic Organization settings</mat-card-subtitle>
+    <!-- </mat-card-header> -->
+
+    <mat-divider></mat-divider>
+    <mat-card-content style="margin:5px;">
+      <br />
+
+      <mat-card-subtitle>Your current default Organization is <b>{{getDefaultOrg()}}</b>. Change your default
+        Organization. This wil be used application
+        wide in Pintailer.</mat-card-subtitle>
+      <table>
+        <tr>
+          <td>
+            <div class="org">
+              <mat-form-field hideRequiredMarker>
+                <mat-select placeholder="Organization*" name="organization" [(ngModel)]="organization" required>
+                  <mat-option *ngFor="let organization of organizations" [value]="organization.orgName" (click)="refreshUserAndProjectData();">
+                    {{organization.orgName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </td>
+          <td>
+            <button mat-raised-button color="primary" style="margin-left: 8px;" (click)="setDefaultOrg()">Set Default
+              Orgnization</button>
+          </td>
+        </tr>
+      </table>
+      <br />
+      <br />
+      <mat-divider></mat-divider>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card id="assignUserOrgSection" *ngIf="currentOpenSettings === 'assignUserOrgSection'" style="box-shadow: none; margin: 4px;">
+    <!-- <mat-card-header> -->
+    <mat-card-title>User Setup</mat-card-title>
+    <mat-card-subtitle style="margin-left: 2px;">Change your basic User settings</mat-card-subtitle>
+    <!-- </mat-card-header> -->
+
+    <mat-divider></mat-divider>
+    <mat-card-content style="margin:5px;">
+      <br />
+
+      <mat-card-subtitle>Assign Multiple users to Multiple Projects.</mat-card-subtitle>
+
+      <div class="org">
+        <mat-form-field hideRequiredMarker>
+          <mat-select placeholder="Organization*" name="organization" [(ngModel)]="organization" required>
+            <mat-option *ngFor="let organization of organizations" [value]="organization.orgName" (click)="getAllUsersForOrg(); getProjectsByOrganizationName();">
+              {{organization.orgName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-select placeholder="User List" [formControl]="userList" multiple>
+          <mat-option *ngFor="let user of usersDetail" [value]="user.userName">{{user.userName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="project">
+        <mat-form-field>
+          <mat-select placeholder="Projects" [formControl]="projectList" multiple>
+            <mat-option *ngFor="let clientProject of clientProjects" [value]="clientProject.clientProjectId">
+              {{clientProject.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" (click)="assignUserToProject()">Assign User To Project</button>
+      <br />
+    </mat-card-content>
+  </mat-card>
+</mat-card>

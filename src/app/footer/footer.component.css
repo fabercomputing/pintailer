@@ -1,0 +1,9 @@
+.version-number {
+  float: right;
+  color: rgb(241, 244, 247);
+  margin: 2px;
+}
+
+.version-number:hover {
+  color: rgb(200, 209, 214);
+}

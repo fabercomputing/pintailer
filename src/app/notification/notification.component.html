@@ -1,0 +1,16 @@
+<mat-icon *ngIf="!closeAction" style="float:right; cursor: pointer; color: crimson;" (click)="this.dialogRef.close('cancel')"
+  matTooltip="Close">close</mat-icon>
+<button mat-menu-item style="background: transparent; display: inline; width: auto !important;">
+  <mat-icon [ngStyle]="{'color': notificaitonTypeColor }">{{notificaitonTypeReceived}}</mat-icon>
+  <span>{{notificaitonData}}</span>
+</button>
+
+<div *ngIf="closeAction" class="notificationAcceptButton">
+  <button mat-flat-button color="primary" (click)="notificationDialogClosed('ok');" class="notification-button">
+    <span>OK</span>
+  </button>
+  <button mat-stroked-button color="primary" style="margin-left: 8px;" (click)="notificationDialogClosed('cancel')"
+    class="notification-button-accent">
+    <span>Cancel</span>
+  </button>
+</div>

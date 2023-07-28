@@ -1,0 +1,165 @@
+<h1 mat-dialog-title class="dialog-title-pintailer">{{description}}
+  <mat-icon class="closePopupIcon" style="float:right; cursor: pointer; color: crimson;" (click)="this.dialogRef.close('cancel')"
+    matTooltip="Close">close</mat-icon>
+  <!-- <mat-icon style="float:right; cursor: pointer;" (click)="openHelpFor(29)">help</mat-icon> -->
+</h1>
+
+<div class="example-container" style="margin-left: 5px;">
+
+  <form class="example-container" #TestCaseDefinition="ngForm" [formGroup]="form" (ngSubmit)="save()"
+    style="margin-right: 15px;">
+    <mat-dialog-content>
+      <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="TestCase No." formControlName="testCaseNo">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Test Data" formControlName="testData"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width" hideRequiredMarker style="width:85%">
+          <mat-select placeholder="Module*" formControlName="moduleId" required>
+            <mat-option *ngFor="let module of modules" [value]="module.moduleId">
+              {{ module.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-icon style="float:right; cursor: pointer; margin: 15px;" (click)="openModuleSelection()"
+          matTooltip="Open Module Selection Popup">open_in_new</mat-icon>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width" hideRequiredMarker>
+          <textarea matInput placeholder="Test Summary*" formControlName="testSummary" required></textarea>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Pre Conditions" formControlName="preCondition"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable"
+              (removed)="removeTags(tag)" [ngStyle]="{'color': tag === 'Bug_In_Production' ? ' #f7b1b1;':'#e0e0e0;'}">
+              {{tag}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input #chipInput placeholder="New Tag" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addTags($event)" />
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="chipAutoSelect($event)">
+            <mat-option *ngFor="let aTag of availableTags" [value]="aTag">
+              {{aTag}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div><br>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput class="bigtTextArea" placeholder="Execution Steps"
+            formControlName="executionSteps"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Expected Result" formControlName="expectedResult"></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="Linked Defect" formControlName="linkedDefect">
+        </mat-form-field>
+      </div> -->
+      <div>
+        <mat-form-field class="input-full-width">
+          <mat-select placeholder="Automatable" formControlName="automatable">
+            <mat-option *ngFor="let automatable of booleanEnum" [value]="automatable">
+              {{ automatable }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Remarks" formControlName="remarks"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="File Name" formControlName="fileName">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width" *ngIf="showAutomatedFile()" [@EnterLeave]>
+          <input matInput placeholder="Automated TestCase No. From File" formControlName="automatedTestCaseNoFromFile">
+          <mat-hint>This field must have a value if File Name is mentioned</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="!showReleaseSelection()" [@EnterLeave]>
+        <mat-form-field style="width:100%;" id="introReleaseSelectTitle">
+          <mat-select placeholder="Pick a Release" formControlName="selectedRelease" required>
+            <mat-option [value]="0">
+              None
+            </mat-option>
+            <mat-option *ngFor="let release of releaseAllArr" [value]="release.releaseId">
+              {{release.releaseNumber}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Why Manual?" formControlName="manualReason"></textarea>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-full-width">
+          <mat-select placeholder="Currently Applicable" formControlName="applicable">
+            <mat-option *ngFor="let applicable of booleanEnum" [value]="applicable">
+              {{ applicable }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <mat-select style="background: rgba(255, 0, 0, 0.5);" placeholder="Deleted Flag" formControlName="deleted">
+            <mat-option *ngFor="let deleted of booleanEnum" [value]="deleted" (click)="validateDeleteTestCase(deleted)">
+              {{ deleted }}
+            </mat-option>
+          </mat-select>
+          <mat-hint>Be careful while changing Deleted Flag!</mat-hint>
+        </mat-form-field>
+      </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions style="margin-bottom:0px; padding: 0px;">
+
+      <button type="button" class="mat-raised-button mat-warn" (click)="close()">
+        Cancel
+      </button>
+
+      <button class="mat-raised-button mat-primary" type="submit" [disabled]="!TestCaseDefinition.form.valid">
+        Save
+      </button>
+
+    </mat-dialog-actions>
+  </form>
+</div>

@@ -1,0 +1,67 @@
+<div style="background-image: linear-gradient(#fbfcfd, white);">
+
+  <div style="margin: 0 auto; max-width: 1170px; padding: 25px 30px;">
+    <section style="margin-bottom: 50px;">
+      <div>
+        <h1 [@EnterLeaveTop] class="resource-header">Watch a Video</h1>
+        <hr [@EnterLeave] style="width: 50%; float: left;" />
+        <br />
+      </div>
+      <p
+        style="color: #595959; background-color: transparent; font-size: 18px; line-height: 1.42857; margin-bottom: 25px;">
+        <!-- <img src="./assets/images/tutorial-video.png?width=185&amp;name=tutorial-video.png" alt="Smart Segmentation"
+          width="185" style="width: 185px; margin: 0px 80px 10px 0px; float: right;" sizes="(max-width: 185px) 100vw, 300px"> -->
+        <iframe width="300" style="width: 300px; margin: 0px 80px 10px 0px; float: right;"
+          sizes="(max-width: 300px) 100vw, 300px" src="https://www.youtube.com/embed/XtWKj1pgZis?start=2"
+          frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+        <span>Start your Pintailer journey by watching the complete Pintailer Tutorial Video. This video
+          contains the detailed tutorial starting from Creating the Project setup, Adding/Importing Test Definitions,
+          Importing Execution Results and the Detailed consolidated Reports interpretation.
+        </span>
+        <br />
+        <span>
+          Please fill in the
+          form to Request Tutorial Video of the application and our Sales team will get back to you.
+        </span>
+        <br />
+      </p>
+      <!-- <button [@fadeInOut] mat-flat-button color="primary" (click)="requestVideo();" style="font-size:18px;">Request
+        Tutorial Video
+        ►</button> -->
+      <br />
+    </section>
+
+    <section style="margin-top: 10px;">
+      <div>
+        <h1 [@EnterLeaveTop] class="resource-header">Pintailer User Guide</h1>
+        <hr [@EnterLeave] style="width: 50%; float: left;" />
+        <br />
+      </div>
+      <p
+        style="color: #595959; background-color: transparent; font-size: 18px; line-height: 1.42857; margin-bottom: 25px;">
+        <img (click)="openPintailerGuide();" src="./assets/images/user-guide.png?width=185&amp;name=user-guide.png"
+          alt="Smart Segmentation" width="185" style="width: 185px; margin: 0px 80px 10px 0px; float: right;"
+          sizes="(max-width: 185px) 100vw, 300px">
+        <span>Pintailer provides plenty of features that are useful for your Test Management.
+          Step into the Pintailer world by using the detailed Pintailer User Guide. Download our Complete tutorial to
+          know how Pintailer works.
+        </span>
+        <br />
+        <span>
+          Please fill in the
+          form to Request
+          User Guide of the application and our Sales team will get back to you.
+        </span>
+        <button [@fadeInOut] mat-flat-button color="primary" (click)="openPintailerGuide();"
+          style="font-size:18px;  margin-top: 25px;">Download
+          User Guide</button>
+        <br />
+      </p>
+    </section>
+
+    <!-- code for request form was here -->
+
+  </div>
+</div>
+<app-footer></app-footer>

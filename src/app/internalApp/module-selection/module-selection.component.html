@@ -1,0 +1,64 @@
+<h1 mat-dialog-title class="dialog-title-pintailer">Module Hierarchy
+  <mat-icon style="float:right; cursor: pointer; color: crimson;" (click)="this.dialogRef.close('cancel')" matTooltip="Close">close</mat-icon>
+  <!-- <mat-icon style="float:right; cursor: pointer;" (click)="openHelpFor(29)">help</mat-icon> -->
+</h1>
+
+<div style="padding:15px;">
+  <mat-card>
+    <mat-card-subtitle style="display: inline;">Select a Module from available Hierarchy</mat-card-subtitle>
+    <button *ngIf="moduleDataReceived === 'all'" mat-flat-button style="background: rgba(122, 153, 178, 0.5); margin-left: 8px;" (click)="selectAllModules()">Reset</button>
+  </mat-card>
+  <mat-progress-bar *ngIf="showProgressBar" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
+  </mat-progress-bar>
+  <mat-divider></mat-divider>
+
+  <div class="marginTop5px" *ngIf="false">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Search..." #filter (keyup)="filterModuleTree($event.value)">
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="marginTop5px">
+    <!-- <div class="mat-tree-node" *ngIf="organization != undefined && clientProjectId != undefined">
+      <mat-form-field>
+        <input id="newRootModule" matInput placeholder="New module...">
+      </mat-form-field>
+      <button mat-icon-button (click)="saveRootNode()">
+        <mat-icon>save</mat-icon>
+      </button>
+    </div> -->
+    <mat-card>
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <!-- let node;when: hasChildren   is commented because of errors-->
+        <mat-nested-tree-node *matTreeNodeDef="let node;">
+          <li class="example-tree-container">
+            <div class="mat-tree-node">
+              <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.item">
+                <mat-icon *ngIf="node.children._value.length != 0">
+                  {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+              </button>
+              <mat-form-field *ngIf="!hasNoContent(node)">
+                <input style="width:98%;" matInput #nodeNameInput [value]="node.item" readonly>
+                <!-- <mat-icon style="cursor: pointer;" (click)="updateNode(node, nodeNameInput.value)" matTooltip="save">save</mat-icon> -->
+                <!-- <button mat-icon-button (click)="saveNode(node, itemValue.value, false)">
+                    <mat-icon>save</mat-icon>
+                  </button> -->
+              </mat-form-field>
+              <button mat-icon-button [matTooltip]="node.item" (click)="selectModule(node.item, node.itemId)">
+                <mat-icon>input</mat-icon>
+              </button>
+            </div>
+            <ul class="example-tree-nested-node">
+              <div *ngIf="treeControl.isExpanded(node)">
+                <ng-container matTreeNodeOutlet></ng-container>
+              </div>
+            </ul>
+          </li>
+        </mat-nested-tree-node>
+      </mat-tree>
+    </mat-card>
+  </div>
+</div>

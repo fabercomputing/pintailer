@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+        ServerName localhost:80
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /uicode/dist/my-app
+        <Directory /uicode/dist/my-app>
+                DirectoryIndex index.php index.html
+                AllowOverride All
+                Require all granted
+        </Directory>
+
+
+
+        LogLevel debug
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>

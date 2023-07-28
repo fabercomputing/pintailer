@@ -1,0 +1,9 @@
+<h1 mat-dialog-title class="dialog-title-pintailer">{{description}}
+  <mat-icon class="closePopupIcon" style="float:right; cursor: pointer; color: crimson;" (click)="this.dialogRef.close('cancel')">close</mat-icon>
+  <!-- <mat-icon style="float:right; cursor: pointer;" (click)="openHelpFor(17)">help</mat-icon> -->
+</h1>
+
+<mat-card *ngFor="let detail of helpDetailHtml" [id]="detail.topicId" class="detailHelp">
+  <h4>{{helpTopicOpen}}</h4>
+  <div class="chart-body" [innerHTML]="detail.helpText"></div>
+</mat-card>

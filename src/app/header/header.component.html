@@ -1,0 +1,216 @@
+<mat-toolbar style="background:linear-gradient(to bottom,#fff,#eff3f5); padding: 2px;"
+  [ngStyle]="{'box-shadow': userNotLogIn() ? '0 0 7px rgba(0, 0, 0, .11)' : 'none', 'position': userNotLogIn() ? 'sticky' : '', 'top': userNotLogIn() ? '0' : '', 'z-index': userNotLogIn() ? '1000' : '' }">
+  <mat-toolbar-row [@fadeInOut] style="overflow: hidden;">
+    <span *ngIf="userNotLogIn()">
+      <a href="/">
+        <img style="width: 320px; height: auto; margin-top: 35px; outline: none;" class="logo-img-pintail"
+          src="./assets/images/pintailer_logo_tm_small.png">
+      </a>
+    </span>
+    <span>
+      <a *ngIf="!userNotLogIn()">
+        <img style=" width: 320px; height: auto; margin-top: 35px;
+        outline: none;" class="logo-img-pintail" src="./assets/images/pintailer_logo_tm_small.png">
+      </a>
+    </span>
+    <section class="landing-page-nav-buttons">
+      <!-- <button id="productButton" [ngClass]="getNavButtonParentClass('features')" *ngIf="userNotLogIn()"
+        [routerLink]="['/features']"><span style="font-weight: bold; color:#253858;">FEATURES</span></button> -->
+      <button [ngClass]="getNavButtonParentClass('pricing')" *ngIf="userNotLogIn()" class="header-button"
+        [routerLink]="['/pricing']"><span style="font-weight: bold; color:#253858;">PRICING</span></button>
+      <button [ngClass]="getNavButtonParentClass('blog')" class="header-button" *ngIf="userNotLogIn()"
+        [routerLink]="['/blog']"><span style="font-weight: bold; color:#253858;">BLOG</span></button>
+      <!-- <button [ngClass]="getNavButtonParentClass('knowledgeBase')" *ngIf="userNotLogIn()" [routerLink]="['/knowledgeBase']"><span
+      style="font-weight: bold; color:#253858;">Knowledge Base</span>
+  </button> -->
+
+      <button [ngClass]="getNavButtonParentClass('resource')" *ngIf="userNotLogIn()"
+        [matMenuTriggerFor]="resource"><span style="font-weight: bold; color:#253858;">RESOURCES</span></button>
+      <mat-menu #resource="matMenu" overlapTrigger="false">
+        <button [ngClass]="getNavButtonClass('/pintailerDemo')" module mat-menu-item [routerLink]="['/pintailerDemo']">
+          <span>TUTORIALS</span>
+        </button>
+        <button [ngClass]="getNavButtonClass('/requestDemo')" module mat-menu-item [routerLink]="['/requestDemo']">
+          <span>REQUEST A DEMO</span>
+        </button>
+        <!-- <button [ngClass]="getNavButtonClass('/certification')" module mat-menu-item [routerLink]="['/certification']">
+          <span>CERTIFICATION</span>
+        </button> -->
+      </mat-menu>
+
+      <button [ngClass]="getNavButtonParentClass('support')" class="header-button" *ngIf="userNotLogIn()"
+        [routerLink]="['/support']"><span style="font-weight: bold; color:#253858;">SUPPORT</span></button>
+    </section>
+    <span class="custom-space-div" style="margin-left: 50px">{{getPageInfo()}}</span>
+    <span class="custom-space-div" style="margin-left: 50px" id="current-page-header"></span>
+    <span class="custom-space-div" class="example-fill-remaining-space"></span>
+    <span class="custom-space-div" class="example-spacer"></span>
+
+    <section class="login-buttons">
+      <button class="login-button-chip" *ngIf="userNotLogIn()" [routerLink]="['/login']"><span
+          style="font-weight: bold; color:#253858;">Login</span></button>
+      <button class="login-button-chip" *ngIf="userNotLogIn()" [routerLink]="['/support']"
+        style="background-color: #7197b7 !important;color:white !important;"><span
+          style="font-weight: bold; color:white;">Request Demo</span></button>
+    </section>
+
+    <!-- <button mat-button *ngIf="canShowAssetMenu()" [routerLink]="['/app/assetInfo']"><span style="font-weight: bold; color:#253858;">Asset</span></button> -->
+
+    <button mat-button id="introSetupButtonTitle" [ngClass]="getNavButtonParentClass('setup')"
+      *ngIf="canShowProjectMenu()" [matMenuTriggerFor]="setup"><span
+        style="font-weight: bold; color:#253858;">Setup</span></button>
+    <mat-menu #setup="matMenu" overlapTrigger="false">
+      <button [ngClass]="getNavButtonClass('/app/moduleSetup')" module mat-menu-item
+        [routerLink]="['/app/moduleSetup']">
+        <mat-icon>settings_applications</mat-icon>
+        <span>Modules Setup</span>
+      </button>
+      <button [ngClass]="getNavButtonClass('/app/projectSetup')" module mat-menu-item
+        [routerLink]="['/app/projectSetup']">
+        <mat-icon>settings</mat-icon>
+        <span>Project Setup</span>
+      </button>
+      <button [ngClass]="getNavButtonClass('/app/userSetup')" module mat-menu-item [routerLink]="['/app/userSetup']">
+        <mat-icon>face</mat-icon>
+        <span>User Setup</span>
+      </button>
+    </mat-menu>
+
+    <button mat-button [ngClass]="getNavButtonParentClass('report')" [matMenuTriggerFor]="report"
+      *ngIf="canShowProfileMenu()"><span style="font-weight: bold; color:#253858;">Reports</span></button>
+    <mat-menu #report="matMenu" overlapTrigger="false">
+      <!-- <button mat-menu-item [ngClass]="getNavButtonClass('/app/orgChart')" [routerLink]="['/app/orgChart']" *ngIf="canShowReportMenu()">
+        <mat-icon>people</mat-icon>
+        <span>Organization Chart</span>
+      </button> -->
+      <button mat-menu-item [ngClass]="getNavButtonClass('/app/graphReport')" [routerLink]="['/app/graphReport']"
+        *ngIf="canShowReportMenuForTesters()">
+        <mat-icon>donut_large</mat-icon>
+        <span>Test Coverage & Execution</span>
+      </button>
+      <button mat-menu-item *ngIf="canShowReportMenuForTesters()" [matMenuTriggerFor]="qaReport">
+        <mat-icon>bar_chart</mat-icon>
+        <span>QA Progress</span>
+      </button>
+      <button mat-menu-item [ngClass]="getNavButtonClass('/app/moduleTreeGraph')"
+        [routerLink]="['/app/moduleTreeGraph']" *ngIf="canShowTestCaseMenu()">
+        <mat-icon>device_hub</mat-icon>
+        <span>Module Hierarchy</span>
+      </button>
+    </mat-menu>
+
+    <mat-menu #qaReport="matMenu">
+      <button mat-menu-item [ngClass]="getNavButtonClass('/app/testcaseAdditionProgress')"
+        [routerLink]="['/app/testcaseAdditionProgress']">Test
+        Case Addition</button>
+      <button mat-menu-item [ngClass]="getNavButtonClass('/app/testStepAdditionProgress')"
+        [routerLink]="['/app/testStepAdditionProgress']">Test
+        Step Addition</button>
+    </mat-menu>
+
+    <button mat-button [ngClass]="getNavButtonParentClass('testcase')" [matMenuTriggerFor]="testcase"
+      *ngIf="canShowTestCaseMenu()"><span style="font-weight: bold; color:#253858;">Test
+        Case</span></button>
+    <mat-menu #testcase="matMenu" overlapTrigger="false">
+
+      <button [ngClass]="getNavButtonClass('/app/testCaseDefinition')" mat-menu-item
+        [routerLink]="['/app/testCaseDefinition']">
+        <mat-icon>list</mat-icon>
+        <span>Definitions</span>
+      </button>
+      <button [ngClass]="getNavButtonClass('/app/testCaseMapping')" mat-menu-item
+        [routerLink]="['/app/testCaseMapping']">
+        <mat-icon>playlist_add</mat-icon>
+        <span>Automation Mapping</span>
+      </button>
+      <button [ngClass]="getNavButtonClass('/app/releaseMapping')" mat-menu-item [routerLink]="['/app/releaseMapping']">
+        <mat-icon>all_inclusive</mat-icon>
+        <span>Release Mapping</span>
+      </button>
+      <button [ngClass]="getNavButtonClass('/app/featureEdit')" mat-menu-item [routerLink]="['/app/featureEdit']">
+        <mat-icon>edit</mat-icon>
+        <span>Edit Featue File</span>
+      </button>
+    </mat-menu>
+
+    <!-- Temporary button for rishi singhal -->
+    <!-- <button mat-button *ngIf="canShowTempButton()" (click)="addDummyData()">Temp Data Insert</button> -->
+
+    <button mat-icon-button [matMenuTriggerFor]="extraButtons" (menuOpened)="extraMenuName = 'close'"
+      (menuClosed)="extraMenuName = 'menu'">
+      <mat-icon>{{extraMenuName}}</mat-icon>
+    </button>
+    <mat-menu #extraButtons="matMenu" overlapTrigger="false">
+      <button *ngIf="canShowLogoutMenu()" mat-menu-item title="Default Organization"
+        style="cursor: default; background: linear-gradient(-90deg, rgba(245, 241, 241, 0.568), rgba(236, 230, 230, 0.568));">
+        <mat-icon>domain</mat-icon>
+        <span>{{getDefaultOrg()}}</span>
+      </button>
+      <mat-divider *ngIf="canShowLogoutMenu()"></mat-divider>
+      <button mat-menu-item title="DashBoard" [ngClass]="getNavButtonClass('/dashBoard')" *ngIf="canShowProfileMenu()"
+        [routerLink]="['/dashBoard']">
+        <mat-icon>face</mat-icon>
+        <span>{{loginService.getUserInformationFromLocalStorage().userName}}</span>
+      </button>
+      <button mat-menu-item [ngClass]="getNavButtonClass('/app/settings')" *ngIf="canShowProfileMenu()"
+        [routerLink]="['/app/settings']">
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </button>
+      <button mat-menu-item [ngClass]="getNavButtonClass('/app/pintailerAudit')" *ngIf="canShowProjectMenu()"
+        [routerLink]="['/app/pintailerAudit']">
+        <mat-icon>unarchive</mat-icon>
+        <span>Audit</span>
+      </button>
+      <!-- <button mat-menu-item [ngClass]="getNavButtonClass('/app/mailBox')" [routerLink]="['/app/mailBox']"
+        *ngIf="canShowProjectMenu()">
+        <mat-icon>mail</mat-icon>
+        <span>Mail Box</span>
+      </button> -->
+      <button *ngIf="canShowLogoutMenu()" mat-menu-item [ngClass]="getNavButtonClass('/app/help')"
+        [routerLink]="['/app/help']">
+        <mat-icon>help</mat-icon>
+        <span>Help</span>
+      </button>
+      <button *ngIf="canShowLogoutMenu()" module mat-menu-item (click)="startTutorial();">
+        <mat-icon>play_circle_filled</mat-icon>
+        <span>Start Tutorial</span>
+      </button>
+      <button *ngIf="userNotLogIn()" class="header-internal-button" mat-menu-item
+        [ngClass]="getNavButtonClass('/pricing')" [routerLink]="['/pricing']">
+        <mat-icon>attach_money</mat-icon>
+        <span>Pricing</span>
+      </button>
+      <button *ngIf="userNotLogIn()" class="header-internal-button" mat-menu-item [ngClass]="getNavButtonClass('/blog')"
+        [routerLink]="['/blog']">
+        <mat-icon>all_inbox</mat-icon>
+        <span>Blog</span>
+      </button>
+      <button *ngIf="userNotLogIn()" class="header-internal-button" mat-menu-item
+        [ngClass]="getNavButtonClass('/support')" [routerLink]="['/support']">
+        <mat-icon>feedback</mat-icon>
+        <span>Support</span>
+      </button>
+      <button mat-menu-item [ngClass]="getNavButtonClass('/featureFileEditor')" [routerLink]="['/featureFileEditor']">
+        <mat-icon>create</mat-icon>
+        <span>BDD Editor</span>
+      </button>
+      <button mat-menu-item [ngClass]="getNavButtonClass('/about')" [routerLink]="['/about']">
+        <mat-icon>chat_bubble</mat-icon>
+        <span>About</span>
+      </button>
+      <button mat-menu-item *ngIf="canShowLogoutMenu()" (click)="logoutCheck()">
+        <mat-icon>power_settings_new</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- <mat-toolbar *ngIf="userNotLogIn()" class="app-toolbar" style="z-index:9999;">
+  <mat-toolbar-row style="background:linear-gradient(to bottom,#fff,rgb(250, 247, 247));">
+    <span class="example-spacer"></span>
+    
+  </mat-toolbar-row>
+
+</mat-toolbar> -->

@@ -1,0 +1,31 @@
+<h1 mat-dialog-title class="dialog-title-pintailer">{{description}}
+  <mat-icon class="closePopupIcon" style="float:right; cursor: pointer; color: crimson;" (click)="this.dialogRef.close('cancel')" matTooltip="Close">close</mat-icon>
+  <!-- <mat-icon style="float:right; cursor: pointer;" (click)="openHelpFor(29)">help</mat-icon> -->
+</h1>
+
+<div class="example-container" style="overflow:hidden; height: 150px;">
+  <form class="example-container" #ClientProjectAddForm="ngForm" [formGroup]="form" (ngSubmit)="save()">
+    <mat-dialog-content>
+      
+      <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="Project Name" formControlName="name">
+        </mat-form-field>
+      </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+
+      <button type="button" class="mat-raised-button" (click)="close()">
+        Close
+      </button>
+
+      <button class="mat-raised-button mat-primary" type="submit" [disabled]="!ClientProjectAddForm.form.valid">
+        Save
+      </button>
+      <br />
+      <br />
+      <br />
+    </mat-dialog-actions>
+  </form>
+</div>

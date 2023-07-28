@@ -1,0 +1,71 @@
+.forLastStep {
+  font-weight: bold;
+  color: darkgreen;
+}
+
+#startTutorialButton {
+  position: relative;
+  -webkit-animation: floatBubble 1s normal ease-out;
+  animation: floatBubble 1s normal ease-out;
+}
+
+@-webkit-keyframes floatBubble {
+  0% {
+    transform: scale(.8);
+  }
+
+  25% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  75% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(.8);
+  }
+}
+
+@keyframes floatBubble {
+  0% {
+    transform: scale(.8);
+  }
+
+  25% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  75% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(.8);
+  }
+}
+
+.tourDiv {
+  background-image: linear-gradient(to bottom, #1bb7b7, #138fad);
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 20px;
+  color: white;
+}
+
+#close {
+  position: absolute;
+  background: #a02121;
+  color: white;
+  top: -10px;
+  right: -10px;
+  border-radius: 5px;
+}

@@ -1,0 +1,155 @@
+.container {
+  padding: 10px;
+  width: 50%;
+  float: left;
+}
+
+.section2 {
+  padding: 10px;
+  width: 45%;
+  float: right;
+}
+
+.container2 {
+  padding: 10px;
+}
+
+.module {
+  float: left;
+  width: 35%;
+  height: 50px;
+}
+
+.featureSelect {
+  float: left;
+  width: 48%;
+  overflow: hidden;
+}
+
+.scenarioSelect {
+  float: left;
+  width: 48%;
+  overflow: hidden;
+}
+
+.scenarioVersionSelect {
+  float: left;
+  width: 48%;
+  overflow: hidden;
+}
+
+.firstBox {
+  width: 49%;
+  float: left;
+}
+
+.secondBox {
+  float: right;
+  width: 49%;
+}
+
+table {
+  width: 100%;
+}
+
+.tableRows:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.mat-cell {
+  border-right: 1px solid lightgray;
+}
+
+.line-breaker {
+  white-space: pre;
+}
+
+/* .line-breaker::first-letter {
+  color: red;
+} */
+
+.specialChar {
+  color: red;
+}
+
+.mapButton {
+  float: right;
+}
+
+.org {
+  float: left;
+  width: 48%;
+  overflow: hidden;
+}
+
+.project {
+  float: left;
+  width: 45%;
+  overflow: hidden;
+}
+
+.releaseSelect {
+  float: right;
+  width: 45%;
+  overflow: hidden;
+}
+
+.Hirar:nth-child(odd) {
+  background-color: whitesmoke;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 800px;
+}
+
+.truncate {
+  width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.truncateSecond {
+  width: 350px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.mat-paginator-sticky {
+  bottom: 0px;
+  position: sticky;
+  z-index: 10;
+  height: 45px;
+}
+
+.goExecution {
+  float: right;
+  margin-top: 8px;
+  margin-left: 4px;
+  position: relative;
+  background: rgba(122, 153, 178, 0.5);
+}
+
+.filterButton {
+  float: right;
+  position: relative;
+  background: rgba(122, 153, 178, 0.5);
+}
+
+.toggle-checks {
+  display: inline;
+  margin-left: 15px;
+}

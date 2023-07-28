@@ -1,0 +1,28 @@
+{
+  "title": "A message to QA Managers and Directors",
+  "titleDes": "Pintailer comes as a saviour for QA Department",
+  "titleImg": "qa-blog.png",
+  "paragraph": [{
+      "paraTitle": "",
+      "paraContent": "To all the Quality Assurance Managers and QA Directors, who are be-fooled by their employees about the test automation percentage that has been done, where all the updates are made in excel files and all the test cases are flagged as Automated without verifying, don't worry Pintailer comes as a savior for you.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "With Pintailer, you can import all your test cases that are in Excel sheets, and manage the test cases hassle free. Pintailer provides the migration from Manual QA to Automated QA and also E-mail the reports to the respective people in a periodic manner, in order to save time and increase the efficiency.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": "",
+      "paraVideo":"https://www.youtube.com/embed/PMxSOHFqefA?start=1"
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "One of our clients had only 25% of their test cases automated out of 3000 test cases, but the management was informed that 80% of their test cases were automated. Now with the help of Pintailer, the percentage has reached to 75.81%, which is accurate and is a fascinating number for the management and QA teams. And they are still in the process of automating the remaining test cases. \n\n To know more about Pintailer, you can visit: <a href='http://pintailer.com/'>Pintailer</a>",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    }
+  ]
+}

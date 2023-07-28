@@ -1,0 +1,12 @@
+mat-list-item:nth-child(odd) {
+  background-color: white;
+}
+
+.internalUserDetail {
+  background-color: #f2f2f2;
+}
+
+.assetName {
+  color: rgb(44, 1, 1);
+  font-size: 20px;
+}

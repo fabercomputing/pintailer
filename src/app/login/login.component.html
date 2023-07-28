@@ -1,0 +1,104 @@
+<div class="total-bg" style="background-image: linear-gradient(#fbfcfd, white);">
+
+  <mat-progress-bar *ngIf="showProgressBar" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
+  </mat-progress-bar>
+
+  <div class="bird-container bird-container--one" *ngIf="showProgressBar">
+    <div class="bird bird--one"></div>
+  </div>
+
+  <br />
+  <h1 [@fadeInOut] style="text-align: center; background-color: #fbfcfd; margin: 0px; padding-top: 20px; font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;">Login
+    to continue to Pintailer</h1>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body" style="background-color: #c5d9e2; padding: 2.5rem !important;" [@fadeInOut]>
+            <!-- <h5 class="card-title text-center"></h5> -->
+            <form class="form-signin" #LoginForm="ngForm" [formGroup]="form" (ngSubmit)="login()">
+              <div class="login-input">
+                <mat-form-field class="input-full-width">
+                  <input matInput placeholder="Username" type="text" class="form-control" autofocus formControlName="username"
+                    name="username">
+                </mat-form-field>
+                <!-- <label for="inputEmail">Email address</label> -->
+              </div>
+              <br />
+              <div class="login-input">
+                <mat-form-field class="input-full-width">
+                  <input matInput placeholder="Password" type="password" id="inputPassword" class="form-control"
+                    placeholder="Password" name="password" formControlName="password">
+                </mat-form-field>
+                <!-- <label for="inputPassword">Password</label> -->
+              </div>
+
+              <p style="color:red; padding: 5px;" *ngIf="invalidLogin">Invalid UserName/Password</p>
+              <!-- <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Remember password</label>
+              </div> -->
+
+              <button class="btn btn-lg btn-secondary btn-block text-uppercase" type="submit" style="margin-top: 20px; margin-bottom: 25px; outline: none; background: rgb(126, 148, 167); font-size: 14px !important; font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;">Login</button>
+
+              <div style="margin-top: 20px;">
+                <a (click)="passChange();" style="float: right; cursor: pointer; color: #0052CC; text-decoration: none; vertical-align: baseline;">Change
+                  Password</a>
+              </div>
+
+              <!-- <button class="btn btn-lg btn-secondary btn-block text-uppercase" style="outline: none; background: rgb(177, 141, 141); font-size: 14px !important; font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;"
+                type="button" (click)="passChange();">Change
+                Password</button> -->
+              <!-- <hr class="my-4">
+            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- <mat-card class="example-card loginBackDiv">
+    <mat-card-header>
+      <mat-card-title style="margin-left:60px;">Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form" #LoginForm="ngForm" [formGroup]="form" (ngSubmit)="login()">
+
+        <table class="example-full-width" cellspacing="0" style="margin-left:70px;">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Username" type="text" name="username" formControlName="username">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Password" type="password" name="password" formControlName="password">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-card-actions>
+                <button mat-raised-button class="primarymanual" type="submit" [disabled]="!LoginForm.form.valid">Login</button>
+                <button mat-raised-button class="warnmanual" style="margin-left: 8px" type="button" (click)="passChange();">Change
+                  Password</button>
+                <p style="color:red;" *ngIf="invalidLogin">Invalid UserName/Password</p>
+              </mat-card-actions>
+            </td>
+          </tr>
+        </table>
+      </form>
+
+    </mat-card-content>
+  </mat-card> -->
+</div>
+<app-footer class="bottom-fixed-footer"></app-footer>

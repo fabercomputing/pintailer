@@ -1,0 +1,63 @@
+<div class="example-container">
+  <form class="example-container" #EditAssetForm="ngForm" [formGroup]="form" (ngSubmit)="save()">
+    <h1 mat-dialog-title>{{description}}</h1>
+    <mat-dialog-content>
+      <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-select placeholder="Enter the status of asset" formControlName="status">
+
+            <mat-option *ngFor="let value of deviceSelectableStatus" [value]="value">
+              {{value}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="RAM" type="number" formControlName="ram">
+          <span matSuffix>GB</span>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="Hard Disk Size" type="number" formControlName="hd_size">
+          <span matSuffix>GB</span>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="OS Version" formControlName="os_version">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="OS Type" formControlName="os_type">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="Comments" formControlName="comments">
+        </mat-form-field>
+      </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+
+      <button type="button" class="mat-raised-button" (click)="close()">
+        Close
+      </button>
+
+      <button class="mat-raised-button mat-primary" type="submit" [disabled]="!EditAssetForm.form.valid">
+        Save
+      </button>
+
+    </mat-dialog-actions>
+  </form>
+</div>

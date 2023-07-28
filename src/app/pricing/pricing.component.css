@@ -1,0 +1,96 @@
+#inner {
+  /* display: table; */
+  /* margin: 5px auto; */
+  text-align: center
+}
+
+.h1,
+.h2,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #253858;
+  letter-spacing: 0;
+  margin-top: 0;
+}
+
+.cloud-detail {
+  margin: 15px auto;
+}
+
+.price-detail {
+  margin: 20px auto;
+}
+
+.outer-class {
+  background-image: linear-gradient(#fbfcfd, white);
+  background-attachment: fixed;
+  padding-bottom: 20px;
+}
+
+::ng-deep .price-tab>.mat-tab-header {
+  display: none !important;
+}
+
+.example-full-width {
+  widows: 100%;
+}
+
+.mat-slider-horizontal {
+  width: 300px;
+}
+
+.user-number-slider ::ng-deep .mat-slider-thumb {
+  background-color: #32cd32 !important;
+}
+
+.user-number-slider ::ng-deep .mat-slider-thumb-label {
+  background-color: #16a116 !important;
+}
+
+.user-number-slider ::ng-deep .mat-slider-focus-ring {
+  background-color: #10ac63 !important;
+}
+
+.user-number-slider ::ng-deep .mat-slider-track-fill {
+  background-color: #3a923a !important;
+}
+
+/*###Desktops, big landscape tablets and laptops(Large, Extra large)####*/
+@media screen and (min-width: 1024px) {
+  .bottom-fixed-footer {
+    position: fixed;
+    height: 50px;
+    bottom: 50px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+/*###Tablet(medium)###*/
+@media screen and (min-width : 768px) and (max-width : 1023px) {
+  .bottom-fixed-footer {
+    position: fixed;
+    height: 50px;
+    bottom: 50px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+/*### Smartphones (portrait and landscape)(small)### */
+@media screen and (min-width : 0px) and (max-width : 767px) {
+  /* .bottom-fixed-footer {
+      position: fixed;
+      height: 50px;
+      bottom: 50px;
+      left: 0px;
+      right: 0px;
+      margin-bottom: 0px;
+    } */
+}

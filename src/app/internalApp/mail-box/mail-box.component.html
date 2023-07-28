@@ -1,0 +1,40 @@
+<div class="firstBox">
+
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  
+  <table mat-table #sortOne="matSort" [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Subject </th>
+      <td mat-cell *matCellDef="let row">
+        <p style="padding: 5px;" [matTooltip]="row.subject" *ngIf="row.subject != ''">{{row.subject}}</p>
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="message">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Message </th>
+      <td mat-cell *matCellDef="let row">
+        <p style="padding: 5px;" *ngIf="row.message != ''">{{row.message}}</p>
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="createdDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Created Date </th>
+      <td mat-cell *matCellDef="let row">
+        <p style="padding: 5px;" *ngIf="row.createdDate != ''"> {{row.createdDate | date :'yyyy-MM-dd hh:mm'}} </p>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+  <mat-paginator class="mat-paginator-sticky" #paginatorOne [pageSizeOptions]="[10, 20, 30, 40, 100, 500]"
+    showFirstLastButtons></mat-paginator>
+</div>

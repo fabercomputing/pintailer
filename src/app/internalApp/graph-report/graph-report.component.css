@@ -1,0 +1,235 @@
+.container {
+  width: 100%;
+  /* height: 100px; */
+  /* border: 1px solid red; */
+  margin-right: 10px;
+  float: left;
+}
+
+.filters {
+  float: left;
+  width: 20%;
+  overflow: hidden;
+}
+
+.coverageGraph {
+  float: left;
+  width: 42%;
+}
+
+.coverageTableDownload {
+  float: right;
+  width: 50%;
+  overflow: hidden;
+}
+
+.reportFilters {
+  padding: 10px;
+}
+
+.org {
+  float: left;
+  width: 14%;
+  overflow: hidden;
+}
+
+.project {
+  float: left;
+  width: 14%;
+  overflow: hidden;
+}
+
+.tag {
+  float: left;
+  width: 14%;
+  overflow: hidden;
+}
+
+.goExecution {
+  float: right;
+  margin-top: 8px;
+  margin-left: 4px;
+  position: relative;
+  background: rgba(122, 153, 178, 0.5);
+}
+
+.goExecution-icon {
+  float: right;
+  margin-top: 8px;
+  margin-left: 4px;
+  position: relative;
+  /* color: rgba(122, 153, 178, 0.5); */
+}
+
+.module {
+  float: left;
+  width: 35%;
+  margin-left: 10px;
+}
+
+.release {
+  float: left;
+  width: 14%;
+  overflow: hidden;
+}
+
+.environment {
+  float: left;
+  width: 14%;
+  overflow: hidden;
+}
+
+.date {
+  float: left;
+  width: 14%;
+  overflow: hidden;
+}
+
+.Hirar:nth-child(odd) {
+  background-color: whitesmoke;
+}
+
+.container2 {
+  padding: 0px;
+}
+
+.firstBox {
+  width: 100%;
+  float: left;
+}
+
+.secondBox {
+  float: right;
+  width: 1%;
+}
+
+table {
+  width: 100%;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.mat-cell {
+  border-right: 1px solid lightgray;
+}
+
+.line-breaker {
+  white-space: pre-wrap
+}
+
+.exeStatusDrop {
+  margin-right: 2px;
+}
+
+/* .reportsBgDiv {
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("/assets/images/WhiteBg.jpg");
+} */
+
+.truncateSecond {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  /* margin: 0; */
+}
+
+.truncate {
+  width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.primarymanual {
+  margin: 5px;
+  background: rgba(122, 153, 178, 0.5);
+  max-height: 45px;
+  max-width: 95px;
+  min-width: 95px;
+}
+
+.warnmanual {
+  margin: 5px;
+  background: rgb(204, 192, 192);
+  max-height: 45px;
+  max-width: 95px;
+  min-width: 95px;
+}
+
+#loading-image-graph {
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 9999;
+  background: url("/assets/gif/Preloader_2.gif") no-repeat center center rgb(255, 255, 255, .5);
+}
+
+
+/*###Desktops, big landscape tablets and laptops(Large, Extra large)####*/
+@media screen and (min-width: 1024px) {}
+
+/*###Tablet(medium)###*/
+@media screen and (min-width : 768px) and (max-width : 1023px) {
+  .coverageGraph {
+    width: 100%;
+  }
+
+  .coverageTableDownload {
+    width: 100%;
+  }
+
+  .coverageTable {
+    overflow-y: auto;
+  }
+
+  .reportFilters {
+    display: grid;
+  }
+
+  .graph-dropdown,
+  mat-form-field {
+    width: 100% !important;
+  }
+
+  .top-graph-button {
+    width: 40% !important;
+  }
+}
+
+/*### Smartphones (portrait and landscape)(small)### */
+@media screen and (min-width : 0px) and (max-width : 767px) {
+  .coverageGraph {
+    width: 100%;
+  }
+
+  .coverageTableDownload {
+    width: 100%;
+  }
+
+  .coverageTable {
+    overflow-y: auto;
+  }
+
+  .reportFilters {
+    display: grid;
+  }
+
+  .graph-dropdown,
+  mat-form-field {
+    width: 100% !important;
+  }
+
+  .top-graph-button {
+    width: 40% !important;
+  }
+}
+
+.filterButton {
+  background: rgba(122, 153, 178, 0.5);
+}

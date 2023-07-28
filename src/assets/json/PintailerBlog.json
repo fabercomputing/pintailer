@@ -1,0 +1,76 @@
+{
+  "title": "PINTAILER",
+  "titleDes": "Your Test Automation Tracking Partner",
+  "titleImg": "pintailer_bird.png",
+  "paragraph": [{
+      "paraTitle": "",
+      "paraContent": "Every now and then we find test case management tools and 1000 other ways to manage our test cases and each of these are designed and directed towards making a tester’s life better. But those who are not using Test case management tools and are solely relying on the large Excel repositories to manage the test cases, are going through a cumbersome process to manage their repository especially after several releases are in order.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "But today we are not going to discuss what problems do testers face and what not. Today in this article we are going to discuss something that has never been pondered upon but needs close attention. We see people thinking of and migrate from Manual QA to Automated QA without analyzing the whole scenario of why they actually need the Automation? Let alone leave the fact that once they start automating “Who is responsible for tracking how many Manual Tests have been Automated”?",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "Has anyone ever inquired or thought of as to who is there to track the automation done against those Manual Test Cases. I guess Nobody!!! But don’t worry Pintailer comes as a savior of QA Department and also your organization. ",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "And if you are thinking that Pintailer is bound to benefiting the QA Department only, then you are wrong my friends. Pintailer serves its purpose to make the life of CEO’s, Directors, VP’s, Product/Project Managers easier as mostly they look at the reports generated via Excel or Test case management tools which we all know if the data is in large number or if there are several releases, causes issues for people to handle the data leave the malpractices and unethical behavior alone of check marking against test cases which are not even automated, just to show higher percentage of automation done to keep the management happy.",
+      "paraImg": "pintailer_blog_1.png",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "Now you might be curious as to why this guy is behind QA Department or Testers?",
+      "paraContent": "We are not behind the QA Department or Testers per say, we at Pintailer are behind the wrongdoings or unprofessionalism of providing inaccurate status of test automation done and it’s tracking. We are here to help you gain higher efficiency in test automation if you are thinking of migrating from manual QA.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "What all set of tools and system configurations do you need to access Pintailer?",
+      "paraContent": "Well the answer is that if you are having a laptop and Internet connection, you are good to go. There are two ways: either import all your test cases from Excel repository or start writing test cases in Pintailer. \n\n  Once you are done with importing your test cases from excel sheet, run the Automation coverage reporting feature and you’ll get the idea of how many test cases are automated, automatable and non-automatable, which will give you the idea of percentage of automation done.",
+      "paraImg": "pintailer_blog_2.png",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "In the above report you can easily see the number and percentage of test cases which are automated, which are automatable, whose automation is pending and which require human intervention i.e. non-automatable.",
+      "paraImg": "pintailer_blog_3.png",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "Don’t confuse Pintailer for Testing Tool!",
+      "paraContent": "Now people, don’t confuse it for testing tool, or that this tool promotes Automation Testing, that is a debate for some other day. We are here to help those of you out there who are having test automation projects underway or who are thinking of migrating from Manual QA to Automated QA.  We help in Test Automation Tracking (and Test Case Management) so as the life of management and QA department is somewhat uplifted. We aim to bring out the best in the quality of the product of your organization by detecting the loopholes or muddles, so as you can have a better functioning.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "What Features do we have?",
+      "paraContent": "<b>Cloud Storage:</b> You don’t need to worry about maintaining servers for storing Test Cases. Pintailer is designed to be accessed from any part of the world. \n\n <b>Agile Compatibility:</b> Today majority of IT world is using the Agile Methodology for the faster development of the product where creating and storing Test cases for Agile projects should be quick, which you get in Pintailer. \n\n <b>Interactive Reporting:</b> View consolidated Test Coverage and Execution Reports i.e. single report for all your Manual as well as Automation Test creation and Execution. \n\n <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Test Coverage Report: </b> Get a glimpse of the number of Test cases which are automatable or non-automatable. Also know out of the automatable test cases how many are already automated and how many are pending. \n\n <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Daily/Weekly Status Reports: </b> Get daily/weekly status reports via E-mail based on your need. With these reports know the Testing status on daily/weekly basis and track your automation progress. \n\n <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Individual QA Status Report: </b> Know the status of the progress done on Test automation by individual QA team member. \n\n <b> Test Case Management: </b> While this is not the main feature of Pintailer, this feature is an important one to recognize. Ease of Viewing, Editing, Updating and Managing your manual (Cucumber implementation only) into the system. It automatically creates their respective manual test cases with the interactive UI. Pintailer enables adding projects that have automation scripts/manual test cases and includes them into Coverage and Execution reports. \n\n <b>Test Automation Tracking: </b> Mapping of Test Cases with Manual Test Cases and Releases enables you to track the progress of the overall Test Automation effort. \n\n <b> Simultaneous/Overlapping Release Support: With the concept of maintaining the audit/history of the Test Case edits, Pintailer enables you to use the Test Cases separately for simultaneous/overlapping releases. </b> \n\n <b> Import and Export Support: </b> Import and export the test cases easily and as per your convenience. \n\n <b> Role-Based Access: </b> Secured to avoid any tampering of data. \n\n <b> Upcoming Features: </b> Requirement Management, Issue Management, Integrations with Project Management, Defect Management and Automation Tools.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "Get a Free Trial For first 3 Months",
+      "paraContent": "Contact us at <a href='http://www.pintailer.com/support'>Pintailer Support</a> \n\n For more details visit our website: <a href='http://www.pintailer.com/'>Pintailer</a> \n\n And for more updates follow us on <a target='_blank' href='http://www.linkedin.com/company/pintailer/'>LinkedIn Page</a>",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    }
+  ]
+}

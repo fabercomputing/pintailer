@@ -1,0 +1,75 @@
+<h1 mat-dialog-title class="dialog-title-pintailer">{{description}}
+  <mat-icon class="closePopupIcon" style="float:right; cursor: pointer; color: crimson;" (click)="this.dialogRef.close('cancel')"
+    matTooltip="Close">close</mat-icon>
+  <!-- <mat-icon style="float:right; cursor: pointer;" (click)="openHelpFor(29)">help</mat-icon> -->
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+</h1>
+
+<div class="example-container" style="margin-left: 5px;">
+
+  <form class="example-container" #bugAttachForm="ngForm" [formGroup]="form" (ngSubmit)="save()"
+    style="margin-right: 15px;">
+    <mat-dialog-content>
+
+      <div>
+        <mat-form-field style="width:100%;" id="introReleaseSelectTitle" hideRequiredMarker>
+          <mat-select placeholder="Pick a Release*" formControlName="releaseId" required>
+            <!-- <mat-option [value]="0">
+              None
+            </mat-option> -->
+            <mat-option *ngFor="let release of releaseAllArr" [value]="release.releaseId">
+              {{release.releaseNumber}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field style="width:100%;" id="introBugSelectTitle" hideRequiredMarker>
+          <mat-select placeholder="Select a Ticket Type*" formControlName="bugType" required>
+            <!-- <mat-option [value]="0">
+              None
+            </mat-option> -->
+            <mat-option *ngFor="let bugType of bugTypelArr" [value]="bugType">
+              {{bugType}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field style="width:100%;" hideRequiredMarker>
+          <mat-select placeholder="Pick a Environment*" formControlName="executionEnvId" required>
+            <mat-option *ngFor="let environment of environmentInfoArr" [value]="environment.executionEnvId">
+              {{environment.executionEnvName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div style="float: left; width: 45%;">
+        <mat-form-field class="input-full-width" style="width:100%;" hideRequiredMarker>
+          <input matInput placeholder="Ticket Number*" formControlName="bugId" required>
+        </mat-form-field>
+      </div>
+
+      <div style="float: right; width: 45%;">
+        <mat-form-field class="input-full-width" style="width:100%;">
+          <textarea matInput placeholder="Remarks" formControlName="remarks"></textarea>
+        </mat-form-field>
+      </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions style="margin-bottom:0px; padding: 0px;">
+
+      <button type="button" class="mat-raised-button mat-warn" (click)="close()">
+        Cancel
+      </button>
+
+      <button class="mat-raised-button mat-primary" type="submit" [disabled]="!bugAttachForm.form.valid">
+        Save
+      </button>
+
+    </mat-dialog-actions>
+  </form>
+</div>

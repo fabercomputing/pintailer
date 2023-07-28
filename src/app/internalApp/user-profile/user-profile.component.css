@@ -1,0 +1,37 @@
+mat-list-item:nth-child(odd) {
+  background-color: white;
+}
+
+.internalUserDetail {
+  background-color: #f2f2f2;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* fraction*/
+}
+
+.dashboard-cards {
+  margin: 10px;
+  min-height: 210px;
+  max-height: 210px;
+  overflow-y: auto;
+}
+
+.dashboard-cards-links {
+  margin: 10px;
+  min-height: 95px;
+  max-height: 95px;
+  overflow-y: hidden;
+  cursor: pointer;
+}
+
+.mat-card-content {
+  padding-left: 16px;
+  padding-right: 15px;
+}
+
+.card-header-dashboard{
+  font-weight: bold;
+}

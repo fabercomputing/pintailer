@@ -1,0 +1,111 @@
+{
+  "title": "Test Case Management in Excel",
+  "titleDes": "How many testers think that Test Case Management in Excel Challenging?? ",
+  "titleImg": "excelmanagementblog0.jpg",
+  "paragraph": [{
+      "paraTitle": "",
+      "paraContent": "The first and foremost thing that a tester has to learn while developing a career into testing environment is find a way to cope up with the problems that he will be facing while maintaining the test cases and doing documentation in Excel. Let’s face it people Excel is hell for testers!! (Yeah I said this out loud) and now everybody so swirled up into this whirlpool that nobody seems to find a way to get out of the burden of large excel repositories. ",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "Initially getting handy with Excel would look like a comfortable ride, and you start by launching a spreadsheet in Excel, and the main advantage is everybody has Excel, the collaboration with Google drive is easily possible so you start with writing the test cases and tracking them, and it will be a comfortable setup in the beginning.",
+      "paraImg": "excelmanagementblog1.jpg",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "Now after every new release there is addition of new spreadsheets. Each new release involves copying all the spreadsheets, putting them in a folder to mark the current release, then going into each spreadsheet and checking them off. Tracking who is doing what, ofcourse, takes another spreadsheet, plus possibly something to track bugs. ",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "Soon you are drowning in spreadsheets. The very thing that was supposed to create order has created the haystack syndrome, where everything you need to know is in a spreadsheet (if you can only find it). ",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "Before you know it you are in Excel Hell; the match up of testing documentation burden, and time pressure. At this point, testers are spending more time working around the documentation and spreadsheets than they are testing software. ",
+      "paraImg": "excelmanagementblog2.jpg",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "Most importantly, the simple reason behind not utilizing excel based test case management tool is that “Excel was never implied for test case management.” Therefore ignoring this reality can cost your business some critical dollars.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "It’s an ideal opportunity to get real; utilizing excel based test case management, documentation and providing details regarding testing activity can be an amazingly bulky, wasteful, time-consuming and sometimes, a frustrating procedure. It can be Hell!! managing resources, time, cost and quality is essential to your business. The procedures around those are vital to your prosperity and the achievement of your customers. So why you are still having confidence in excel test template? We’re not hostile to spreadsheets. They are awesome for a few sorts of information examination such as pivot tables. But, test case management using excel can be complicated. Regardless of whether you are working with waterfall, Agile or another test case management tools, effectively finishing a task expects you to be over a lot of strands of data at any one time.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "Here are few reasons why Excel based test case management are bad:",
+      "paraContent": "To maintain your testing procedure, you will need multiple excel sheets. You have to keep a different excel sheet for following necessities, test cases, test runs, bugs and one for requirement traceability. Independent of the size of the task, you need 5 distinctive excel sheets per project. In the case, you isolate the sheets according to testers, modules or releases, the number of excel sheet will be troublesome for your team to manage. Because of the higher number of test management excel sheets, there will be higher chances of mistake.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "Creating Test Sets: ",
+      "paraContent": "Making test sets containing both manual and automated tests includes a lot of copy and paste in the sample excel test sheet. This can be a tedious and boring process. A test management tool like Pintailer can make this procedure frictionless by helping you build different test case table  by an easy drag and drop. Therefore, testers can make distinctive test sets, while using a test case template.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "Trouble to collaborate on excel sheets:",
+      "paraContent": "The biggest roadblock in performing test case management in excel is collaboration. The reason behind this that when you want to share those excel sheets with your team members, it would be through emails or a file sharing software. On account of virtual teams that are isolated by distance, excel test case management tool turns into all the more troublesome to organize, deliver and work together. Your colleagues may wind up working with different versions of excel sheets.",
+      "paraImg": "excelmanagementblog3.jpg",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "Problems in Scalability: ",
+      "paraContent": "The problem or drawback of working with excel sheets is that as the association develops, the information stored in spreadsheets gets more circulated. Indeed, even as you add more colleagues to your testing team, there will be a necessity of more excel sheets. You may need to edit the information in the excel sheet with an expansion in your team estimate. Test case management excels sheets are prone to human mistakes which makes test case management all the more difficult.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "Hard to Test or Troubleshoot: ",
+      "paraContent": "Regardless of whether you needed to troubleshoot or test the information, it’s next to impossible. The omnipresent nature of spreadsheets implies it’s normal to have ones with interrelated information spread crosswise over various folders, workstations, offices, and areas. Following the logic of formulas themselves would be time-consuming and take too long. Furthermore, notwithstanding the way that people discover time to manipulate the data, most never have sufficient time to document what they did to get there.",
+      "paraImg": "excelmanagementblog4.jpg",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "All the above activities won’t just take up your testing time yet they are additionally inclined to mistakes. Although the trouble to implement consistency with the recommended positions. Henceforth the best way to deal with handle test cases is utilizing a test management tool. Picking a test management tool, thinking differently and updating test management procedures will help the testing team start walking out of Excel Hell.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "What is the cure for Excel Mess?",
+      "paraContent": "There are several ways to move out of this mess and one of them would definitely be opting out for a test case management tool. But choosing from a wide range of tools available in the market is another Hell!! But here are some ways in which Pintailer can help you get out of managing the test cases in Excel plus one of the key points or I would say that the prime point of Pintailer is that it provides the tracking of the Automation Done Percentage (You can get the reports on automation done against manual test cases at any given point of time).",
+      "paraImg": "pintailer_bird.png",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "And I would say this again that there are many tools in the world but “TRACKING” the conversion of automation done is something that as of now nobody is providing and it’s high time we focus on getting the accurate results of automation done and the best feature is Pintailer is available for FREE.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    }
+  ]
+}

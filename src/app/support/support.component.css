@@ -1,0 +1,93 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Open Sans, sans-serif;
+  letter-spacing: 1px;
+  margin: 15px 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+/* #inner {
+  display: table;
+  margin: 5px auto;
+  text-align: center;
+  padding: 25px;
+} */
+
+.cloud-detail {
+  margin: 15px auto;
+}
+
+.price-detail {
+  margin: 20px auto;
+}
+
+.input-full-width {
+  width: 100%;
+}
+
+.outer-class {
+  /* background-image: linear-gradient(#fbfcfd, white); */
+  /* background: linear-gradient(rgba(82, 77, 77, 0.8), rgba(12, 12, 12, 0.7)), url("/assets/images/background2.jpg"); */
+  background-attachment: fixed;
+}
+
+.support-input ::ng-deep .mat-form-field-label {
+  color: rgba(0, 0, 0, .54) !important;
+}
+
+.support-input ::ng-deep .mat-form-field-ripple {
+  background-color: rgba(0, 0, 0, .54) !important;
+}
+
+.resource-header {
+  font-size: 40px;
+  color: #000000;
+}
+
+.input-half-width {
+  width: 100%;
+}
+
+/*###Desktops, big landscape tablets and laptops(Large, Extra large)####*/
+@media screen and (min-width: 1024px) {
+  .support-img-div {
+    width: 20%;
+    float: right;
+  }
+
+  .form-card {
+    width: 52%;
+  }
+}
+
+/*###Tablet(medium)###*/
+@media screen and (min-width : 768px) and (max-width : 1023px) {
+  .support-img-div {
+    width: 100%;
+    float: right;
+    overflow: hidden;
+  }
+
+  .form-card {
+    width: 80%;
+  }
+
+}
+
+/*### Smartphones (portrait and landscape)(small)### */
+@media screen and (min-width : 0px) and (max-width : 767px) {
+  .support-img-div {
+    width: 100%;
+    /* float: right; */
+    overflow: hidden;
+  }
+
+  .form-card {
+    width: 80%;
+  }
+
+}

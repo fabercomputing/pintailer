@@ -1,0 +1,369 @@
+<div id="download">
+  <a #downloadLink></a>
+</div>
+<!-- above code is for image download -->
+
+
+<mat-progress-bar mode="indeterminate" *ngIf="isLoaded === true"></mat-progress-bar>
+<div id="loading-image-graph"></div>
+<div class="reportsBgDiv">
+  <section class="reportFilters">
+    <!-- <div class="org">
+      <mat-form-field>
+        <mat-select placeholder="Organization" name="organization" [value]="organization" (selectionChange)="getProjectsByOrganizationName($event.value); getAllRelease(); getAllEnvInfo();"
+          required>
+          <mat-option *ngFor="let organization of organizations" [value]="organization">
+            {{organization}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+    </div> -->
+
+    <div class="project graph-dropdown">
+      <mat-form-field id="introProjectTitle">
+        <mat-select placeholder="Projects" [disabled]="isLoaded" [(ngModel)]="selectedProject" [value]="selectedProject"
+          name="selectedProject"
+          (selectionChange)="getModuleHierarchyByProjectName(); getAllTagsList(); getAllRelease(); selectModuleName(0, 'All Module Selected'); fetchGraphData();"
+          [disabled]="disableSelect">
+          <mat-option [value]="0" [disabled]="executionReportMode">
+            All Projects
+          </mat-option>
+          <mat-option *ngFor="let clientProject of clientProjects" [value]="clientProject.clientProjectId">
+            {{clientProject.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- <div class="module">
+    <mat-form-field>
+      <mat-select placeholder="Pick a Module Hierarchy" [(ngModel)]="selectedModule" name="selectedModule" [disabled]="disableSelect"
+        (selectionChange)="fetchGraphData()">
+        <mat-option [value]="'0'">
+          All Modules
+        </mat-option>
+        <mat-option *ngFor="let moduleVal of moduleHierarchyArr" [value]="moduleVal.moduleId" [matTooltip]="moduleVal.hierarchy">
+          {{moduleVal.hierarchy}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+  </div> -->
+
+
+    <div class="tag graph-dropdown" *ngIf="!executionReportMode">
+
+      <mat-form-field id="introTagTitle">
+        <mat-select placeholder="Pick a Module Tag" [(ngModel)]="selectedtag" name="selectedtag"
+          [disabled]="disableSelect" (selectionChange)="fetchGraphData()">
+          <mat-option [value]="'ALL'">
+            All
+          </mat-option>
+          <mat-option *ngFor="let tag of allTagsArr" [value]="tag">
+            {{tag}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div class="environment graph-dropdown" *ngIf="executionReportMode">
+
+      <mat-form-field id="introEnvironmentTitle">
+        <mat-select [disabled]="isLoaded" placeholder="Environment" [(ngModel)]="selectedEnvironment" name="environment"
+          required>
+          <mat-option *ngFor="let environment of environmentInfoArr" [matTooltip]="environment.executionEnvName"
+            [value]="environment.executionEnvId" (click)="fetchGraphData()">
+            {{environment.executionEnvName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div class="release graph-dropdown" *ngIf="executionReportMode">
+
+      <mat-form-field style="width:90%;" id="introReleaseTitle">
+        <mat-select [disabled]="isLoaded" placeholder="Pick a Release" [(ngModel)]="selectedRelease"
+          name="selectedRelease" required>
+          <mat-option *ngFor="let release of releaseAllArr" [value]="release.releaseId" (click)="fetchGraphData()">
+            {{release.releaseNumber}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <button mat-flat-button class="goExecution top-graph-button" matTooltip="Share" id="introShareTitle"
+      (click)="copyLink();">
+      <mat-icon>share</mat-icon>
+    </button>
+
+    <button mat-flat-button class="goExecution top-graph-button" matTooltip="Refresh Data" id="introShareTitle"
+      (click)="fetchGraphData();">
+      <mat-icon>refresh</mat-icon>
+    </button>
+
+    <button (click)="saveAsPdf();" mat-flat-button class="goExecution top-graph-button" matTooltip="Download as PDF">
+      <mat-icon>picture_as_pdf</mat-icon>
+    </button>
+
+    <button (click)="saveAsImage();" mat-flat-button class="goExecution top-graph-button"
+      matTooltip="Download as Image">
+      <mat-icon>add_a_photo</mat-icon>
+    </button>
+
+    <button matTooltip="Open Module Selection Popup" [disabled]="selectedProject == undefined" mat-raised-button
+      id="introFiletModuleTitle" mat-flat-button class="goExecution top-graph-button" (click)="openModuleSelection()">
+      Filter by Module
+    </button>
+
+    <mat-card class="truncateSecond" [matTooltip]="selectedModuleName">{{selectedModuleName}}</mat-card>
+
+    <!-- <button mat-flat-button id="introFiletModuleTitle" *ngIf="!filterByModule" class="goExecution top-graph-button"
+      (click)="filterByModule = true; getModuleHierarchyByProjectName();">Filter
+      by Module</button> -->
+
+    <div class="module" *ngIf="filterByModule">
+      <mat-accordion multi="false">
+        <mat-expansion-panel style="position: absolute; width: 45%; z-index: 1000;" #mep="matExpansionPanel">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+
+            </mat-panel-title>
+            <mat-panel-description>
+              <p class="truncateSecond" title="{{selectedModuleName}}">{{selectedModuleName}}</p>
+              <button mat-stroked-button color="primary" style="margin:10px;"
+                (click)="mep.expanded = true; selectModuleName('0', 'All Module Selected'); fetchGraphData();">
+                Reset </button>
+              <button mat-stroked-button color="primary" style="margin:10px;" *ngIf="filterByModule"
+                (click)="filterByModule = false; selectModuleName('0', 'All Module Selected'); fetchGraphData();">Remove
+                filter</button>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let one of moduleHierarchyArr2">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <button mat-button color="primary"
+                    (click)="mep.expanded = false; selectModuleName(one.moduleId, one.name); fetchGraphData();">
+                    {{one.name}}</button>
+
+                </mat-panel-title>
+                <mat-panel-description>
+
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-accordion>
+                <mat-expansion-panel class="Hirar" *ngFor="let two of one.children">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+
+                      <button mat-button color="primary"
+                        (click)="mep.expanded = false; selectModuleName(two.moduleId, two.name); fetchGraphData();">
+                        {{two.name}}</button>
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <button mat-stroked-button color="accent" [matTooltip]="three.name" class="truncate"
+                    style="width: 100%; margin-bottom: 1px" *ngFor="let three of two.children"
+                    (click)="mep.expanded = false; selectModuleName(three.moduleId, three.name); fetchGraphData();">
+                    {{three.name}}
+                  </button>
+
+                </mat-expansion-panel>
+              </mat-accordion>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+    </div>
+
+  </section>
+
+  <section class="container">
+
+    <div class="coverageGraph" id="introCoverageGraphTitle">
+      <!-- Content here will be generated by D3 -->
+    </div>
+    <div class="coverageTableDownload" id="introExecutionTableTitle" #screen>
+      <div class="coverageTable">
+        <!-- Content here will be generated by D3 -->
+      </div>
+      <br />
+      <br />
+      <section class="container2" *ngIf="!executionReportMode" id="coverageReportDownloadOptions"
+        style="display: block;">
+        <div class="firstBox" style="margin-bottom: 20px;">
+
+          <button id="introDownloadTestCaseTitle" mat-flat-button class="goExecution"
+            style="float:right; margin-left:12px; margin-top:15px;" *ngIf="!executionReportMode"
+            (click)="downloadCoverageReportData();">Download
+            Test Cases</button>
+
+          <!-- <form *ngIf="!executionReportMode" style="float:right; margin:5px;">
+            <mat-form-field appearance="legacy">
+              <mat-label>File Name</mat-label>
+              <input matInput [(ngModel)]="remainingFileName" name="remainingFileName" required>
+              <mat-hint>Enter File Name</mat-hint>
+            </mat-form-field>
+          </form> -->
+
+          <mat-form-field style="float:right; margin:5px;" id="introReportOptionTitle">
+            <mat-select placeholder="Report Option" [(ngModel)]="selectedcoverageReportOption"
+              name="selectedcoverageReportOption">
+
+              <mat-option *ngFor="let status of coverageReportOptions" [value]="status">
+                {{status}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </section>
+
+    </div>
+
+    <br />
+    <br />
+    <button mat-flat-button id="introExecutionReportTitle" class="goExecution" *ngIf="!executionReportMode"
+      (click)="swichExecution('Execution'); fetchGraphData();">Execution
+      Report</button>
+    <button mat-flat-button class="goExecution" *ngIf="executionReportMode"
+      (click)="swichExecution('Coverage'); fetchGraphData();">Automation
+      Coverage</button>
+
+  </section>
+
+  <section class="container2" *ngIf="executionReportMode">
+
+    <div class="firstBox" id="firstBoxId">
+
+      <div class="exeStatusDrop">
+        <mat-form-field id="introExecutionStatusTitle">
+          <mat-select placeholder="Execution Status" [(ngModel)]="selectedExecutionState" name="selectedExecutionState"
+            (selectionChange)="getTestCaseByIds()">
+
+            <mat-option *ngFor="let status of statusExecution" [value]="status">
+              {{status}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field id="introExecutionStatusTypeTitle" style="margin-left: 5px;">
+          <mat-select placeholder="Test Case type" [(ngModel)]="selectedExecutionStateType"
+            [disabled]="selectedExecutionState === ''" name="selectedExecutionStateType"
+            (selectionChange)="getTestCaseByIds()">
+
+            <mat-option *ngFor="let statusType of statusExecutionType" [value]="statusType">
+              {{statusType}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <button mat-flat-button id="introDownloadExeReportTitle" class="goExecution" style="float:right"
+          *ngIf="executionReportMode" (click)="downloadReport();">Download
+          Report</button>
+
+        <button mat-flat-button id="introDownloadNonAutomatedTitle" class="goExecution" style="float:right"
+          *ngIf="executionReportMode" (click)="downloadRemainingData();">Download
+          Non Automated Cases</button>
+
+        <form *ngIf="executionReportMode" style="float:right">
+          <mat-form-field appearance="legacy">
+            <mat-label>File Name</mat-label>
+            <input matInput [(ngModel)]="remainingFileName" name="remainingFileName" required>
+            <mat-hint>Enter File Name</mat-hint>
+          </mat-form-field>
+        </form>
+
+
+        <mat-divider></mat-divider>
+      </div>
+
+
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
+      <table mat-table #sortOne="matSort" [dataSource]="dataSource" class="mat-elevation-z8" matSort
+        id="introExeTableTitle">
+
+        <!-- Module Name -->
+        <ng-container matColumnDef="ModuleName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Module Name </th>
+          <td mat-cell *matCellDef="let row">
+            <p *ngIf="row.modulesNameHierarchy" [innerHTML]="row.modulesNameHierarchy" class="line-breaker"></p>
+          </td>
+
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="testSummary">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Test Summary </th>
+          <td mat-cell *matCellDef="let element">
+
+            <mat-accordion multi="false">
+              <mat-expansion-panel multi="false" expanded="true">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+
+                  </mat-panel-title>
+                  <mat-panel-description>
+
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p *ngIf="element.testSummary != ''">{{element.testSummary}}</p>
+                <button mat-stroked-button color="primary" *ngIf="selectedExecutionState != 'Remaining'"
+                  (click)="fetchTestSteps(element.testCaseSequenceId);">
+                  Fetch Test
+                  Steps
+                </button>
+
+                <div *ngIf="toOpenPanel === element.testCaseSequenceId">
+
+                  <p [innerHTML]="passStepData" *ngIf="passStepData != ''" class="line-breaker"
+                    style="background:rgb(179, 222, 105,.8)"></p>
+                  <p [innerHTML]="failStepData" *ngIf="failStepData != ''" class="line-breaker"
+                    style="background:rgb(214, 39, 40,.8); color: white;"></p>
+                  <p [innerHTML]="skipStepData" *ngIf="skipStepData != ''" class="line-breaker"
+                    style="background:rgb(255, 217, 47)"></p>
+                  <!-- <p [innerHTML]="pendingStepData" *ngIf="pendingStepData != ''" class="line-breaker" style="background:khaki"></p> -->
+                  <p [innerHTML]="blockStepData" *ngIf="blockStepData != ''" class="line-breaker"
+                    style="background:rgba(227, 26, 28, 0.8); color: white;"></p>
+
+                </div>
+
+              </mat-expansion-panel>
+            </mat-accordion>
+
+          </td>
+        </ng-container>
+
+        <!-- Expected Result Column -->
+        <ng-container matColumnDef="expectedResult">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"> Expected Result </th>
+          <td mat-cell *matCellDef="let element">
+            <p [matTooltip]="element.expectedResult" *ngIf="element.expectedResult != ''">{{element.expectedResult}}</p>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+      <mat-paginator #paginatorOne [pageSizeOptions]="[10, 20, 30, 40, 100, 500]" showFirstLastButtons></mat-paginator>
+    </div>
+    <div class="secondBox">
+
+    </div>
+
+  </section>
+
+  <!-- <p class="sampleReport">Showing a Sample report. Please select a Project to see actual report. Click on an arc to expand</p> -->
+</div>

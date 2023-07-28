@@ -1,0 +1,15 @@
+.orgProjectSelection {
+  padding: 10px;
+  width: 100%
+}
+
+.org {
+  float: left;
+  width: 30%;
+  overflow: hidden;
+}
+
+.project {
+  width: 48%;
+  overflow: hidden;
+}

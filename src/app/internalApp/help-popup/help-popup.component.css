@@ -1,0 +1,15 @@
+::ng-deep .mat-dialog-container {
+    padding: 15px;
+    overflow-x: hidden;
+  }
+  
+  .dialog-title-pintailer {
+    background-color: rgb(248, 248, 242);
+    padding: 8px;
+    text-align: center;
+  }
+  
+  /* .list-item {
+    height: 30px;
+  } */
+  

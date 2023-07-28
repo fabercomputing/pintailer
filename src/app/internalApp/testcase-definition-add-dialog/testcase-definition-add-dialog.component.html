@@ -1,0 +1,149 @@
+<h1 mat-dialog-title class="dialog-title-pintailer">{{description}}
+  <mat-icon class="closePopupIcon" style="float:right; cursor: pointer; color: crimson;" (click)="this.dialogRef.close('cancel')" matTooltip="Close">close</mat-icon>
+  <!-- <mat-icon style="float:right; cursor: pointer;" (click)="openHelpFor(29)">help</mat-icon> -->
+</h1>
+
+<div class="example-container" style="margin-left: 5px;">
+  <form class="example-container" #TestCaseDefinition="ngForm" [formGroup]="form" (ngSubmit)="save()" style="margin-right: 15px;">
+    <mat-dialog-content>
+
+      <!-- <div>
+        <mat-form-field class="input-full-width" hideRequiredMarker>
+          <mat-select required placeholder="Organization*" name="organization" [value]="organization" (selectionChange)="getProjectsByOrganizationName($event.value)">
+            <mat-option *ngFor="let organization of organizations" [value]="organization">
+              {{organization}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+      <div>
+        <mat-form-field class="input-full-width" hideRequiredMarker>
+          <mat-select required placeholder="Projects*" [value]="clientProjectId" name="project" (selectionChange)="getModulesByProjectId($event.value)">
+            <mat-option *ngFor="let clientProject of clientProjects" [value]="clientProject.clientProjectId">
+              {{clientProject.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width" hideRequiredMarker style="width:85%">
+          <mat-select placeholder="Module*" formControlName="moduleId" required>
+            <mat-option *ngFor="let module of modules" [value]="module.moduleId">
+              {{ module.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-icon style="float:right; cursor: pointer; margin: 15px;" (click)="openModuleSelection()" matTooltip="Open Module Selection Popup">open_in_new</mat-icon>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="TestCase No." formControlName="testCaseNo">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Test Data" formControlName="testData"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width" hideRequiredMarker>
+          <textarea matInput placeholder="Test Summary*" required formControlName="testSummary"></textarea>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Pre Conditions" formControlName="preCondition"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable" (removed)="removeTags(tag)">
+              {{tag}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New Tag..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addTags($event)" />
+          </mat-chip-list>
+        </mat-form-field>
+      </div><br>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Execution Steps" formControlName="executionSteps"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Expected Result" formControlName="expectedResult"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <input matInput placeholder="Linked Defect" formControlName="linkedDefect">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <mat-select placeholder="Automatable" formControlName="automatable">
+            <mat-option *ngFor="let automatable of booleanEnum" [value]="automatable">
+              {{ automatable }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Remarks" formControlName="remarks"></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- <div>
+                <mat-form-field class="input-full-width">
+                    <input matInput placeholder="File Name" formControlName="fileName">
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field class="input-full-width">
+                    <input matInput placeholder="Automated TestCase No. From File" formControlName="automatedTestCaseNoFromFile">
+                </mat-form-field>
+            </div> -->
+
+      <div>
+        <mat-form-field class="input-full-width">
+          <textarea matInput placeholder="Manual Reason" formControlName="manualReason"></textarea>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-full-width">
+          <mat-select placeholder="Applicable" formControlName="applicable">
+            <mat-option *ngFor="let applicable of booleanEnum" [value]="applicable">
+              {{ applicable }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions style="margin-bottom:0px; padding: 0px;">
+
+      <button type="button" class="mat-raised-button mat-warn" (click)="close()">
+        Cancel
+      </button>
+
+      <button class="mat-raised-button mat-primary" type="submit" [disabled]="!TestCaseDefinition.form.valid">
+        Save
+      </button>
+
+    </mat-dialog-actions>
+  </form>
+</div>

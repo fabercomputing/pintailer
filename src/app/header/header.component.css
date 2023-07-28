@@ -1,0 +1,195 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.selectedTab {
+  background: linear-gradient(-90deg, rgba(216, 210, 210, 0.568), rgba(180, 156, 156, 0.178));
+}
+
+.selectedParentTab {
+  /* background: rgba(22, 124, 128, 0.8); */
+  background: rgba(124, 174, 214, 0.8);
+}
+
+.notSelectedTab {
+  background: transparent;
+}
+
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky;
+  /* For macOS/iOS Safari */
+  top: 0;
+  /* Sets the sticky toolbar to be on top */
+  z-index: 1000;
+  /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+/*###Desktops, big landscape tablets and laptops(Large, Extra large)####*/
+@media screen and (min-width: 1024px) {
+  .selectedParentOuterTab {
+    /* background: rgba(22, 124, 128, 0.8); */
+    background: rgba(124, 174, 214, 0.8);
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: .25rem;
+    margin: 4px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .notSelectedOuterTab {
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: .25rem;
+    background: rgba(187, 204, 218, 0.1);
+    margin: 4px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .login-button-chip {
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: .25rem;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 30px;
+    outline: none;
+  }
+
+  #productButton {
+    margin-left: 25px;
+  }
+
+  .header-internal-button {
+    display: none;
+  }
+
+  .header-button {
+    display: inline;
+  }
+}
+
+/*###Tablet(medium)###*/
+@media screen and (min-width : 768px) and (max-width : 1023px) {
+  .selectedParentOuterTab {
+    /* background: rgba(22, 124, 128, 0.8); */
+    background: rgba(124, 174, 214, 0.8);
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: .25rem;
+    margin: 4px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .notSelectedOuterTab {
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: .25rem;
+    background: rgba(124, 174, 214, 0.1);
+    margin: 4px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .login-button-chip {
+    border: 1px solid transparent;
+    padding: .1rem .25rem;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: .25rem;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 30px;
+    outline: none;
+  }
+
+  #productButton {
+    margin-left: 5px;
+  }
+
+  .header-internal-button {
+    display: inline;
+  }
+
+  .header-button {
+    display: none;
+  }
+}
+
+/*### Smartphones (portrait and landscape)(small)### */
+@media screen and (min-width : 0px) and (max-width : 767px) {
+  .selectedParentOuterTab {
+    /* background: rgba(22, 124, 128, 0.8); */
+    background: rgba(124, 174, 214, 0.8);
+    border: 1px solid transparent;
+    padding: .1rem .25rem;
+    font-size: 10px;
+    line-height: 1.5;
+    border-radius: .25rem;
+    margin: 4px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .notSelectedOuterTab {
+    border: 1px solid transparent;
+    padding: .1rem .25rem;
+    font-size: 10px;
+    line-height: 1.5;
+    border-radius: .25rem;
+    background: rgba(124, 174, 214, 0.1);
+    margin: 4px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .login-button-chip {
+    border: 1px solid transparent;
+    outline: none;
+    font-size: 10px;
+    line-height: 1.5;
+    border-radius: .25rem;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 30px;
+  }
+
+  .logo-img-pintail {
+    /* display: none; */
+    width: 65px !important;
+    margin-top: 18px !important;
+  }
+
+  .custom-space-div {
+    display: none;
+  }
+
+  #productButton {
+    margin-left: 0px;
+  }
+
+  /* .login-buttons {
+    display: grid;
+  } */
+
+  .header-internal-button {
+    display: inline;
+  }
+
+  .header-button {
+    display: none;
+  }
+}

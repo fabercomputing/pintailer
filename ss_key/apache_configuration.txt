@@ -1,0 +1,13 @@
+Apache Configuration
+You need the following ssl configuration in your VirtualHost:
+
+<VirtualHost www.pintailer.com:443>
+	ServerName www.pintailer.com
+	
+	SSLEngine on
+	SSLCertificateKeyFile /etc/apache2/ssl/www.pintailer.com.key
+	SSLCertificateFile /etc/apache2/ssl/www.pintailer.com.cert
+	SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown
+
+	# ...
+</VirtualHost>

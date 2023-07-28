@@ -1,0 +1,45 @@
+<mat-progress-bar mode="indeterminate" *ngIf="dataLoading"></mat-progress-bar>
+
+<mat-card id="assignUserOrgSection" *ngIf="currentOpenSettings === 'assignUserOrgSection'" style="box-shadow: none; margin: 4px;">
+  <!-- <mat-card-header> -->
+  <mat-card-title>User Setup</mat-card-title>
+  <mat-card-subtitle style="margin-left: 2px;">Assign Multiple users to Multiple Projects</mat-card-subtitle>
+  <!-- </mat-card-header> -->
+
+  <mat-divider></mat-divider>
+  <mat-card-content style="margin:5px;">
+    <br />
+
+    <!-- <mat-card-subtitle>Assign Multiple users to Multiple Projects.</mat-card-subtitle> -->
+
+    <div style="display: inline;">
+      <div class="org">
+        <mat-form-field hideRequiredMarker>
+          <mat-select placeholder="Organization*" name="organization" [(ngModel)]="organization" required>
+            <mat-option *ngFor="let organization of organizations" [value]="organization.orgName" (click)="getAllUsersForOrg(); getProjectsByOrganizationName();">
+              {{organization.orgName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-select placeholder="User List" [formControl]="userList" multiple>
+          <mat-option *ngFor="let user of usersDetail" [value]="user.userName">{{user.userName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="project">
+        <mat-form-field>
+          <mat-select placeholder="Projects" [formControl]="projectList" multiple>
+            <mat-option *ngFor="let clientProject of clientProjects" [value]="clientProject.clientProjectId">
+              {{clientProject.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" (click)="assignUserToProject()">Assign User To Project</button>
+    <br />
+  </mat-card-content>
+</mat-card>

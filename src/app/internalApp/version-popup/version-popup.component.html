@@ -1,0 +1,54 @@
+<h1 mat-dialog-title class="dialog-title-pintailer">Test Case Versions
+  <mat-icon class="closePopupIcon" style="float:right; cursor: pointer; color: crimson;" (click)="this.dialogRef.close('cancel')" matTooltip="Close">close</mat-icon>
+  <!-- <mat-icon style="float:right; cursor: pointer;" (click)="openHelpFor(29)">help</mat-icon> -->
+</h1>
+
+<div>
+  <mat-form-field>
+    <mat-select [(ngModel)]="firstVersion" placeholder="Select Old Version">
+      <mat-option *ngFor="let testcase of testCaseDefinition; let i = index;" [value]="i" [disabled]="i <= secondVersion">
+        {{testcase.testCaseVersion}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [(ngModel)]="secondVersion" placeholder="Select New Version" [disabled]="!(firstVersion != undefined)">
+      <mat-option *ngFor="let testcase of testCaseDefinition; let i = index;" [value]="i" [disabled]="i >= firstVersion">
+        {{testcase.testCaseVersion}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" *ngIf="!showDiff" (click)="showDiff = true;" [disabled]="!(firstVersion != undefined && secondVersion != undefined)">Compare</button>
+  <button mat-stroked-button color="primary" *ngIf="showDiff" (click)="showDiff = false;">Hide Comparison</button>
+
+  <div class="version-data" *ngIf="showDiff">
+    <mat-card style="padding: 8px; border: 1px solid #ece1e1; background-color: #fbfbfb; margin: 2px;">
+      <p style="padding: 5px;">Comparison between <b>{{testCaseDefinition[firstVersion].testCaseVersion}}</b> and
+        <b>{{testCaseDefinition[secondVersion].testCaseVersion}}</b></p>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <pre processingDiff [left]="testCasesModifiedData[firstVersion]" [right]="testCasesModifiedData[secondVersion]"></pre>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let testcase of testCaseDefinition; let i = index;" style="background-color: #fbfbfb;">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{testcase.testCaseVersion}}
+
+          <mat-icon matTooltip="Select {{testcase.testCaseVersion}}" *ngIf="selection" style="margin-left: 5px;" (click)="selectRow(testcase)">input</mat-icon>
+
+        </mat-panel-title>
+        <mat-panel-description>
+          Click to view Test Case Details
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <pre class="version-data" [innerHTML]="testCasesModifiedData[i]"> </pre>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

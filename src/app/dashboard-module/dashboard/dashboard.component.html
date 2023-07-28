@@ -1,0 +1,269 @@
+<mat-grid-list cols="4" rowHeight="200px">
+  <mat-grid-tile [@EnterLeave]="'flyIn'" [colspan]="colspan" [rowspan]="3" style="overflow: auto; ;box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);">
+    <mat-card class="dashboardMainGraph" style="width: 87%; box-shadow: none;">
+
+      <div class="card-header-dashboard textHeader" style="margin-bottom: 15px;">User Info<span class="arrow"></span></div>
+
+      <!-- <mat-divider></mat-divider> -->
+      <!-- <mat-card-content> -->
+      <div>
+        <mat-list>
+          <mat-list-item>
+            <span class="graph-text-color"><b>{{userFullName}}</b></span>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+          <mat-list-item *ngFor="let mail of userEmails">
+            <mat-icon>mail</mat-icon> &nbsp;&nbsp;&nbsp;
+            <span>{{mail}}</span>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+      <br />
+
+      <!-- <mat-divider></mat-divider> -->
+      <div style="margin-top: 10px; margin-bottom: 10px">
+
+        <mat-card-title>
+          <!-- <mat-icon>domain</mat-icon> &nbsp;&nbsp;&nbsp; -->
+          <span>Assigned Roles:</span>
+        </mat-card-title>
+        <div class="userDetailBox">
+          <mat-list>
+            <mat-list-item *ngFor="let role of userProfileDetail.userOrganizationalRole">
+              <p> {{role}}</p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item *ngIf="userProfileDetail.userOrganizationalRole.length === 0">
+              <p> You have no assigned roles.</p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+      </div>
+
+      <br />
+
+      <!-- <mat-divider></mat-divider> -->
+      <div style="margin-top: 10px; margin-bottom: 10px">
+
+        <mat-card-title>
+          <!-- <mat-icon>group</mat-icon> &nbsp;&nbsp;&nbsp; -->
+          <span>Associated Organizations:</span>
+        </mat-card-title>
+        <div class="userDetailBox">
+          <mat-list>
+            <mat-list-item *ngFor="let client of userProfileDetail.userOrganizations">
+              <p> {{client}}</p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+      <!-- </mat-card-content> -->
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [@fadeInOut] [colspan]="colspanGraph" [rowspan]="3">
+    <mat-card class="dashboardMainGraph" style="width: 92%;">
+
+      <div class="card-header-dashboard textHeader">Testing Coverage<span class="arrow"></span></div>
+      <!-- <div class="org" style="float: right;">
+        <mat-form-field hideRequiredMarker>
+          <mat-select placeholder="Organization*" name="organization" [value]="organization" (selectionChange)="getOrgWiseDashboardData($event.value);"
+            required>
+            <mat-option *ngFor="let organization of organizations" [value]="organization">
+              {{organization}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+      <mat-card-subtitle style="margin-top: 5px;">Project wise view of Coverage Report for <b>{{organization}}</b></mat-card-subtitle>
+
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-progress-bar mode="indeterminate" *ngIf="dataLoading"></mat-progress-bar>
+        <div class="dashboardChart" style="overflow: auto;">
+          <svg width="650" height="400" style="padding:5px;">
+
+          </svg>
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions style="padding: 0px;">
+
+        <button mat-menu-item [routerLink]="['/app/graphReport']" id="CoverageGraphTitle">
+          <mat-icon class="graph-text-color"><b>arrow_forward</b></mat-icon>
+          <span class="graph-text-color"><b>Go to Detailed Coverage and Execution Reports</b></span>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [@EnterLeaveTop]="'flyIn'" [colspan]="colspan" [rowspan]="1" *ngIf="canShowTestCaseMenu()" id="TestCaseDefinitionsTitle">
+    <mat-card class="dashboardMainGraph" style=" width: 87%;">
+
+      <div class="card-header-dashboard textHeader">Test Case Definitions<span class="arrow"></span></div>
+
+      <mat-card-content>
+        <div class="dashboardChart" style="overflow: auto; padding-top: 10px;">
+          View/Create/Update Test Definitions, import Definitions, Execute Tests and Import Execution Results
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions style="padding: 0px;">
+
+        <button mat-menu-item [routerLink]="['/app/testCaseDefinition']">
+          <mat-icon class="graph-text-color"><b>arrow_forward</b></mat-icon>
+          <span class="graph-text-color"><b>Go to Test Case Definitions</b></span>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [@EnterLeaveTop]="'flyIn'" [colspan]="colspan" [rowspan]="1" *ngIf="canShowTestCaseMenu()" id="AutomationMappingTitle">
+    <mat-card class="dashboardMainGraph" style=" width: 87%;">
+
+      <div class="card-header-dashboard textHeader">Automation Mapping<span class="arrow"></span></div>
+      <!-- <mat-card-header>
+        <mat-card-title>
+          <mat-icon>playlist_add</mat-icon> &nbsp;&nbsp;&nbsp;
+          <span class="card-header-dashboard"></span>
+        </mat-card-title>
+      </mat-card-header> -->
+
+      <mat-card-content>
+        <div class="dashboardChart" style="overflow: auto; padding-top: 10px;">
+          View/Establish the Mapping between the Manual And Automated Test Definitions.
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions style="padding: 0px;">
+
+        <button mat-menu-item [routerLink]="['/app/testCaseMapping']">
+          <mat-icon class="graph-text-color"><b>arrow_forward</b></mat-icon>
+          <span class="graph-text-color"><b>Go to Automation Mapping</b></span>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [@EnterLeaveTop]="'flyIn'" [colspan]="colspan" [rowspan]="1" *ngIf="canShowTestCaseMenu()" id="ReleaseMappingTitle">
+    <mat-card class="dashboardMainGraph" style=" width: 87%;">
+
+      <div class="card-header-dashboard textHeader">Release Mapping<span class="arrow"></span></div>
+
+      <mat-card-content>
+        <div class="dashboardChart" style="overflow: auto; padding-top: 10px;">
+          Add/Remove Test Definitions under current Release.
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions style="padding: 0px;">
+
+        <button mat-menu-item [routerLink]="['/app/releaseMapping']">
+          <mat-icon class="graph-text-color"><b>arrow_forward</b></mat-icon>
+          <span class="graph-text-color"><b>Go to Release Mapping</b></span>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [@fadeInOut] [colspan]="colspan" [rowspan]="1">
+    <mat-card class="dashboardMainGraph" style=" width: 87%;">
+
+      <div class="card-header-dashboard textHeader">Test Case Add Progress<span class="arrow"></span></div>
+
+      <mat-card-content>
+        <div class="dashboardChart" style="overflow: auto; padding-top: 10px;">
+          View the Test Case Addition Trend by individual users.
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions style="padding: 0px;">
+
+        <button mat-menu-item [routerLink]="['/app/testcaseAdditionProgress']">
+          <mat-icon class="graph-text-color"><b>arrow_forward</b></mat-icon>
+          <span class="graph-text-color"><b>Go to Test Case Add Progress</b></span>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [@fadeInOut] [colspan]="colspan" [rowspan]="1">
+    <mat-card class="dashboardMainGraph" style=" width: 87%;">
+
+      <div class="card-header-dashboard textHeader">Test Step Add Progress<span class="arrow"></span></div>
+
+      <mat-card-content>
+        <div class="dashboardChart" style="overflow: auto; padding-top: 10px;">
+          View the Test Step Addition Trend by individual users.
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions style="padding: 0px;">
+
+        <button mat-menu-item [routerLink]="['/app/testStepAdditionProgress']">
+          <mat-icon class="graph-text-color"><b>arrow_forward</b></mat-icon>
+          <span class="graph-text-color"><b>Go to Test Step Add Progress</b></span>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [@fadeInOut] [colspan]="colspan" [rowspan]="1" *ngIf="canShowTestCaseMenu()">
+    <mat-card class="dashboardMainGraph" style=" width: 87%;">
+
+      <div class="card-header-dashboard textHeader">Module Hierarchy Graph<span class="arrow"></span></div>
+
+      <mat-card-content>
+        <div class="dashboardChart" style="overflow: auto; padding-top: 10px;">
+          Understand the Hierarchy of Modules at one shot by looking at the Module Hierarchy Graph.
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions style="padding: 0px;">
+
+        <button mat-menu-item [routerLink]="['/app/moduleTreeGraph']">
+          <mat-icon class="graph-text-color"><b>arrow_forward</b></mat-icon>
+          <span class="graph-text-color"><b>Go to Module Hierarchy Graph</b></span>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [@fadeInOut] [colspan]="colspan" [rowspan]="1" *ngIf="canShowTestCaseMenu()">
+    <mat-card class="dashboardMainGraph" style=" width: 87%;">
+
+      <div class="card-header-dashboard textHeader">Edit Feature File<span class="arrow"></span></div>
+
+      <mat-card-content>
+        <div class="dashboardChart" style="overflow: auto; padding-top: 10px;">
+          A Rich Feature File Editor to modify Test Steps/Scenario information.
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions style="padding: 0px;">
+
+        <button mat-menu-item [routerLink]="['/app/featureEdit']">
+          <mat-icon class="graph-text-color"><b>arrow_forward</b></mat-icon>
+          <span class="graph-text-color"><b>Go to Feature File Editor</b></span>
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+<app-app-walkthrough id="startTutorialComponentId"></app-app-walkthrough>

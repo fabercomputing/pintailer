@@ -1,0 +1,62 @@
+{
+  "title": "Migrating from Manual QA to Automated QA ",
+  "titleDes": "Why everybody is migrating from Manual QA to Automated QA?",
+  "titleImg": "manualtoautomated.jpg",
+  "paragraph": [{
+      "paraTitle": "",
+      "paraContent": "“Software development is one of the many phases of a software being built, like in every waterfall model to reach to the final stage (software being ready for end-users) everything has to be followed sequentially and methodologically otherwise the software is destined to be doomed.” This statement would have been true 5-10 years back but now we reached a point where technology does everything that we need it to do, so does the automation testing in the testing phase of software development.",
+      "paraImg": "manualtoautomated1.jpg",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "Now with the ever increasing technology and agile techniques, organizations want their systems and software to be automated and everything should be time efficient and accurate. In the present scenario, 80% of the companies are still relying on the big repositories of test cases stored in excel sheets. As the software goes on developing, test cases which are directly proportional to the releases and versioning reach the amount of tens of thousands. It reaches up to a point where the situation gets out of hand and pandemonium is created in managing those test cases (leave the automation part aside).",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "Interactive Reporting",
+      "paraContent": "It’s high time to move from a manual testing method to automated ones and the main reason behind this is most of the manual testing is done by humans and c’mon we all know that humans are prone to errors which lead to a large amount of time consumption n and less efficiency and accuracy. On the other hand, software is less prone to errors, higher accuracy and plus there is no physical work required (Just a click and tadaa, testing is done).",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "But as the rule of thumb quotes “Everything has its pros and cons”, so as is the case with testing methodologies, where both manual testing and automated testing have their benefits and disadvantages but what if manual testing and automated testing are weighed on a weighing scale, then it comes out that automation testing has almost always won against manual testing.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "Manual Testing",
+      "paraContent": "Manual Testing is a process in which a human being will test the software by acting as the end user and walking through various application workflows. The goal, as with any testing process, is to ensure the application does what it’s supposed to and find bugs before the product reaches consumers.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "Depending on the product, what the test case is, and how many variations need to be tested, manual test execution could take an exorbitant amount of time. Imagine testing the classic ‘logging in’ action by hand. You’d have to set up the same test repeatedly, with different data sets, until every scenario you could think of has been exhausted.",
+      "paraImg": "manualtoautomated2.png",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "Pintailer, being a software tool with the motive to provide ease in migrating from manual QA to Automated QA, is solving the problem of people who want to migrate but are not finding the way in transitioning. The only things you need to start the automation process is to first import all your test cases in Pintailer which are in your excel sheet, a system and good internet connection and you are good to go. Pintailer provides the feature of updating cucumber feature files, also test cases can be organized on the basis of releases and periodic reporting feature where the customers will be getting the reports of test automation coverage, test execution reports, QA progress report and with easy upload feature for your Test Cases and Test Results, you get a centralized place to manage and organize your testing process.",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "Features of Pintailer",
+      "paraContent": "&#x2022; Web Based – access from anywhere in the world \n\n &#x2022; Cloud Based –no need to maintain servers for storing data, its already taken care of \n\n &#x2022; Agile Compatible – compatible with the fast development and testing methodologies \n\n &#x2022; Interactive Reporting – view the interactive reports \n\n &#x2022; Manual Test Case Management – Manage your manual test cases with the interactive and super fast UI \n\n &#x2022; Automation Test Case Management – manage your automated test feature files \n\n &#x2022; Mapping with Automation – Associate the manual test cases with its automation \n\n &#x2022; Consolidated Automation and Manual Report – view a single report for all your tests – Manual and automation.  \n\n &#x2022; Edit Feature File – Edit the feature file directly in the tool without losing any association  \n\n &#x2022; Automatic Test Creation using Feature – if you have only automation scripts for one of your project then Pintailer automatically creates equivalent manual test cases if your automation is done using Gherkin Implementation. \n\n &#x2022; Automatic Manual and Automation Test Case Mapping – associate manual and automation test cases automatically by just adding the file name in case of TestNG implementation. \n\n &#x2022; Simplified User Interface – simple user interface \n\n &#x2022; Training Documentations for Users and Administrators – access the full tutorial and support at any time \n\n &#x2022; Import and Export Support – import and export the test cases easily and as per your convenience. \n\n &#x2022; Pricing – cost effective tool \n\n &#x2022; Role-Based Security – restricted role-based access to avoid any tampering of data. \n\n &#x2022; Requirement Management – Upcoming feature in the tool \n\n &#x2022; Issue Management– Upcoming feature in the tool \n\n &#x2022; Integrations– Upcoming feature in the tool",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    }
+  ]
+}

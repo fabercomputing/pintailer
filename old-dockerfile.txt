@@ -1,0 +1,30 @@
+FROM ubuntu:18.04
+# install apache2 web server
+
+RUN /usr/bin/apt-get update
+RUN /usr/bin/apt-get install -y apache2
+RUN /usr/bin/apt-get install -y curl 
+RUN /usr/bin/apt-get install -y unzip 
+#RUN /usr/bin/apt-get clean
+#RUN rm -rf /var/lib/apt/lists/*
+
+# setup APACHE configuration
+
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+ENV APACHE_PID_FILE /var/run/apache2.pid
+ENV APACHE_RUN_DIR /var/run/apache2
+ENV APACHE_LOCK_DIR /var/lock/apache2
+RUN mkdir /var/run/apache2
+COPY ./httpd.conf /etc/apache2/sites-enabled/000-default.conf
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+
+
+EXPOSE 80 443
+
+# start apache
+
+RUN rm -f $APACHE_PID_FILE
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

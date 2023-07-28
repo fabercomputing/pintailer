@@ -1,0 +1,118 @@
+<h1 mat-dialog-title class="dialog-title-pintailer">{{description}}
+  <mat-icon class="closePopupIcon" style="float:right; cursor: pointer; color: crimson;" (click)="this.dialogRef.close('cancel')"
+    matTooltip="Close">close</mat-icon>
+  <!-- <mat-icon style="float:right; cursor: pointer;" (click)="openHelpFor(29)">help</mat-icon> -->
+  <!-- <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar> -->
+</h1>
+
+<mat-accordion>
+  <mat-expansion-panel [expanded]="true" *ngIf="releaseProdBugs.length > 0">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span style="color: firebrick;"> <b>Production Tickets</b> </span>
+      </mat-panel-title>
+      <mat-panel-description>
+
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-table [dataSource]="releaseProdBugs">
+
+      <!-- Bug ID Column -->
+      <ng-container matColumnDef="ticketId">
+        <mat-header-cell *matHeaderCellDef> <b>Ticket ID</b> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.bugId}} </mat-cell>
+      </ng-container>
+
+      <!-- Remarks Column -->
+      <ng-container matColumnDef="remarks">
+        <mat-header-cell *matHeaderCellDef> <b>Remarks</b> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.remarks}} </mat-cell>
+      </ng-container>
+
+      <!-- Applicable Column -->
+      <ng-container matColumnDef="applicable">
+        <mat-header-cell *matHeaderCellDef> <b>Applicable</b> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.applicable ? 'Yes' : 'No'}} </mat-cell>
+      </ng-container>
+
+      <!-- Creation Date Column -->
+      <ng-container matColumnDef="createdDate">
+        <mat-header-cell *matHeaderCellDef style="font-weight: bold">
+          Creation Date
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.createdDate | date :'yyyy-MM-dd'}} </mat-cell>
+      </ng-container>
+
+      <!-- Created By Column -->
+      <ng-container matColumnDef="createdBy">
+        <mat-header-cell *matHeaderCellDef> <b>Created By</b> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.createdBy}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <!-- text-decoration: underline; -->
+        <span style="color: rgb(178, 144, 34);"> <b>Normal Tickets</b></span>
+      </mat-panel-title>
+      <mat-panel-description>
+
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-table *ngIf="releaseNormalBugs.length > 0; else noNormalBugData" [dataSource]="releaseNormalBugs">
+
+      <!-- Bug ID Column -->
+      <ng-container matColumnDef="ticketId">
+        <mat-header-cell *matHeaderCellDef> <b>Ticket ID</b> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.bugId}} </mat-cell>
+      </ng-container>
+
+      <!-- Remarks Column -->
+      <ng-container matColumnDef="remarks">
+        <mat-header-cell *matHeaderCellDef> <b>Remarks</b> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.remarks}} </mat-cell>
+      </ng-container>
+
+      <!-- Applicable Column -->
+      <ng-container matColumnDef="applicable">
+        <mat-header-cell *matHeaderCellDef> <b>Applicable</b> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.applicable ? 'Yes' : 'No'}} </mat-cell>
+      </ng-container>
+
+      <!-- Creation Date Column -->
+      <ng-container matColumnDef="createdDate">
+        <mat-header-cell *matHeaderCellDef style="font-weight: bold">
+          Creation Date
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.createdDate | date :'yyyy-MM-dd'}} </mat-cell>
+      </ng-container>
+
+      <!-- Created By Column -->
+      <ng-container matColumnDef="createdBy">
+        <mat-header-cell *matHeaderCellDef> <b>Created By</b> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.createdBy}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <ng-template #noNormalBugData>
+      <mat-list>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          No normal category ticket is attached to this Test Case
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </ng-template>
+
+  </mat-expansion-panel>
+</mat-accordion>

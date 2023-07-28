@@ -1,0 +1,348 @@
+<mat-accordion multi="true" style="display:none;">
+  <mat-expansion-panel [expanded]="true">
+    <!-- <mat-expansion-panel-header> -->
+    <!-- <mat-panel-title>
+        Personal data:
+      </mat-panel-title>
+      <mat-panel-description>
+        Your details are here:
+      </mat-panel-description> -->
+    <!-- </mat-expansion-panel-header> -->
+
+    <mat-list>
+      <mat-list-item>
+        <h4>Name:&nbsp; </h4>
+        <p> {{userProfileDetail.userName}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h4>Email:&nbsp; </h4>
+        <p> {{userProfileDetail.email}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h4>Roles:&nbsp; </h4>
+        <p> {{userProfileDetail.userOrganizationalRole}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!-- <mat-list-item>
+        <h4>Emp ID:&nbsp; </h4>
+        <p> {{userProfileDetail.employeeNumber}}</p>
+      </mat-list-item> -->
+      <!-- <mat-divider></mat-divider> -->
+      <mat-list-item>
+        <h4>Clients:&nbsp; </h4>
+        <p> {{userProfileDetail.userOrganizations}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+
+  </mat-expansion-panel>
+  <div class="hiddenDiv" style="display:none">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Assigend Assets
+        </mat-panel-title>
+        <mat-panel-description>
+          Assined Assets Details:
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-list *ngFor='let value of assinedAssetsInfo;'>
+        <mat-list-item>
+          <h4 *ngIf="value.name   != ''">&nbsp;Name:&nbsp; </h4>
+          <p> {{value.name}}</p>
+          <h4 *ngIf="value.brand   != ''">&nbsp;brand:&nbsp; </h4>
+          <p> {{value.brand}}</p>
+          <h4 *ngIf="value.model   != ''">&nbsp;Model:&nbsp; </h4>
+          <p> {{value.model}}</p>
+          <h4 *ngIf="value.serial   != ''">&nbsp;Serial:&nbsp; </h4>
+          <p> {{value.serial}}</p>
+          <h4 *ngIf="value.processor   != ''">&nbsp;Processor:&nbsp; </h4>
+          <p> {{value.processor}}</p>
+          <h4 *ngIf="value.ram   != '0'">&nbsp;RAM:&nbsp; </h4>
+          <p> {{value.ram}}</p>
+          <h4 *ngIf="value.hd_type   != ''">&nbsp;HD Type:&nbsp; </h4>
+          <p> {{value.hd_type}}</p>
+          <h4 *ngIf="value.hd_size   != '0'">&nbsp;HD Size:&nbsp; </h4>
+          <p> {{value.hd_size}}</p>
+          <h4 *ngIf="value.os_version   != ''">&nbsp;OS Version:&nbsp; </h4>
+          <p> {{value.os_version}}</p>
+          <h4 *ngIf="value.os_type   != ''">&nbsp;OS Type:&nbsp; </h4>
+          <p> {{value.os_type}}</p>
+          <h4 *ngIf="value.comments   != ''">&nbsp;Comments:&nbsp; </h4>
+          <p> {{value.comments}}</p>
+          <h4 *ngIf="value.imei   != '0'">&nbsp;IMEI:&nbsp; </h4>
+          <p> {{value.imei}}</p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+      </mat-list>
+
+      <h4 class="row" *ngIf="assinedAssetsInfo?.length == 0">Looks like you have no assinged asset. Please contact your
+        Administrator.</h4>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Contact Directory
+        </mat-panel-title>
+        <mat-panel-description>
+          Contact Information Of Organization:
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-accordion>
+        <mat-expansion-panel *ngFor='let userName of usersDetail;' class="internalUserDetail">
+          <mat-expansion-panel-header (click)="getUserDetailFor(userName.userName)">
+            <mat-panel-title>
+              {{userName.fullName}}
+            </mat-panel-title>
+            <mat-panel-description>
+              Details about {{userName.fullName}}:
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-progress-bar mode="indeterminate" *ngIf="isUserLoaded === true"></mat-progress-bar>
+
+          <div *ngFor='let user of userAllDetail;'>
+            <mat-list>
+              <mat-list-item *ngFor="let item of generateArray(user)">
+                <h4 *ngIf="item.key === 'employeeNumber'">Employee ID:&nbsp;</h4>
+                <h4 *ngIf="item.key === 'firstName'">First Name:&nbsp;</h4>
+                <h4 *ngIf="item.key === 'lastName'">Last Name:&nbsp;</h4>
+                <h4 *ngIf="item.key === 'fullName'">Full Name:&nbsp;</h4>
+                <h4 *ngIf="item.key === 'email'">Email:&nbsp;</h4>
+                <h4 *ngIf="item.key === 'emergencyContactName'">Emergency Contact Name:&nbsp;</h4>
+                <h4 *ngIf="item.key === 'emergencyContactNumber'">Emergency Contact Number:&nbsp;</h4>
+                <h4 *ngIf="item.key === 'contactNumber'">Primary Contact:&nbsp;</h4>
+                <h4 *ngIf="item.key === 'postalAddress'">Postal Address:&nbsp;</h4>
+                <h4 *ngIf="item.key === 'userName'">User Name:&nbsp;</h4>
+                <h4 *ngIf="item.key === 'groups'">Groups:&nbsp;</h4> {{item.value}}
+              </mat-list-item>
+            </mat-list>
+
+          </div>
+
+        </mat-expansion-panel>
+
+      </mat-accordion>
+
+    </mat-expansion-panel>
+  </div>
+
+</mat-accordion>
+
+
+<!-- Dashboard Cards -->
+
+<mat-card style="box-shadow:none">
+  <div class="container user-profile-contailer">
+    <mat-card class="dashboard-cards" style="background-color:#bcd7ec;">
+      <mat-card-header>
+        <mat-icon>face</mat-icon> &nbsp;&nbsp;&nbsp;
+        <span class="card-header-dashboard">User Info</span>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>
+          <mat-list>
+            <mat-list-item style="background-color:#bcd7ec">
+              <span>Welcome {{userFullName}}</span>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item *ngFor="let mail of userEmails" style="background-color:#bcd7ec">
+              <mat-icon>mail</mat-icon> &nbsp;&nbsp;&nbsp;
+              <span>{{mail}}</span>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <div>
+      <mat-card class="dashboard-cards" style="background-color:#bcd7ec">
+        <mat-card-header>
+          <mat-icon>domain</mat-icon> &nbsp;&nbsp;&nbsp;
+          <span class="card-header-dashboard">Assigned Roles</span>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>
+            <mat-list>
+              <mat-list-item *ngFor="let role of userProfileDetail.userOrganizationalRole" style="background-color:#bcd7ec">
+                <p> {{role}}</p>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+              <mat-list-item *ngIf="userProfileDetail.userOrganizationalRole.length === 0" style="background-color:#bcd7ec">
+                <p> You have no assigned roles.</p>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            </mat-list>
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+    <div>
+      <mat-card class="dashboard-cards" style="background-color:#bcd7ec">
+        <mat-card-header>
+          <mat-icon>group</mat-icon> &nbsp;&nbsp;&nbsp;
+          <span class="card-header-dashboard">Associated Organizations</span>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>
+            <mat-list>
+              <mat-list-item *ngFor="let client of userProfileDetail.userOrganizations" style="background-color:#bcd7ec">
+                <p> {{client}}</p>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            </mat-list>
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  </div>
+
+  <!-- Test case definitions Links -->
+  <div class="container" *ngIf="canShowTestCaseMenu()">
+    <div>
+      <mat-card matRipple #rippleOne class="dashboard-cards-links" style="background-color:#d1e2f0" (click)="router.navigate(['/app/testCaseDefinition'])">
+        <mat-card-header>
+          <mat-icon>list</mat-icon> &nbsp;&nbsp;&nbsp;
+          <span class="card-header-dashboard">Test Case Definitions</span>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>
+            <br />
+            <mat-divider></mat-divider>
+            <mat-list>
+              <mat-list-item style="background-color:#d1e2f0; padding: 5px;">
+                View/Create/Update Test Definitions, import Definitions, Execute Tests and Import Execution Results.
+              </mat-list-item>
+            </mat-list>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div>
+      <mat-card matRipple class="dashboard-cards-links" style="background-color:#d1e2f0" (click)="router.navigate(['/app/testCaseMapping'])">
+        <mat-card-header>
+          <mat-icon>playlist_add</mat-icon> &nbsp;&nbsp;&nbsp;
+          <span class="card-header-dashboard">Automation Mapping</span>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>
+            <br />
+            <mat-divider></mat-divider>
+            <mat-list>
+              <mat-list-item style="background-color:#d1e2f0; padding: 5px;">
+                View/Establish the Mapping between the Manual And Automated Test Definitions.
+              </mat-list-item>
+            </mat-list>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div>
+      <mat-card matRipple class="dashboard-cards-links" style="background-color:#d1e2f0" (click)="router.navigate(['/app/releaseMapping'])">
+        <mat-card-header>
+          <mat-icon>all_inclusive</mat-icon> &nbsp;&nbsp;&nbsp;
+          <span class="card-header-dashboard">Release Mapping</span>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>
+            <br />
+            <mat-divider></mat-divider>
+            <mat-list>
+              <mat-list-item style="background-color:#d1e2f0; padding: 5px;">
+                Add/Remove Test Definitions under current Release.
+              </mat-list-item>
+            </mat-list>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+
+  <!-- Reports Links -->
+  <div class="container" *ngIf="canShowReportMenuForTesters()">
+    <div>
+      <mat-card matRipple class="dashboard-cards-links" style="background-color:#b6ebeb" (click)="router.navigate(['/app/graphReport'])">
+        <mat-card-header>
+          <mat-icon>donut_large</mat-icon> &nbsp;&nbsp;&nbsp;
+          <span class="card-header-dashboard">Test Coverage & Execution Graph</span>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>
+            <br />
+            <mat-divider></mat-divider>
+            <mat-list>
+              <mat-list-item style="background-color:#b6ebeb; padding: 5px;">
+                View the QA Coverage and Execution Graph and Reports to know the current progress.
+              </mat-list-item>
+            </mat-list>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div>
+      <mat-card matRipple class="dashboard-cards-links" style="background-color:#b6ebeb" (click)="router.navigate(['/app/testcaseAdditionProgress'])">
+        <mat-card-header>
+          <mat-icon>bar_chart</mat-icon> &nbsp;&nbsp;&nbsp;
+          <span class="card-header-dashboard">QA Progress Graph</span>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>
+            <br />
+            <mat-divider></mat-divider>
+            <mat-list>
+              <mat-list-item style="background-color:#b6ebeb; padding: 5px;">
+                View the Test Case Addition Trend by individual users.
+              </mat-list-item>
+            </mat-list>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div>
+      <mat-card *ngIf="canShowTestCaseMenu()" matRipple class="dashboard-cards-links" style="background-color:#b6ebeb"
+        (click)="router.navigate(['/app/moduleTreeGraph'])">
+        <mat-card-header>
+          <mat-icon>device_hub</mat-icon> &nbsp;&nbsp;&nbsp;
+          <span class="card-header-dashboard">Module Hierarchy Graph</span>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>
+            <br />
+            <mat-divider></mat-divider>
+            <mat-list>
+              <mat-list-item style="background-color:#b6ebeb">
+                Understand the Hierarchy of Modules at one shot by looking at the Module Hierarchy Graph.
+              </mat-list-item>
+            </mat-list>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+</mat-card>

@@ -1,0 +1,42 @@
+{
+  "title": "Retrofitting the software testing environment with Pintailer",
+  "titleDes": "Ease the migration from Manual QA to Automated QA",
+  "titleImg": "pintailer-blog-logo.png",
+  "paragraph": [{
+      "paraTitle": "",
+      "paraContent": "Here at Pintailer, we built a software testing tool that automates and enforces the operation of your company’s cumbersome and gruesome task of managing the test cases as well as their migration from Manual QA to Automated QA.  \n \nPintailer is powerful, resilient, and easy to use. It became obvious early on that testing manually would only get us so far. In this post, we’d like to share some of the insights that have proven useful during a crucial time in our team’s development—when we transitioned from a mostly manual work mode to a mostly automated one, which led to the birth of Pintailer.",
+      "paraImg": "pintailer-blog-1.png",
+      "imgHeight": "400",
+      "imgWidth": "400"
+    },
+    {
+      "paraTitle": "",
+      "paraContent": "It’s worth pausing a moment and thinking about when and if such a QA transition makes sense. Much depends on your tolerance for risk. If there’s a chance that your product’s code base will often change or if there’s a possibility that your product’s behavior will change as a function of load (i.e., number of users, number of concurrent operations, cumulative number of operations, etc.), you will either move a lot of your testing into automation or you will learn to cope with risk assessment blind spots that prevent you from having an accurate and concurrent view of your product’s quality. \n \n We noticed that many of our clients were facing problems regarding the percentage of test automation that had been done at their organization (i.e., number of test cases that are automated out of all test cases), and they were not able to get the accurate results of Test Automation coverage. And also we were facing the same problem with the development of our other products, and this led us to research on the same thing and develop a tool which cures this problem and thus Pintailer was born. \n\n",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    },
+    {
+      "paraTitle": "What is Pintailer?",
+      "paraContent": "Pintailer – A tool that helps the QA teams migrate from Manual Testing to Test Automation. The name Pintailer is derived from a migrating bird named Pintail. Pintailer tool identifies the actual statistics of Test Automation that any management needs. Before automation testing grew, the industry used the conventional approach of manual testing and most of the companies still have their big repositories of manual test cases. They are willing to move to the world of automation but one thing that keeps them from doing so is that they do not want to lose their manual test cases as they majorly rely on them.  \n \nToday we have a lot of tools available in the market that help in automating the test cases, those which serves as a repository for both manual as well as automated test cases, but what about the retrofit? Where do we link our existing manual test cases with automation? In the same old manual excel sheets that are tedious and difficult to maintain?  \n \n The answer to all the questions and dilemmas is a tool that helps you keep the manual test cases and an equivalent automation test case - Pintailer. This would help one track which test cases are automated and which are pending as the tool ensures a one-to-one mapping between the manual and the automated test cases. Using the spectacular reports the management can visualize the actual status of the work that is done while migrating from manual to automation. The tool provides a reporting structure that is easy to use and the Test Management can rely on it. So what are we waiting for? Let’s start using this tool to achieve contemporary and successful Test Management. \n\n",
+      "paraImg": "pintailer-blog-2.png",
+      "imgHeight": "400",
+      "imgWidth": "400"
+    },
+    {
+      "paraTitle": "Benefits of Pintailer",
+      "paraContent": "&#x2022; Reduce testing times and speed up delivery cycles \n\n &#x2022; Improve test coverage and accuracy \n\n &#x2022; Cut maintenance costs \n\n &#x2022; Find and fix more bugs before they reach production \n\n &#x2022; Boost employee efficiency by eliminating mundane and duplicate tasks \n\n &#x2022; Maintaining the history of test cases, so editing test cases from multiple releases running in parallel won’t be an issue and also updates will not affect the data across the releases \n\n",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": "",
+      "paraVideo":"https://www.youtube.com/embed/XtWKj1pgZis?start=5"
+    },
+    {
+      "paraTitle": "Expectations from Pintailer in Future",
+      "paraContent": "&#x2022; E-mailing the Test Automation Coverage reports periodically \n\n &#x2022; Versioning of the test cases and automation steps \n\n &#x2022; Assessment of Production Bug Tracking \n\n &#x2022; Integration with JIRA \n\n &#x2022; New Eclipse Plug-in for Pintailer",
+      "paraImg": "",
+      "imgHeight": "",
+      "imgWidth": ""
+    }
+  ]
+}

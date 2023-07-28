@@ -1,0 +1,54 @@
+.container {
+  height: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 20%;
+}
+
+.rightAlign {
+  display: flex;
+  align-items: right;
+  justify-content: space-around;
+  float: right;
+  margin: 10px;
+}
+
+/* .OrgProject {
+  width: 100%;
+  float: left;
+}
+
+.project {
+  float: right;
+  width: 48%;
+  overflow: hidden;
+} */
+
+.org {
+  float: left;
+  width: 48%;
+  overflow: hidden;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.goExecution {
+  margin-top: 8px;
+  margin-left: 4px;
+  position: relative;
+  background: rgba(122, 153, 178, 0.5);
+  margin: 5px;
+}

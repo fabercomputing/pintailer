@@ -1,0 +1,156 @@
+  .container {
+    height: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  td,
+  th {
+    width: 14.285%;
+    /* text-align: center; */
+  }
+
+  .rightAlign {
+    display: flex;
+    align-items: right;
+    justify-content: space-around;
+    float: right;
+    margin: 10px;
+  }
+
+  .buttonMarginBg {
+    margin: 5px;
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+    max-height: 42px;
+  }
+
+  .truncate {
+    width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+
+  .mat-cell {
+    border-right: 1px solid lightgray;
+  }
+
+  tr:nth-child(even) {
+    background-color: #fcfdfe;
+  }
+
+  /* tr:nth-child(even)>.mat-column-testSummary>.test-summary-card {
+    background-color: #fcfdfe;
+  } */
+
+  .test-summary-card {
+    background-color: transparent;
+  }
+
+  tr:hover {
+    background-color: #f8f9fa;
+  }
+
+  .test-summary-card {
+    box-shadow: none;
+    padding: 4px;
+  }
+
+  .line-breaker {
+    white-space: pre-line;
+  }
+
+  .org {
+    float: left;
+    overflow: hidden;
+    margin: 5px;
+  }
+
+  .project {
+    float: left;
+    overflow: hidden;
+    margin: 5px;
+  }
+
+  .tableSearchBox {
+    float: left;
+    padding: 10px;
+    width: 20%;
+  }
+
+  .tablePaging {
+    float: right;
+    width: 48%;
+  }
+
+  .mat-paginator-sticky {
+    bottom: 0px;
+    position: sticky;
+    z-index: 10;
+    height: 45px;
+  }
+
+  .primarymanual {
+    margin: 5px;
+    background: rgba(122, 153, 178, 0.5);
+    max-height: 45px;
+    max-width: 110px;
+    min-width: 106px;
+  }
+
+  .warnmanual {
+    margin: 5px;
+    background: rgb(204, 192, 192);
+    max-height: 45px;
+    max-width: 110px;
+    min-width: 106px;
+  }
+
+  .warnmanual2 {
+    margin: 5px;
+    background: rgb(176, 206, 196);
+    max-height: 45px;
+    max-width: 110px;
+    min-width: 106px;
+  }
+
+  ::ng-deep .mat-tooltip {
+    font-size: 14px;
+    background-color: rgb(51, 48, 48) !important;
+    color: white !important;
+    border-radius: 4px;
+  }
+
+  .status-icon-testcase {
+    top: 1px;
+    left: 1px;
+    /* position: absolute; */
+  }
+
+  .testcase-number-td {
+    position: relative !important;
+  }
+
+  td {
+    text-align: left;
+    padding-left: 5px !important;
+  }
+
+  th {
+    padding-left: 5px !important;
+    border-right: 1px solid #faf7f7;
+  }
+
+  .test-summary-column {
+    word-break: break-all;
+  }
+  

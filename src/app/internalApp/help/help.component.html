@@ -1,0 +1,65 @@
+<mat-sidenav-container class="example-container" (backdropClick)="close('backdrop')" *ngIf="shouldRun" autosize>
+  <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose mode="side">
+
+    <div>
+
+      <div class="marginTop5px" *ngIf="false">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Search..." #filter (keyup)="filterModuleTree($event.value)">
+        </mat-form-field>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="marginTop5px">
+        <div class="mat-tree-node" *ngIf="organization != undefined && clientProjectId != undefined">
+          <mat-form-field>
+            <input id="newRootModule" matInput placeholder="New module...">
+          </mat-form-field>
+          <button mat-icon-button (click)="saveRootNode()">
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+        <mat-card style="box-shadow:none;">
+          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+            <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChildren">
+              <li class="example-tree-container">
+                <div class="mat-tree-node">
+                  <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.item">
+                    <mat-icon *ngIf="node.children._value.length != 0">
+                      {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                    </mat-icon>
+                  </button>
+                  <p matTreeNodeToggle style="cursor: pointer; text-decoration: underline;" (click)="scrollToDetail(node.itemNum); helpTopicOpen = node.item">{{node.item}}</p>
+                  <!-- <hr /> -->
+                  <mat-form-field *ngIf="hasNoContent(node)">
+                    <input matInput #itemValue placeholder="New module..." (blur)="saveNode(node, itemValue.value, false)">
+                  </mat-form-field>
+                  <!-- <button mat-icon-button (click)="addNewItem(node)">
+                  <mat-icon>add</mat-icon>
+                </button> -->
+                </div>
+                <ul class="example-tree-nested-node">
+                  <div *ngIf="treeControl.isExpanded(node)">
+                    <ng-container matTreeNodeOutlet></ng-container>
+                  </div>
+                </ul>
+              </li>
+            </mat-nested-tree-node>
+          </mat-tree>
+        </mat-card>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <mat-card *ngFor="let detail of helpDetailHtml" [id]="detail.topicId" class="detailHelp">
+      <h4>{{helpTopicOpen}}</h4>
+      <div class="chart-body" [innerHTML]="detail.helpText"></div>
+    </mat-card>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div *ngIf="!shouldRun">Please open on Stackblitz to see result</div>

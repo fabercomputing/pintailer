@@ -1,0 +1,261 @@
+<!-- Wrapped in a div so anywhere you click you disable contextmenu,
+also the div is responsible for suppressing the default browser contextmenu -->
+<div *ngIf="contextmenu==true">
+  <app-context-menu [x]="contextmenuX" [y]="contextmenuY">
+    <button mat-menu-item (click)="editTestCaseDefinition(currentRow); contextmenu = false;">
+      <mat-icon style="margin-right: 12px;">edit</mat-icon>
+      <span>Edit</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="addTestCaseExecution(currentRow); contextmenu = false;"
+      *ngIf="(currentRow.applicable && currentRow.automatable)">
+      <mat-icon style="margin-right: 12px;">note_add</mat-icon>
+      <span>Add Execution Result</span>
+    </button>
+    <button mat-menu-item (click)="addTestCaseExecution(currentRow); contextmenu = false;"
+      *ngIf="(currentRow.applicable && !currentRow.automatable)">
+      <mat-icon style="margin-right: 12px;">note_add</mat-icon>
+      <span>Add Manual Execution Result</span>
+    </button>
+    <mat-divider *ngIf="(currentRow.applicable)"></mat-divider>
+    <button mat-menu-item (click)="fetchOlderVersions(currentRow); contextmenu = false;"
+      *ngIf="(currentRow.latestVersion != null) && (currentRow.latestVersion != 'V1')">
+      <mat-icon style="margin-right: 12px;">how_to_vote</mat-icon>
+      <span>Fetch Older Versions</span>
+    </button>
+    <mat-divider *ngIf="(currentRow.latestVersion != null) && (currentRow.latestVersion != 'V1')"></mat-divider>
+    <button mat-menu-item (click)="attachBug(currentRow); contextmenu = false;">
+      <mat-icon style="margin-right: 12px;">receipt</mat-icon>
+      <span>Attach Ticket</span>
+    </button>
+  </app-context-menu>
+</div>
+
+<div (click)="disableContextMenu()">
+
+  <div class="project" id="introApplicableTitle" style="padding: 5px;">
+    <mat-form-field>
+      <mat-select placeholder="Applicable Flag" name="applicableFlag" [(ngModel)]="applicableFlag"
+        (selectionChange)="loadDynamicData(clientProjectId)" [disabled]="isLoaded">
+        <mat-option [value]="'all'">
+          All
+        </mat-option>
+        <mat-option [value]="'true'">
+          Applicable
+        </mat-option>
+        <mat-option [value]="'false'">
+          Non Applicable
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="project" id="introColumnSelectTitle" style="padding: 5px;">
+    <mat-form-field>
+      <mat-label>Table Columns</mat-label>
+      <mat-select multiple (selectionChange)="selectTcTableColumns();" [(ngModel)]="tcDefaultColumns"
+        name="tcDefaultColumns">
+        <mat-option *ngFor="let tcColumn of tcAllColumns" [value]="tcColumn.name"
+          [disabled]="tcColumn.name === 'testCaseNo'">
+          {{tcColumn.value}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="container rightAlign">
+
+    <div class="project" id="introProjectTitle">
+      <mat-form-field>
+        <mat-select placeholder="Projects" name="clientProject" [value]="clientProjectId"
+          (selectionChange)="loadDynamicData($event.value)" [disabled]="isLoaded">
+          <mat-option [value]="'0'">
+            All Projects
+          </mat-option>
+          <mat-option *ngFor="let clientProject of clientProjects" [value]="clientProject.clientProjectId">
+            {{clientProject.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button class="buttonMarginBg" (click)="addTestCaseDefinition()" id="introAddDefinitonTitle">Add
+      Definition</button>
+    <button mat-raised-button class="buttonMarginBg" (click)="importTestCaseDefinition()"
+      id="introImportDefinitionTitle">Import
+      Definition</button>
+    <button mat-raised-button class="buttonMarginBg" (click)="importTestCaseExecution()"
+      id="introImportExecutionTitle">Import
+      Execution</button>
+
+  </div>
+
+  <div class="tableSearchPage">
+    <!-- New part: this is the search box -->
+    <mat-form-field class="tableSearchBox">
+      <input matInput placeholder="Search in table" #input>
+    </mat-form-field>
+
+  </div>
+
+  <div class="mat-elevation-z8">
+    <mat-progress-bar mode="indeterminate" *ngIf="dataSource.dataLength"></mat-progress-bar>
+    <table style="overflow-x: auto; display: block;" [@fadeInOut] mat-table class="lessons-table mat-elevation-z8"
+      [dataSource]="dataSource" matSort matSortActive="testCaseNo" matSortDirection="desc" matSortDisableClear
+      id="introDefinitionTableTitle" oncontextmenu="return false;">
+
+      <!-- Module Name -->
+      <ng-container matColumnDef="ModuleName">
+        <th [@EnterLeave] mat-header-cell *matHeaderCellDef style="font-weight: bold"> Module Name </th>
+        <td mat-cell *matCellDef="let row">
+          <p *ngIf="row.modulesNameHierarchy" [innerHTML]="row.modulesNameHierarchy" class="line-breaker"></p>
+        </td>
+
+      </ng-container>
+
+      <!-- Test Case No. Column -->
+      <ng-container matColumnDef="testCaseNo">
+        <th [@EnterLeave] mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"
+          (click)="setTableHeader('Test Case No.')">
+          Test Case ID
+        </th>
+        <td mat-cell *matCellDef="let row" class="testcase-number-td">
+
+          <div *ngIf="row.applicable && !row.automatable" style="display: inline;">
+            {{row.testCaseSequenceId}}
+            <button mat-icon-button class="status-icon-testcase" matTooltip="Manual Test Case">
+              <mat-icon style="color:goldenrod;" aria-label="Example icon-button with a heart icon">pan_tool</mat-icon>
+            </button>
+          </div>
+
+          <div *ngIf="row.applicable && row.automatable" style="display: inline;">
+            {{row.testCaseSequenceId}}
+            <button mat-icon-button class="status-icon-testcase" matTooltip="Automable Test Case">
+              <mat-icon style="color:seagreen;" aria-label="Example icon-button with a heart icon">spellcheck</mat-icon>
+            </button>
+          </div>
+
+          <div *ngIf="!row.applicable" style="display: inline;">
+            {{row.testCaseSequenceId}}
+            <button mat-icon-button class="status-icon-testcase" matTooltip="Not Applicable Test Case">
+              <mat-icon style="color: firebrick;" aria-label="Example icon-button with a heart icon">not_interested
+              </mat-icon>
+            </button>
+          </div>
+
+          <mat-chip-list style="display: inline-block; margin: 5px;">
+            <mat-chip style="margin: 1px auto;" matTooltip="Latest Version"
+              *ngIf="(row.latestVersion != null) && (row.latestVersion != 'V1')">
+              {{row.latestVersion}}</mat-chip>
+            <!-- <mat-chip style="margin: 1px auto;" style="visibility: hidden;"
+              *ngIf="!((row.latestVersion != null) && (row.latestVersion != 'V1'))">
+              {{row.latestVersion}}</mat-chip> -->
+          </mat-chip-list>
+
+          <button (click)="$event.stopPropagation(); showAttachedBugInfo(row.testCaseSequenceId);"
+            *ngIf="checkTcProdBug(row)" mat-icon-button class="status-icon-testcase"
+            [matTooltip]="getAllAssignedBugs(row)">
+            <mat-icon style="color: firebrick;" aria-label="Example icon-button with a receipt icon">receipt
+            </mat-icon>
+          </button>
+
+          <button (click)="$event.stopPropagation(); showAttachedBugInfo(row.testCaseSequenceId);"
+            *ngIf="checkTcOtherBug(row)" mat-icon-button class="status-icon-testcase"
+            [matTooltip]="getAllAssignedBugs(row)">
+            <mat-icon style="color: rgb(178, 144, 34);" aria-label="Example icon-button with a receipt icon">
+              receipt
+            </mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+
+      <!-- Test Case Summary Column -->
+      <ng-container matColumnDef="testSummary">
+        <th [@EnterLeave] mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"
+          (click)="setTableHeader('Test Case Summary')" class="test-summary-column">
+          Test Case Summary
+        </th>
+        <td mat-cell *matCellDef="let row" class="test-summary-column">
+          <mat-card *ngIf="row.testSummary != ''" class="test-summary-card">{{row.testSummary}}</mat-card>
+        </td>
+      </ng-container>
+
+      <!-- Execution Steps Column -->
+      <ng-container matColumnDef="executionSteps">
+        <th [@EnterLeave] mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"
+          (click)="setTableHeader('Execution Steps')">
+          Execution Steps
+        </th>
+        <td mat-cell *matCellDef="let row"> {{row.executionSteps}} </td>
+      </ng-container>
+
+      <!-- Pre Condition Column -->
+      <ng-container matColumnDef="preCondition">
+        <th [@EnterLeave] mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"
+          (click)="setTableHeader('Pre Condition')">
+          Pre Condition
+        </th>
+        <td mat-cell *matCellDef="let row"> {{row.preCondition}} </td>
+      </ng-container>
+
+      <!-- Expected Result Column -->
+      <ng-container matColumnDef="expectedResult">
+        <th [@EnterLeave] mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"
+          (click)="setTableHeader('Expected Result')">
+          Expected Result
+        </th>
+        <td mat-cell *matCellDef="let row"> {{row.expectedResult}} </td>
+      </ng-container>
+
+      <!-- Creation Date Column -->
+      <ng-container matColumnDef="createdDate">
+        <th [@EnterLeave] mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"
+          (click)="setTableHeader('Created Date')">
+          Creation Date
+        </th>
+        <td mat-cell *matCellDef="let row"> {{row.createdDate | date :'yyyy-MM-dd hh:mm'}} </td>
+      </ng-container>
+
+      <!-- Tags  Column -->
+      <ng-container matColumnDef="tags">
+        <th [@EnterLeave] mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold"
+          (click)="setTableHeader('Tags')">
+          Tags </th>
+        <td mat-cell *matCellDef="let row" style="padding: 5px;">
+          <mat-chip-list>
+            <mat-chip style="margin: 1px auto;" *ngFor="let tag of row.tags">{{tag}}</mat-chip>
+          </mat-chip-list>
+        </td>
+      </ng-container>
+
+      <!-- createdBy  Column -->
+      <ng-container matColumnDef="createdBy">
+        <th [@EnterLeave] mat-header-cell *matHeaderCellDef style="font-weight: bold"> Created By </th>
+        <td mat-cell *matCellDef="let row"> {{row.createdBy}} </td>
+      </ng-container>
+
+      <!-- To be replaced by Context Menu -->
+      <!-- Actions  Column -->
+      <!-- <ng-container matColumnDef="actions">
+        <th [@fadeInOut] mat-header-cell *matHeaderCellDef style="font-weight: bold"> Actions </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-raised-button class="primarymanual" (click)="editTestCaseDefinition(row)">Edit</button>
+          <button *ngIf="row.applicable && !row.automatable" mat-raised-button matTooltip="Execute Manual" class="warnmanual2"
+            (click)="addTestCaseExecution(row)">Execute (M)</button>
+          <button *ngIf="row.applicable && row.automatable" matTooltip="Execute" mat-raised-button class="warnmanual"
+            matTooltip="Execute" (click)="addTestCaseExecution(row)">Execute</button>
+        </td>
+      </ng-container> -->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <!-- 'opacity': row.applicable ? '1' : '0.7' -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showTestCaseDefinition(row);"
+        (contextmenu)="onrightClick($event, row)"
+        [ngStyle]="{'cursor': 'url(\'assets/images/pointer-cursor.png\'), auto', 'opacity': row.applicable ? '1' : '1'}"
+        [matTooltip]="row.applicable ? '' : ''">
+      </tr>
+    </table>
+    <mat-paginator class="mat-paginator-sticky" style="border: 1px #e0e4e8 solid;" [length]="totalTestCaseCountUI"
+      [pageSize]="10" [pageSizeOptions]="[5, 10, 100, 200, 500, 1000, 2000]"></mat-paginator>
+  </div>
+</div>

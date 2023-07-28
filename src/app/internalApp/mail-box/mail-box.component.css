@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.mat-cell {
+  border-right: 1px solid lightgray;
+}
+
+.line-breaker {
+  white-space: pre;
+}
+
+.mat-paginator-sticky {
+  bottom: 0px;
+  position: sticky;
+  z-index: 10;
+  height: 45px;
+}

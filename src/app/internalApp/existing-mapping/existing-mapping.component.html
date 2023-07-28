@@ -1,0 +1,40 @@
+<h1 mat-dialog-title class="dialog-title-pintailer">Module Hierarchy
+  <mat-icon class="closePopupIcon" style="float:right; cursor: pointer; color: crimson;" (click)="this.dialogRef.close('cancel')"
+    matTooltip="Close">close</mat-icon>
+  <!-- <mat-icon style="float:right; cursor: pointer;" (click)="openHelpFor(29)">help</mat-icon> -->
+</h1>
+
+<mat-progress-bar mode="indeterminate" *ngIf="dataLoading"></mat-progress-bar>
+<mat-list *ngFor='let scenario of mappedScenarioInfo;'>
+  <mat-card style="overflow: auto;">
+    <mat-card-title class="list-item" style="cursor: pointer;">Feature
+      File: {{scenario.testScenarios.featureFileName}}</mat-card-title>
+    <mat-card-subtitle>Version: {{testScenarioVersionId ? testScenarioVersionId : 'Latest Version'}}</mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <br />
+    <div style="padding: 5px;">
+      <p class="list-item" style="display: inline;">&nbsp;Scenario:</p>
+      <p class="list-item" style="display: inline;">&nbsp;{{scenario.testScenarios.name}}</p>
+      <!-- <button mat-button color="primary"  style="float:right">
+        <mat-icon>expand_more</mat-icon>
+      </button> -->
+    </div>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" (click)="selectScenario(scenario)"
+        matTooltip="Click to open Scenario in Mapping UI">Open
+        Scenario</button>
+      <button mat-stroked-button color="primary" (click)="getTestSteps(scenario.testScenarios)"
+        matTooltip="Fetch Mapped Test Steps" style="margin-left: 5px;">Show Mapped Steps</button>
+    </mat-card-actions>
+  </mat-card>
+  <div
+    style="overflow:auto; height: 200px; box-shadow:none; font-family: Roboto,'Helvetica Neue',sans-serif; background-color: rgb(248, 248, 242)"
+    *ngIf="fetchedStepScenarioId === scenario.testScenarios.testScenarioId">
+    <div *ngFor='let step of testStepsList;'>
+      <p style="padding: 5px;" *ngIf="mappedTestStepList.includes(step.testStepId)">{{getStepName(step.name)}}</p>
+      <mat-divider *ngIf="mappedTestStepList.includes(step.testStepId)"></mat-divider>
+    </div>
+  </div>
+</mat-list>
+
+<h4 *ngIf="mappedScenarioInfo.length === 0">{{emptyMessage}}</h4>
